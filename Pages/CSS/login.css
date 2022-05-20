@@ -1,0 +1,46 @@
+@font-face {
+  font-family: 'santico';
+  src: url('../../Assets/Fonts/SenticoSansDT-Bold.ttf');
+}
+
+.logo-telecal{
+  display: flex;
+  justify-content: center;
+  margin:80px auto;
+}
+
+.logo-telecal img{
+  width: 300px;
+}
+
+.container div{
+  display:flex;
+  justify-content: center;
+}
+
+div label{
+  font-size: 20px !important;
+  font-family: 'santico', sans-serif;
+  color:#0e4e7c;
+}
+
+div input{
+  font-family: 'santico', sans-serif;
+  color:#0e4e7c !important;
+}
+
+.buttonSubmit{
+  margin:50px auto;
+  display: flex;
+  justify-content: center;
+}
+
+.linkLogin{
+  display: flex;
+  justify-content: center;
+}
+.linkLoginp {
+  font-family: 'santico', sans-serif ip !important;
+  color: #0e4e7c !important;
+  font-weight: bold;
+}

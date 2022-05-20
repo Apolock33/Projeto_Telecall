@@ -1,0 +1,262 @@
+/* Resets/Padrões */
+@font-face {
+  font-family: 'Santico', sans-serif;
+  src: url('../../Assets/Fonts/SenticoSansDT-Light.ttf');
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-size: 20px;
+}
+
+li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+/* Scroll Bar */
+body::-webkit-scrollbar {
+  width: 5px;
+}
+
+body::-webkit-scrollbar-track {
+  background: rgb(195, 0, 0);
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: #fff;
+  border-radius: 20px;
+  border: 3px solid transparent;
+}
+
+/* Logo */
+.logo img {
+  transition: all 0.4s ease-out;
+}
+
+.max-logo img {
+  max-width: 200px;
+}
+
+.min-logo img {
+  max-width: 130px;
+}
+
+/* Header */
+header {
+  width: 100%;
+  position: fixed;
+  z-index: 1;
+  transition: all 0.4s ease-out;
+}
+
+.max-header {
+  background-color: #0e4e7c;
+  height: 100px;
+}
+
+.min-header {
+  background-color: #fff;
+  height: 80px;
+}
+
+.container {
+  max-width: 1200px;
+  height: 100%;
+  margin: 0 auto;
+  padding: 0 60px;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  grid-template-areas: "lgo ... nav";
+  align-content: center;
+}
+
+.logo {
+  grid-area: lgo;
+}
+
+.nav-bar {
+  grid-area: nav;
+  display: grid;
+  align-content: center;
+  transition: all 0.4s ease-out;
+}
+
+.nav-bar a {
+  padding: 10px;
+  font-family: 'santico', sans-serif;
+}
+
+.nav-bar a:hover {
+  background-color: rgb(195, 0, 0);
+  padding: 10px;
+  border-radius: 3px;
+}
+
+
+.nav-bar ul {
+  display: grid;
+  grid-auto-flow: column;
+  grid-gap: 20px;
+  align-content: center;
+}
+
+.max-nav-bar a {
+  font-size: 1em;
+  color: #fff;
+}
+
+.min-nav-bar a {
+  font-size: 0.8em;
+  color: #0e4e7c;
+  font-weight: bold;
+}
+
+.LogIn {
+  background-color: rgb(195, 0, 0);
+  border-radius: 3px;
+  color:#fff !important;
+}
+
+/* sections */
+main {
+  font-size: 20px;
+}
+
+section {
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  font-size: 2em;
+}
+
+main section:nth-child(odd) {
+  height: 100vh;
+  background-color: #fff;
+}
+
+main section:nth-child(even) {
+  height: 100vh;
+  background-color: #0e4e7c;
+}
+
+/* Section Sobre */
+
+
+/* Media Queries */
+@media(max-width:768px) {
+  .container {
+    position: relative;
+    padding: 0 20px;
+    display: grid;
+    grid-template-areas: "lgo ... mnu";
+    align-content: center;
+  }
+
+  .max-logo img {
+    max-width: 200px;
+  }
+
+  .min-logo img {
+    max-width: 150px;
+  }
+
+  .max-header {
+    height: 80px;
+  }
+
+  .min-header {
+    height: 80px;
+  }
+
+  .nav-bar {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    background-color: #0e4e7c;
+    transform: translateX(-100%);
+    transition: all 0.4 ease-out;
+  }
+
+  .nav-bar ul {
+    grid-auto-flow: row;
+    grid-gap: 60px;
+    justify-content: center;
+  }
+
+  .nav-bar li {
+    text-align: center;
+  }
+
+  .max-nav-bar {
+    top: 80px;
+    height: calc(100vh - 70px);
+  }
+
+  .min-nav-bar {
+    top: 60px;
+    height: calc(100vh - 50px);
+  }
+
+  .min-nav-bar a {
+    font-size: 1em;
+    color: #fff;
+    font-weight: normal;
+  }
+
+  .menu {
+    grid-area: mnu;
+    display: grid;
+    align-content: center;
+    cursor: pointer;
+  }
+
+  .menu-opened {
+    transform: translateX(0%);
+  }
+
+  .close-btn {
+    width: 32px;
+    transform: rotateZ(45deg);
+  }
+
+  .close-btn::before,
+  .close-btn::after {
+    top: 0 !important;
+    transform: rotateZ(90deg);
+  }
+
+  .hamburguer {
+    width: 28px;
+    height: 3px;
+    background-color: rgb(195, 0, 0);
+    position: relative;
+  }
+
+  .hamburguer::before {
+    content: "";
+    position: absolute;
+    width: 28px;
+    height: 3px;
+    background-color: rgb(195, 0, 0);
+    top: -8px;
+    right: 0;
+    transition: all 0.2s ease-out;
+  }
+
+  .hamburguer::after {
+    content: "";
+    position: absolute;
+    width: 28px;
+    height: 3px;
+    background-color: rgb(195, 0, 0);
+    top: 8px;
+    right: 0;
+    transition: all 0.2s ease-out;
+  }
+}
