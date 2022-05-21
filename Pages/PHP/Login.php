@@ -7,7 +7,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <!-- Bootstrap -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha364-1BmE4kWBq76iYhFldvKuhfTAU6auU6tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-
   <!--CSS-->
   <link rel="stylesheet" type="text/css" href="../CSS/login.css" media="screen">
   <title>Telecall - LogIn</title>
