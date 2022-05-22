@@ -1,6 +1,6 @@
 <?php
   require_once('config.php');
-
+  
   $sql_read = "SELECT * FROM usuarios";
   $query_usuarios = $mysqli->query($sql_read) or die($mysqli->error);
   $num_usuarios = $query_usuarios->num_rows;
@@ -58,7 +58,7 @@
           <td><?php echo $nascimento?></td>
           <td><?php echo $usuario['cadastro']?></td>
           <td>
-            <a href="update.php?id=<?php echo $usuario['id'] ?>">Editar</a>
+            <a href="editar_usuario.php?id=<?php echo $usuario['id'] ?>">Editar</a>
             <a href="delete.php?id=<?php echo $usuario['id'] ?>">Deletar</a>
           </td>
         </tr>
