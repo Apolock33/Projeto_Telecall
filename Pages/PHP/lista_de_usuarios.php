@@ -1,6 +1,6 @@
 <?php
   require_once('config.php');
-  
+
   $sql_read = "SELECT * FROM usuarios";
   $query_usuarios = $mysqli->query($sql_read) or die($mysqli->error);
   $num_usuarios = $query_usuarios->num_rows;
@@ -36,16 +36,12 @@
         while ($usuario = $query_usuarios->fetch_assoc()) {
           $telefone = "Nao Informado";
           if (!empty(($usuario['telefone']))) {
-            $ddd = substr($usuario['telefone'], 0, 2);
-            $parte1 = substr($usuario['telefone'], 2, 5);
-            $parte2 = substr($usuario['telefone'], 5);
-            $telefone = "($ddd) $parte1-$parte2";
+            $telefone = formatar_telefone($usuario['telefone']);
           }
           
           $nascimento = "Não Informado";
           if (!empty($usuario['nascimento'])) {
-            $nascimento = implode('/', array_reverse(explode("-", $usuario['nascimento'])));
-
+            $nascimento = formatar_data($usuario['nascimento']);
           }
           $data_cadastro = date("d/m/Y H:i", strtotime($usuario['cadastro']));
           ?>

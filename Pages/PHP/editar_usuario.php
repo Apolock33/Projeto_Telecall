@@ -38,20 +38,31 @@ if (count($_POST) > 0) {
       $nascimento = implode('-', array_reverse($pedacos));
     } else {
       $erro = "A data de nascimento deve ser preenchida no padrão Dia/Mês/Ano";
-    }
+    } 
   }
 
   if ($erro) {
     echo "<p><b>$erro</b></p>";
   } else {
-    $sql_code = "INSERT INTO usuarios (nome, email, senha, telefone, nascimento, cadastro) VALUES ('$nome', '$email', '$senha', '$telefone','$nascimento', NOW())";
+    $sql_code = "UPDATE usuarios SET 
+    nome = '$nome', 
+    email = '$email',
+    senha = '$senha', 
+    telefone = '$telefone', 
+    nascimento = '$nascimento' 
+    WHERE id = '$id'";
+
     $sucesso = $mysqli->query($sql_code) or die($mysqli->error);
     if ($sucesso) {
-      header('Location: Login.php');
+      echo "<script>alert('Cadastro Atualizado')</script>";
       unset($_POST);
     }
   }
 }
+
+$sql_usuario = "SELECT * FROM usuarios WHERE id = '$id'";
+$query_usuario = $mysqli->query($sql_usuario) or die($mysqli->error);
+$usuario = $query_usuario->fetch_assoc();
 ?>
 
 <!DOCTYPE html>
@@ -72,31 +83,31 @@ if (count($_POST) > 0) {
     </div>
     <div class="inputs">
       <label for="nome">Nome:</label>
-      <input type="text" name="nome" id="nome" value="<?php if (isset($_POST["nome"])) echo $_POST["nome"] ?>" />
+      <input type="text" name="nome" id="nome" value="<?php echo $usuario["nome"] ?>" />
     </div><br /><br />
 
     <div class="inputs">
       <label for="email">E-mail:</label>
-      <input type="email" name="email" id="email" value="<?php if (isset($_POST["email"])) echo $_POST["email"] ?>" />
+      <input type="email" name="email" id="email" value="<?php echo $usuario["email"] ?>" />
     </div><br /><br />
 
     <div class="inputs">
       <label for="senha">Senha:</label>
-      <input type="password" name="senha" id="senha" value="<?php if (isset($_POST["senha"])) echo $_POST["senha"] ?>" />
+      <input type="password" name="senha" id="senha" value="<?php echo $usuario["senha"] ?>" />
     </div><br /><br />
 
     <div class="inputs">
       <label for="telefone">Telefone:</label>
-      <input type="text" name="telefone" id="telefone" placeholder="(11) 98888-8888" value="<?php if (isset($_POST["telefone"])) echo $_POST["telefone"] ?>" />
+      <input type="text" name="telefone" id="telefone" placeholder="(11) 98888-8888" value="<?php echo formatar_telefone($usuario["telefone"]) ?>" />
     </div><br /><br />
 
     <div class="inputs">
       <label for="nascimento">Data de Nascimento:</label>
-      <input type="text" name="nascimento" id="nascimento" value="<?php if (isset($_POST["nascimento"])) echo $_POST["nascimento"] ?>" />
+      <input type="text" name="nascimento" id="nascimento" value="<?php if(!empty($usuario["nascimento"])) echo formatar_data($usuario["nascimento"]) ?>" />
     </div><br /><br />
 
     <div class="inputs">
-      <input type="submit" value="Salvar Usuário" />
+      <input type="submit" value="Atualizar Usuário" />
       <a href="lista_de_usuarios.php">Lista de Usuários</a>
     </div>
 
