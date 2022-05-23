@@ -55,7 +55,7 @@
           <td><?php echo $usuario['cadastro']?></td>
           <td>
             <a href="editar_usuario.php?id=<?php echo $usuario['id'] ?>">Editar</a>
-            <a href="delete.php?id=<?php echo $usuario['id'] ?>">Deletar</a>
+            <a href="deletar_usuario.php?id=<?php echo $usuario['id'] ?>">Deletar</a>
           </td>
         </tr>
         <?php 
@@ -63,6 +63,6 @@
         } ?>
     </tbody>
   </table><br/>
-  <a href="Cadastro.php">Cadastrar usuario</a>
+  <a href="cadastro_de_usuarios.php">Cadastrar usuario</a>
 </body>
 </html>

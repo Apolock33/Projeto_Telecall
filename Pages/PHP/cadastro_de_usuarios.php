@@ -88,7 +88,7 @@
         $sql_code = "INSERT INTO usuarios (nome, email, senha, telefone, nascimento, cadastro) VALUES ('$nome', '$email', '$senha', '$telefone','$nascimento', NOW())";
         $sucesso = $mysqli->query($sql_code) or die($mysqli->error);
         if ($sucesso) {
-          header('Location: Login.php');
+          header("Location: lista_de_usuarios.php");
           unset($_POST);
         }
       }
