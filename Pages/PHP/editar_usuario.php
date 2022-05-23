@@ -7,11 +7,14 @@ function limpar_telefone($str) {
 
 $erro = false;
 if (count($_POST) > 0) {
+  $cpf = $_POST['cpf'];
   $nome = $_POST['nome'];
   $email = $_POST['email'];
   $senha = $_POST['senha'];
   $telefone = $_POST['telefone'];
+  $fixo = $_POST['fixo'];
   $nascimento = $_POST['nascimento'];
+  $nome_mae = $_POST['mae'];
 
   if (empty($nome)) {
     $erro = "Prencha o campo Nome";
@@ -44,12 +47,15 @@ if (count($_POST) > 0) {
   if ($erro) {
     echo "<p><b>$erro</b></p>";
   } else {
-    $sql_code = "UPDATE usuarios SET 
+    $sql_code = "UPDATE usuarios SET
+    cpf = '$cpf',
     nome = '$nome', 
     email = '$email',
     senha = '$senha', 
-    telefone = '$telefone', 
-    nascimento = '$nascimento' 
+    telefone = '$telefone',
+    fixo = '$fixo',
+    nascimento = '$nascimento',
+    mae = '$nome_mae' 
     WHERE id = '$id'";
 
     $sucesso = $mysqli->query($sql_code) or die($mysqli->error);
@@ -97,13 +103,23 @@ $usuario = $query_usuario->fetch_assoc();
     </div><br /><br />
 
     <div class="inputs">
-      <label for="telefone">Telefone:</label>
+      <label for="telefone">Celular:</label>
       <input type="text" name="telefone" id="telefone" placeholder="(11) 98888-8888" value="<?php echo formatar_telefone($usuario["telefone"]) ?>" />
+    </div><br /><br />
+
+    <div class="inputs">
+      <label for="fixo">Telefone Fixo:</label>
+      <input type="text" name="fixo" id="fixo" placeholder="(11) 2121-2121" value="<?php echo formatar_telefone($usuario["fixo"]) ?>" />
     </div><br /><br />
 
     <div class="inputs">
       <label for="nascimento">Data de Nascimento:</label>
       <input type="text" name="nascimento" id="nascimento" value="<?php if(!empty($usuario["nascimento"])) echo formatar_data($usuario["nascimento"]) ?>" />
+    </div><br /><br />
+
+    <div class="inputs">
+      <label for="mae">Nome da Mãe:</label>
+      <input type="text" name="mae" id="mae" value="<?php if(!empty($usuario["mae"])) echo formatar_data($usuario["mae"]) ?>" />
     </div><br /><br />
 
     <div class="inputs">
