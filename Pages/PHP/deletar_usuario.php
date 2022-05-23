@@ -1,5 +1,19 @@
+<?php
+if (isset($_POST['confirmar'])) {
+    require_once('config.php');
+    $id = intval($_GET['id']);
+    $sql_code = "DELETE FROM usuarios WHERE id = '$id'";
+    $sql_query = $mysqli->query($sql_code) or die($mysqli->error);
 
-
+    if ($sql_query) { ?>
+      
+      <h1>Usuário Deletado Com Sucesso</h1>
+      <p><a href='lista_de_usuarios.php'>Clique Aqui</a> para voltar a lista de usuários</p>
+      <?php
+        die();
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -19,20 +33,4 @@
 </body>
 
 </html>
-<?php
-if (isset($_POST['confirmar'])) {
-  
-    require_once('config.php');
-    $id = intval($_GET['id']);
-    $sql_code = "DELETE FROM usuarios WHERE id = '$id'";
-    $sql_query = $mysqli->query($sql_code) or die($mysqli->error);
 
-    if ($sql_query) { ?>
-      
-      <h4>Usuário Deletado Com Sucesso</h4>
-      <p><a href='lista_de_usuarios.php'>Clique Aqui</a> para voltar a lista de usuários</p>
-      <?php
-        die();
-    }
-} 
-?>
