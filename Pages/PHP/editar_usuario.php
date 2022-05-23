@@ -35,6 +35,14 @@ if (count($_POST) > 0) {
     }
   }
 
+  if (!empty($fixo)) {
+    $fixo = limpar_telefone($fixo);
+    if (strlen($fixo) != 10) {
+        $erro = "O telefone deve ser preenchido no padrão (11) 2121-2121";
+    }
+}
+
+
   if (!empty($nascimento)) {
     $pedacos = explode('/', $nascimento);
     if (count($pedacos) == 3) {
@@ -88,6 +96,11 @@ $usuario = $query_usuario->fetch_assoc();
       <img src="../../Assets/Logo/telecall-logo.png" alt="logoCadastro">
     </div>
     <div class="inputs">
+      <label for="cpf">CPF:</label>
+      <input type="text" name="cpf" id="cpf" value="<?php echo $usuario["cpf"] ?>" />
+    </div><br /><br />
+
+    <div class="inputs">
       <label for="nome">Nome:</label>
       <input type="text" name="nome" id="nome" value="<?php echo $usuario["nome"] ?>" />
     </div><br /><br />
@@ -109,7 +122,7 @@ $usuario = $query_usuario->fetch_assoc();
 
     <div class="inputs">
       <label for="fixo">Telefone Fixo:</label>
-      <input type="text" name="fixo" id="fixo" placeholder="(11) 2121-2121" value="<?php echo formatar_telefone($usuario["fixo"]) ?>" />
+      <input type="text" name="fixo" id="fixo" placeholder="(11) 2121-2121" value="<?php echo formatar_fixo($usuario["fixo"]) ?>" />
     </div><br /><br />
 
     <div class="inputs">

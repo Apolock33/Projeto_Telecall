@@ -28,7 +28,7 @@
           if (!empty(($telefone))) {
               $ddd = substr($telefone, 0, 2);
               $parte1 = substr($telefone, 2, 4);
-              $parte2 = substr($telefone, 7);
+              $parte2 = substr($telefone, 6);
               return "($ddd) $parte1-$parte2";
           }
       }

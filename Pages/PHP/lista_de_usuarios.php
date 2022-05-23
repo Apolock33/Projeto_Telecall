@@ -24,7 +24,6 @@ $num_usuarios = $query_usuarios->num_rows;
       <th>CPF</th>
       <th>Nome</th>
       <th>E-mail</th>
-      <th>Senha</th>
       <th>Celular</th>
       <th>Fixo</th>
       <th>Data de Nascimento</th>
@@ -60,7 +59,6 @@ $num_usuarios = $query_usuarios->num_rows;
             <td><?php echo $usuario['cpf'] ?></td>
             <td><?php echo $usuario['nome'] ?></td>
             <td><?php echo $usuario['email'] ?></td>
-            <td><?php echo $usuario['senha'] ?></td>
             <td><?php echo $telefone ?></td>
             <td><?php echo $fixo ?></td>
             <td><?php echo $nascimento ?></td>
