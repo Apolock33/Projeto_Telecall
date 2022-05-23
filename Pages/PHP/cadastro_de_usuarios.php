@@ -52,106 +52,7 @@
       <label for="mae">Nome da Mãe:</label>
       <input type="text" name="mae" id="mae" value="<?php if (isset($_POST["mae"])) echo $_POST["mae"] ?>" />
     </div>
-    <?php
-    require_once('config.php');
-    require_once('lib/mail.php');
 
-    function limpar_telefone($str) {
-      return preg_replace("/[^0-9]/", "", $str);
-    }
-    function limpar_cpf($str) {
-    return preg_replace("/[^0-9]/", "", $str);
-}
-     
-
-    $erro = false;
-    if (count($_POST) > 0) {
-      $cpf = $_POST['cpf'];
-      $nome = $_POST['nome'];
-      $email = $_POST['email'];
-      $senha = $_POST['senha'];
-      $telefone = $_POST['telefone'];
-      $fixo = $_POST['fixo'];
-      $nascimento = $_POST['nascimento'];
-      $nome_mae = $_POST['mae'];
-      $senha_nao_crypt = $_POST['senha'];
-
-      if (empty($cpf)) {
-        $erro = "Preencha o campo CPF";
-      }
-
-      if (empty($nome)) {
-        $erro = "Prencha o campo Nome";
-      }
-
-      if (empty($email) || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        $erro = "Prencha o campo Email";
-      }
-
-      if (empty($senha)) {
-        $erro = "Prencha o campo Senha";
-      }
-
-      if(strlen($senha_nao_crypt) < 8){
-      $erro = "A senha deve ter ao menos 8 caracteres.";
-      }
-      
-
-      if (empty($nome_mae)) {
-        $erro = "Prencha o campo Nome da Mãe";
-      }
-
-      if(!empty($cpf)){
-        $cpf = limpar_cpf($cpf);
-      }
-
-      if (!empty($telefone)) {
-        $telefone = limpar_telefone($telefone);
-        if (strlen($telefone) != 11) {
-          $erro = "O telefone deve ser preenchido no padrão (11) 98888-8888";
-        }
-      }
-
-      if (!empty($fixo)) {
-        $fixo = limpar_telefone($fixo);
-        if (strlen($fixo) != 10) {
-          $erro = "O telefone deve ser preenchido no padrão (11) 2121-2121";
-        }
-      }
-
-
-      if (!empty($nascimento)) {
-        $pedacos = explode('/', $nascimento);
-        if (count($pedacos) == 3) {
-          $nascimento = implode('-', array_reverse($pedacos));
-        } else {
-          $erro = "A data de nascimento deve ser preenchida no padrão Dia/Mês/Ano";
-        }
-      }
-
-      if ($erro) {
-        echo "<p><b>$erro</b></p>";
-      } else {
-        $senha = password_hash($senha_nao_crypt, PASSWORD_DEFAULT);
-        $sql_code = "INSERT INTO usuarios (cpf, nome, email, senha, telefone, fixo, nascimento, mae, cadastro) VALUES ('$cpf', '$nome', '$email', '$senha', '$telefone', '$fixo', '$nascimento','$nome_mae', NOW())";
-        $sucesso = $mysqli->query($sql_code) or die($mysqli->error);
-        if ($sucesso) {
-          enviar_email($email, "Informações Cadastrais" ,"Cadastro Realizado!", 
-          "<h1>Obrigado pelo Cadastro!</h1>
-          <h3>Espero que em breve posssamos prover a você o melhor serviço de telefonia e rede</h3>
-          <h4>Aqui estão suas informações cadastrais caso precise consulta-las por qualquer motivo!</h4>
-          <div>
-            <p>
-              <b>Login:</b> $email<br/>
-              <b>Senha:</b> $senha_nao_crypt
-            </p>
-          </div>" );
-          header("Location: lista_de_usuarios.php");
-          unset($_POST);
-        }
-      }
-    }
-    ?>
     <div class="inputs">
       <input type="submit" value="Salvar Usuário" />
       <a href="lista_de_usuarios.php">Lista de Usuários</a>
@@ -162,3 +63,108 @@
 </body>
 
 </html>
+
+<?php
+require_once('config.php');
+
+require_once('lib/mail.php');
+
+function limpar_telefone($str) {
+  return preg_replace("/[^0-9]/", "", $str);
+}
+function limpar_cpf($str) {
+  return preg_replace("/[^0-9]/", "", $str);
+}
+
+$erro = false;
+if (count($_POST) > 0) {
+  $cpf = $_POST['cpf'];
+  $nome = $_POST['nome'];
+  $email = $_POST['email'];
+  $senha = $_POST['senha'];
+  $telefone = $_POST['telefone'];
+  $fixo = $_POST['fixo'];
+  $nascimento = $_POST['nascimento'];
+  $nome_mae = $_POST['mae'];
+  $senha_nao_crypt = $_POST['senha'];
+
+  if (empty($cpf)) {
+    $erro = "Preencha o campo CPF";
+  }
+
+  if (empty($nome)) {
+    $erro = "Prencha o campo Nome";
+  }
+
+  if (empty($email) || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    $erro = "Prencha o campo Email";
+  }
+
+  if (empty($senha)) {
+    $erro = "Prencha o campo Senha";
+  }
+
+  if (strlen($senha_nao_crypt) < 8) {
+    $erro = "A senha deve ter ao menos 8 caracteres.";
+  }
+
+
+  if (empty($nome_mae)) {
+    $erro = "Prencha o campo Nome da Mãe";
+  }
+
+  if (!empty($cpf)) {
+    $cpf = limpar_cpf($cpf);
+  }
+
+  if (!empty($telefone)) {
+    $telefone = limpar_telefone($telefone);
+    if (strlen($telefone) != 11) {
+      $erro = "O telefone deve ser preenchido no padrão (11) 98888-8888";
+    }
+  }
+
+  if (!empty($fixo)) {
+    $fixo = limpar_telefone($fixo);
+    if (strlen($fixo) != 10) {
+      $erro = "O telefone deve ser preenchido no padrão (11) 2121-2121";
+    }
+  }
+
+
+  if (!empty($nascimento)) {
+    $pedacos = explode('/', $nascimento);
+    if (count($pedacos) == 3) {
+      $nascimento = implode('-', array_reverse($pedacos));
+    } else {
+      $erro = "A data de nascimento deve ser preenchida no padrão Dia/Mês/Ano";
+    }
+  }
+
+  if ($erro) {
+    echo "<p><b>$erro</b></p>";
+  } else {
+    $senha = password_hash($senha_nao_crypt, PASSWORD_DEFAULT);
+    $sql_code = "INSERT INTO usuarios (cpf, nome, email, senha, telefone, fixo, nascimento, mae, cadastro) VALUES ('$cpf', '$nome', '$email', '$senha', '$telefone', '$fixo', '$nascimento','$nome_mae', NOW())";
+    $sucesso = $mysqli->query($sql_code) or die($mysqli->error);
+    if ($sucesso) {
+      enviar_email(
+        $email,
+        "Informações Cadastrais",
+        "Cadastro Realizado!",
+        "<h1>Obrigado pelo Cadastro!</h1>
+          <h3>Espero que em breve posssamos prover a você o melhor serviço de telefonia e rede!</h3>
+          <h4>Aqui estão suas informações cadastrais caso precise consulta-las por qualquer motivo!</h4>
+          <div>
+            <p>
+              <b>Login:</b> $email<br/>
+              <b>Senha:</b> $senha_nao_crypt
+            </p>
+          </div>"
+      );
+      header("Location: lista_de_usuarios.php");
+      unset($_POST);
+    }
+  }
+}
+?>

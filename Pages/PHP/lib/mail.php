@@ -26,10 +26,8 @@ function enviar_email($destinatario, $assunto, $nome_email, $mensagemHTML) {
     $mail->Body = $mensagemHTML;
 
     if ($mail->send()) {
-        echo "Email enviado com suscesso!";
         return true;
     } else {
-        echo "Falha ao envar Email";
         return false;
     }
 }
