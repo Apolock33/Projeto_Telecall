@@ -51,7 +51,13 @@
     <div class="inputs">
       <label for="mae">Nome da Mãe:</label>
       <input type="text" name="mae" id="mae" value="<?php if (isset($_POST["mae"])) echo $_POST["mae"] ?>" />
-    </div>
+    </div><br /><br />
+
+    <div>
+      <label for="admin">Você é:</label>
+      <input type="radio" name="admin" id="admin" value="1">Funcionário</input>
+      <input type="radio" name="admin" id="admin" checked value="0">Cliente</input>
+    </div><br /><br />
 
     <div class="inputs">
       <input type="submit" value="Salvar Usuário" />
@@ -69,10 +75,12 @@ require_once('config.php');
 
 require_once('lib/mail.php');
 
-function limpar_telefone($str) {
+function limpar_telefone($str)
+{
   return preg_replace("/[^0-9]/", "", $str);
 }
-function limpar_cpf($str) {
+function limpar_cpf($str)
+{
   return preg_replace("/[^0-9]/", "", $str);
 }
 
@@ -87,6 +95,7 @@ if (count($_POST) > 0) {
   $nascimento = $_POST['nascimento'];
   $nome_mae = $_POST['mae'];
   $senha_nao_crypt = $_POST['senha'];
+  $admin = $_POST['admin'];
 
   if (empty($cpf)) {
     $erro = "Preencha o campo CPF";
@@ -145,7 +154,7 @@ if (count($_POST) > 0) {
     echo "<p><b>$erro</b></p>";
   } else {
     $senha = password_hash($senha_nao_crypt, PASSWORD_DEFAULT);
-    $sql_code = "INSERT INTO usuarios (cpf, nome, email, senha, telefone, fixo, nascimento, mae, cadastro) VALUES ('$cpf', '$nome', '$email', '$senha', '$telefone', '$fixo', '$nascimento','$nome_mae', NOW())";
+    $sql_code = "INSERT INTO usuarios (cpf, nome, email, senha, telefone, fixo, nascimento, mae, cadastro, admin) VALUES ('$cpf', '$nome', '$email', '$senha', '$telefone', '$fixo', '$nascimento','$nome_mae', NOW(), '$admin')";
     $sucesso = $mysqli->query($sql_code) or die($mysqli->error);
     if ($sucesso) {
       enviar_email(
@@ -162,7 +171,7 @@ if (count($_POST) > 0) {
             </p>
           </div>"
       );
-      header("Location: lista_de_usuarios.php");
+      header("Location: index.php");
       unset($_POST);
     }
   }

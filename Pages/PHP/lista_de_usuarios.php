@@ -22,6 +22,7 @@ $num_usuarios = $query_usuarios->num_rows;
     <thead>
       <th>ID</th>
       <th>CPF</th>
+      <th>Nível</th>
       <th>Nome</th>
       <th>E-mail</th>
       <th>Celular</th>
@@ -34,7 +35,7 @@ $num_usuarios = $query_usuarios->num_rows;
     <tbody>
       <?php if ($num_usuarios == 0) { ?>
         <tr>
-          <td colspan="8">Nenhum Usuário Foi Cadastrado!</td>
+          <td colspan="11">Nenhum Usuário Foi Cadastrado!</td>
         </tr>
         <?php } else {
         while ($usuario = $query_usuarios->fetch_assoc()) {
@@ -57,6 +58,7 @@ $num_usuarios = $query_usuarios->num_rows;
           <tr>
             <td><?php echo $usuario['id'] ?></td>
             <td><?php echo $usuario['cpf'] ?></td>
+            <td><?php if($usuario['admin'] == 1)  echo "ADM"; else echo "CLIENTE"; ?></td>
             <td><?php echo $usuario['nome'] ?></td>
             <td><?php echo $usuario['email'] ?></td>
             <td><?php echo $telefone ?></td>

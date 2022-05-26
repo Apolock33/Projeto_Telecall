@@ -15,6 +15,7 @@ if (count($_POST) > 0) {
   $fixo = $_POST['fixo'];
   $nascimento = $_POST['nascimento'];
   $nome_mae = $_POST['mae'];
+  $admin = $_POST['admin'];
 
   if (empty($nome)) {
     $erro = "Prencha o campo Nome";
@@ -63,7 +64,8 @@ if (count($_POST) > 0) {
     telefone = '$telefone',
     fixo = '$fixo',
     nascimento = '$nascimento',
-    mae = '$nome_mae' 
+    mae = '$nome_mae',
+    admin = '$admin' 
     WHERE id = '$id'";
 
     $sucesso = $mysqli->query($sql_code) or die($mysqli->error);
@@ -134,6 +136,12 @@ $usuario = $query_usuario->fetch_assoc();
       <label for="mae">Nome da Mãe:</label>
       <input type="text" name="mae" id="mae" value="<?php if(!empty($usuario["mae"])) echo formatar_data($usuario["mae"]) ?>" />
     </div><br /><br />
+
+    <div>
+      <label for="admin">Você é:</label>
+      <input type="radio" name="admin" id="admin" value="1">Funcionário</input>
+      <input type="radio" name="admin" id="admin" checked value="0">Cliente</input>
+    </div><br /><br />  
 
     <div class="inputs">
       <input type="submit" value="Atualizar Usuário" />
