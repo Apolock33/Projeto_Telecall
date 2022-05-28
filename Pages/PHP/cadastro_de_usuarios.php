@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="../CSS/Cadastro.css">
-  <title>Cadastro de Usuário</title>
+  <title>Telecall - Cadastro de Usuário</title>
 </head>
 
 <body>
@@ -171,7 +171,7 @@ if (count($_POST) > 0) {
             </p>
           </div>"
       );
-      header("Location: index.php");
+      header("Location: cadastro_endereco.php");
       unset($_POST);
     }
   }
