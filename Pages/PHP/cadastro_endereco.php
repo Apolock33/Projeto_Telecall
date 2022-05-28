@@ -31,7 +31,7 @@
         </div>
         <div>
             <label for="sem_numero">Não Possui Número:</label>
-            <input type="checkbox" name="sem_numero" id="sem_numero" />
+            <input type="checkbox" name="sem_numero" id="sem_numero" value="null"/>
         </div>
         <div>
             <label for="complemento">Complemento:</label>

@@ -1,11 +1,11 @@
 O que é necessário para o projeto final de módulo da faculdade?
 
-- Cadastro de usuário (Nome, Nascimento, Nome da Mãe, CPF, Celular, Fixo, Endereço(Falta Cadastrar o Endereço, preciso pensar em como fazer isso, vou deixar para o final), Login, Senha. (Pronto)
+- Cadastro de usuário (Nome, Nascimento, Nome da Mãe, CPF, Celular, Fixo, Endereço(Já foi pensado), Login, Senha. (Pronto)
 - Update(Pronto)
 - Read geral(Pronto)
 - Read por id
 - Delete(Pronto)
 - autenticação com validação de login e senha(login)
-- Login com Vários Níveis(2 níveis)(Quase)
+- Login com Vários Níveis(2 níveis)(Foi)
 - 2FA
-- atualizar status(trabalhando, de férias, demitido(log deve ser mantido))
+- atualizar status(trabalhando, de férias, demitido(log deve ser mantido))(já foi pensado)

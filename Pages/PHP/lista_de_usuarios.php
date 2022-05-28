@@ -58,7 +58,8 @@ $num_usuarios = $query_usuarios->num_rows;
           <tr>
             <td><?php echo $usuario['id'] ?></td>
             <td><?php echo $usuario['cpf'] ?></td>
-            <td><?php if($usuario['admin'] == 1)  echo "ADM"; else echo "CLIENTE"; ?></td>
+            <td><?php if ($usuario['admin'] == 1)  echo "ADM";
+                else echo "CLIENTE"; ?></td>
             <td><?php echo $usuario['nome'] ?></td>
             <td><?php echo $usuario['email'] ?></td>
             <td><?php echo $telefone ?></td>
@@ -67,6 +68,7 @@ $num_usuarios = $query_usuarios->num_rows;
             <td><?php echo $usuario['mae'] ?></td>
             <td><?php echo $usuario['cadastro'] ?></td>
             <td>
+              <a href="ver_usuario.php?id=<?php echo $usuario['id'] ?>">Ver</a>
               <a href="editar_usuario.php?id=<?php echo $usuario['id'] ?>">Editar</a>
               <a href="deletar_usuario.php?id=<?php echo $usuario['id'] ?>">Deletar</a>
             </td>
