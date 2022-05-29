@@ -22,7 +22,7 @@ if (isset($_POST['email']) && isset($_POST['senha'])) {
         session_start();
         $_SESSION['usuario'] = $usuario['id'];
         $_SESSION['admin'] = $usuario['admin'];
-        header("Location: lista_de_usuarios.php");
+        header("Location: 2fa.php");
       }
     }
   }

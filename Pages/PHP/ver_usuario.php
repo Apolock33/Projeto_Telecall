@@ -66,6 +66,7 @@ $num_usuarios = $query_usuarios->num_rows;
                     <td><?php echo $usuario['usu_mae'] ?></td>
                     <td><?php echo $usuario['usu_cadastro'] ?></td>
                 </tr>
+                
         <?php
             }
         } ?>
