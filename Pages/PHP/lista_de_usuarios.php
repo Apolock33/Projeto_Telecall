@@ -1,12 +1,12 @@
 <?php
 require_once('config.php');
 
-$sql_read = "SELECT * FROM usuarios";
+$sql_read = "SELECT * FROM usuario";
 $query_usuarios = $mysqli->query($sql_read) or die($mysqli->error);
 $num_usuarios = $query_usuarios->num_rows;
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
   <meta charset="UTF-8">
@@ -39,38 +39,38 @@ $num_usuarios = $query_usuarios->num_rows;
         </tr>
         <?php } else {
         while ($usuario = $query_usuarios->fetch_assoc()) {
-          $telefone = "Nao Informado";
-          if (!empty(($usuario['telefone']))) {
-            $telefone = formatar_telefone($usuario['telefone']);
+          $celular = "Nao Informado";
+          if (!empty(($usuario['usu_celular']))) {
+            $celular = formatar_telefone($usuario['usu_celular']);
           }
 
-          if (!empty(($usuario['fixo']))) {
-            $fixo = formatar_fixo($usuario['fixo']);
+          if (!empty(($usuario['usu_fixo']))) {
+            $fixo = formatar_fixo($usuario['usu_fixo']);
           }
 
 
           $nascimento = "Não Informado";
-          if (!empty($usuario['nascimento'])) {
-            $nascimento = formatar_data($usuario['nascimento']);
+          if (!empty($usuario['usu_nascimento'])) {
+            $nascimento = formatar_data($usuario['usu_nascimento']);
           }
-          $data_cadastro = date("d/m/Y H:i", strtotime($usuario['cadastro']));
+          $data_cadastro = date("d/m/Y H:i", strtotime($usuario['usu_cadastro']));
         ?>
           <tr>
-            <td><?php echo $usuario['id'] ?></td>
-            <td><?php echo $usuario['cpf'] ?></td>
-            <td><?php if ($usuario['admin'] == 1)  echo "ADM";
+            <td><?php echo $usuario['usu_id'] ?></td>
+            <td><?php echo $usuario['usu_cpf'] ?></td>
+            <td><?php if ($usuario['usu_tipo'] == 1)  echo "ADM";
                 else echo "CLIENTE"; ?></td>
-            <td><?php echo $usuario['nome'] ?></td>
-            <td><?php echo $usuario['email'] ?></td>
-            <td><?php echo $telefone ?></td>
+            <td><?php echo $usuario['usu_nome'] ?></td>
+            <td><?php echo $usuario['usu_email'] ?></td>
+            <td><?php echo $celular ?></td>
             <td><?php echo $fixo ?></td>
             <td><?php echo $nascimento ?></td>
-            <td><?php echo $usuario['mae'] ?></td>
-            <td><?php echo $usuario['cadastro'] ?></td>
+            <td><?php echo $usuario['usu_mae'] ?></td>
+            <td><?php echo $usuario['usu_cadastro'] ?></td>
             <td>
-              <a href="ver_usuario.php?id=<?php echo $usuario['id'] ?>">Ver</a>
-              <a href="editar_usuario.php?id=<?php echo $usuario['id'] ?>">Editar</a>
-              <a href="deletar_usuario.php?id=<?php echo $usuario['id'] ?>">Deletar</a>
+              <a href="ver_usuario.php?id=<?php echo $usuario['usu_id'] ?>">Ver</a>
+              <a href="editar_usuario.php?id=<?php echo $usuario['usu_id'] ?>">Editar</a>
+              <a href="deletar_usuario.php?id=<?php echo $usuario['usu_id'] ?>">Deletar</a>
             </td>
           </tr>
       <?php

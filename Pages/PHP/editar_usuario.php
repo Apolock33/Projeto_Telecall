@@ -56,17 +56,17 @@ if (count($_POST) > 0) {
   if ($erro) {
     echo "<p><b>$erro</b></p>";
   } else {
-    $sql_code = "UPDATE usuarios SET
-    cpf = '$cpf',
-    nome = '$nome', 
-    email = '$email',
-    senha = '$senha', 
-    telefone = '$telefone',
-    fixo = '$fixo',
-    nascimento = '$nascimento',
-    mae = '$nome_mae',
-    admin = '$admin' 
-    WHERE id = '$id'";
+    $sql_code = "UPDATE usuario SET
+    usu_cpf = '$cpf',
+    usu_nome = '$nome', 
+    usu_email = '$email',
+    usu_senha = '$senha', 
+    usu_celular = '$telefone',
+    usu_fixo = '$fixo',
+    usu_nascimento = '$nascimento',
+    usu_mae = '$nome_mae',
+    usu_tipo = '$admin' 
+    WHERE usu_id = '$id'";
 
     $sucesso = $mysqli->query($sql_code) or die($mysqli->error);
     if ($sucesso) {
@@ -76,13 +76,13 @@ if (count($_POST) > 0) {
   }
 }
 
-$sql_usuario = "SELECT * FROM usuarios WHERE id = '$id'";
+$sql_usuario = "SELECT * FROM usuario WHERE usu_id = '$id'";
 $query_usuario = $mysqli->query($sql_usuario) or die($mysqli->error);
 $usuario = $query_usuario->fetch_assoc();
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
   <meta charset="UTF-8">
@@ -99,48 +99,48 @@ $usuario = $query_usuario->fetch_assoc();
     </div>
     <div class="inputs">
       <label for="cpf">CPF:</label>
-      <input type="text" name="cpf" id="cpf" value="<?php echo $usuario["cpf"] ?>" />
+      <input type="text" name="cpf" id="cpf" value="<?php echo $usuario["usu_cpf"] ?>" />
     </div><br /><br />
 
     <div class="inputs">
       <label for="nome">Nome:</label>
-      <input type="text" name="nome" id="nome" value="<?php echo $usuario["nome"] ?>" />
+      <input type="text" name="nome" id="nome" value="<?php echo $usuario["usu_nome"] ?>" />
     </div><br /><br />
 
     <div class="inputs">
       <label for="email">E-mail:</label>
-      <input type="email" name="email" id="email" value="<?php echo $usuario["email"] ?>" />
+      <input type="email" name="email" id="email" value="<?php echo $usuario["usu_email"] ?>" />
     </div><br /><br />
 
     <div class="inputs">
       <label for="senha">Senha:</label>
-      <input type="password" name="senha" id="senha" value="<?php echo $usuario["senha"] ?>" />
+      <input type="password" name="senha" id="senha" value="<?php echo $usuario["usu_senha"] ?>" />
     </div><br /><br />
 
     <div class="inputs">
       <label for="telefone">Celular:</label>
-      <input type="text" name="telefone" id="telefone" placeholder="(11) 98888-8888" value="<?php echo formatar_telefone($usuario["telefone"]) ?>" />
+      <input type="text" name="telefone" id="telefone" placeholder="(11) 98888-8888" value="<?php echo formatar_telefone($usuario["usu_celular"]) ?>" />
     </div><br /><br />
 
     <div class="inputs">
       <label for="fixo">Telefone Fixo:</label>
-      <input type="text" name="fixo" id="fixo" placeholder="(11) 2121-2121" value="<?php echo formatar_fixo($usuario["fixo"]) ?>" />
+      <input type="text" name="fixo" id="fixo" placeholder="(11) 2121-2121" value="<?php echo formatar_fixo($usuario["usu_fixo"]) ?>" />
     </div><br /><br />
 
     <div class="inputs">
       <label for="nascimento">Data de Nascimento:</label>
-      <input type="text" name="nascimento" id="nascimento" value="<?php if(!empty($usuario["nascimento"])) echo formatar_data($usuario["nascimento"]) ?>" />
+      <input type="text" name="nascimento" id="nascimento" value="<?php if(!empty($usuario["nascimento"])) echo formatar_data($usuario["usu_nascimento"]) ?>" />
     </div><br /><br />
 
     <div class="inputs">
       <label for="mae">Nome da Mãe:</label>
-      <input type="text" name="mae" id="mae" value="<?php if(!empty($usuario["mae"])) echo formatar_data($usuario["mae"]) ?>" />
+      <input type="text" name="mae" id="mae" value="<?php if(!empty($usuario["mae"])) echo formatar_data($usuario["usu_mae"]) ?>" />
     </div><br /><br />
 
     <div>
       <label for="admin">Você é:</label>
       <input type="radio" name="admin" id="admin" value="1">Funcionário</input>
-      <input type="radio" name="admin" id="admin" checked value="0">Cliente</input>
+      <input type="radio" name="admin" id="admin" value="0">Cliente</input>
     </div><br /><br />  
 
     <div class="inputs">

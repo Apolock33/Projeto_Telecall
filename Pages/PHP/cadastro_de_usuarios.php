@@ -61,7 +61,6 @@
 
     <div class="inputs">
       <input type="submit" value="Salvar Usuário" />
-      <a href="lista_de_usuarios.php">Lista de Usuários</a>
     </div>
 
   </form>
@@ -154,7 +153,7 @@ if (count($_POST) > 0) {
     echo "<p><b>$erro</b></p>";
   } else {
     $senha = password_hash($senha_nao_crypt, PASSWORD_DEFAULT);
-    $sql_code = "INSERT INTO usuarios (cpf, nome, email, senha, telefone, fixo, nascimento, mae, cadastro, admin) VALUES ('$cpf', '$nome', '$email', '$senha', '$telefone', '$fixo', '$nascimento','$nome_mae', NOW(), '$admin')";
+    $sql_code = "INSERT INTO usuario (usu_cpf, usu_nome, usu_email, usu_senha, usu_celular, usu_fixo, usu_nascimento, usu_mae, usu_cadastro, usu_tipo) VALUES ('$cpf', '$nome', '$email', '$senha', '$telefone', '$fixo', '$nascimento','$nome_mae', NOW(), '$admin')";
     $sucesso = $mysqli->query($sql_code) or die($mysqli->error);
     if ($sucesso) {
       enviar_email(

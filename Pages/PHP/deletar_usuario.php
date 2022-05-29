@@ -2,8 +2,9 @@
 if (isset($_POST['confirmar'])) {
     require_once('config.php');
     $id = intval($_GET['id']);
-    $sql_code = "DELETE FROM usuarios WHERE id = '$id'";
-    $sql_query = $mysqli->query($sql_code) or die($mysqli->error);
+    $sql_code = "DELETE FROM usuario WHERE usu_id = '$id'";
+    $sql_code2 = "DELETE FROM cliente WHERE end_id = '$id'";
+    $sql_query = $mysqli->query($sql_code, $sql_code2) or die($mysqli->error);
 
     if ($sql_query) { ?>
       
@@ -15,7 +16,7 @@ if (isset($_POST['confirmar'])) {
 }
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
   <meta charset="UTF-8">

@@ -1,8 +1,64 @@
 <?php
+require_once('config.php');
+
+require_once('lib/mail.php');
+
+function limpar_telefone($str)
+{
+    return preg_replace("/[^0-9]/", "", $str);
+}
+
+
+$erro = false;
+if (count($_POST) > 0) {
+    $cep = $_POST['cep'];
+    $endereco = $_POST['endereco'];
+    $numero = $_POST['numero'];
+    $complemento = $_POST['complemento'];
+    $bairro = $_POST['bairro'];
+    $cidade = $_POST['cidade'];
+    $estado = $_POST['estado'];
+    $referencia = $_POST['referencia'];
+
+    if (empty($cep)) {
+        $erro = "Prencha o campo CEP";
+    }
+
+    if (empty($endereco)) {
+        $erro = "Prencha o campo Endereço";
+    }
+
+    if (empty($bairro)) {
+        $erro = "Prencha o campo Bairro";
+    }
+
+    if (empty($cidade)) {
+        $erro = "Prencha o campo Cidade";
+    }
+
+    if (empty($estado)) {
+        $erro = "Prencha o campo Estado";
+    }
+
+    if (empty($referencia)) {
+        $erro = "Prencha o campo Referencia";
+    }else if(strlen($referencia) > 255){
+        $erro = "Maximo de caracteres atingido no campo referencia. Por favor, coloque em menos palavras.";
+    }
+
+    if ($erro) {
+        echo "<p><b>$erro</b></p>";
+    } else {
+        $sql_code_end = "INSERT INTO endereco (end_cep, end_endereco, end_numero, end_referencia, end_bairro, end_cidade, end_estado) VALUES ('$cep', '$endereco', '$numero', '$referencia', '$bairro', '$cidade', '$estado');";   
+        $sucesso = $mysqli->query($sql_code_end) or die($mysqli->error);
+        header("Location: lista_de_usuarios.php");
+        unset($_POST);
+    }
+}
 
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">
@@ -13,45 +69,44 @@
 </head>
 
 <body>
-<div class="logo">
-      <img src="../../Assets/Logo/telecall-logo.png" alt="logoCadastro">
+    <div class="logo">
+        <img src="../../Assets/Logo/telecall-logo.png" alt="logoCadastro">
     </div>
     <form method="POST" action="">
         <div>
             <label for="cep">CEP:</label>
-            <input type="text" name="cep" id="cep" value="21212-121" />
+            <input type="text" name="cep" id="cep" placeholder="21212-121" />
         </div>
         <div>
             <label for="endereco">Endereço:</label>
-            <input type="text" name="endereco" id="endereco" value="Digite o Endereço" />
+            <input type="text" name="endereco" id="endereco" placeholder="Digite o Endereço" />
         </div>
         <div>
-            <label for="numero">Numero:</label>
-            <input type="text" name="numero" id="numero" value="Digite o Numero" />
-        </div>
-        <div>
-            <label for="sem_numero">Não Possui Número:</label>
-            <input type="checkbox" name="sem_numero" id="sem_numero" value="null"/>
+            <label for="numero">Número</label>
+            <input type="text" name="numero" id="numero" placeholder="Digite o Número"/>
         </div>
         <div>
             <label for="complemento">Complemento:</label>
-            <input type="text" name="complemento" id="complemento" value="Digite o Complemento" />
+            <input type="text" name="complemento" id="complemento" placeholder="Digite o Complemento" />
         </div>
         <div>
             <label for="bairro">Bairro:</label>
-            <input type="text" name="bairro" id="bairro" value="Digite o Bairro" />
+            <input type="text" name="bairro" id="bairro" placeholder="Digite o Bairro" />
         </div>
         <div>
             <label for="cidade">Cidade:</label>
-            <input type="text" name="cidade" id="cidade" value="Digite o Cidade" />
+            <input type="text" name="cidade" id="cidade" placeholder="Digite o Cidade" />
         </div>
         <div>
             <label for="estado">Estado:</label>
-            <input type="text" name="estado" id="estado" value="Digite o Estado" />
+            <input type="text" name="estado" id="estado" placeholder="Digite o Estado" />
         </div>
         <div>
             <label for="referencia">Referência:</label>
-            <textarea name="referencia" id="referencia" value="21212-121" value="Digite uma Referência"></textarea>
+            <textarea name="referencia" id="referencia" placeholder="Digite uma Referência"></textarea>
+        </div>
+        <div>
+            <input type="submit" name="submit" id="submit" value="Enviar"/>
         </div>
     </form>
 </body>
