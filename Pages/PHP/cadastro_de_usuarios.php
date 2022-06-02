@@ -53,12 +53,6 @@
       <input type="text" name="mae" id="mae" value="<?php if (isset($_POST["mae"])) echo $_POST["mae"] ?>" />
     </div><br /><br />
 
-    <div>
-      <label for="admin">Você é:</label>
-      <input type="radio" name="admin" id="admin" value="1">Funcionário</input>
-      <input type="radio" name="admin" id="admin" checked value="0">Cliente</input>
-    </div><br /><br />
-
     <div class="inputs">
       <input type="submit" value="Salvar Usuário" />
     </div>
@@ -95,6 +89,7 @@ if (count($_POST) > 0) {
   $nome_mae = $_POST['mae'];
   $senha_nao_crypt = $_POST['senha'];
   $admin = $_POST['admin'];
+  
 
   if (empty($cpf)) {
     $erro = "Preencha o campo CPF";
@@ -153,7 +148,7 @@ if (count($_POST) > 0) {
     echo "<p><b>$erro</b></p>";
   } else {
     $senha = password_hash($senha_nao_crypt, PASSWORD_DEFAULT);
-    $sql_code = "INSERT INTO usuario (usu_cpf, usu_nome, usu_email, usu_senha, usu_celular, usu_fixo, usu_nascimento, usu_mae, usu_cadastro, usu_tipo) VALUES ('$cpf', '$nome', '$email', '$senha', '$telefone', '$fixo', '$nascimento','$nome_mae', NOW(), '$admin')";
+    $sql_code = "INSERT INTO usuario (usu_cpf, usu_nome, usu_email, usu_senha, usu_celular, usu_fixo, usu_nascimento, usu_mae, usu_cadastro, usu_tipo) VALUES ('$cpf', '$nome', '$email', '$senha', '$telefone', '$fixo', '$nascimento','$nome_mae', NOW(), 0)";
     $sucesso = $mysqli->query($sql_code) or die($mysqli->error);
     if ($sucesso) {
       enviar_email(

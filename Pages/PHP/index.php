@@ -8,21 +8,28 @@ if (isset($_POST['email']) && isset($_POST['senha'])) {
   $email = $mysqli->escape_string($_POST['email']);
   $senha = $_POST['senha'];
 
-  $sql_code = "SELECT * FROM usuarios WHERE email = '$email'";
+  $sql_code = "SELECT * FROM usuario WHERE usu_email = '$email'";
   $sql_query = $mysqli->query($sql_code) or die($mysqli->error);
 
   if ($sql_query->num_rows == 0) {
     echo "Email Incorreto";
   } else {
     $usuario = $sql_query->fetch_assoc();
-    if (!password_verify($senha, $usuario['senha'])) {
+    if (!password_verify($senha, $usuario['usu_senha'])) {
       echo "Senha Incorreta";
     } else {
       if (!isset($_SESSION)) {
-        session_start();
-        $_SESSION['usuario'] = $usuario['id'];
-        $_SESSION['admin'] = $usuario['admin'];
-        header("Location: 2fa.php");
+        if ($usuario['usu_tipo'] == 1) {
+          session_start();
+          $_SESSION['usuario'] = $usuario['usu_id'];
+          $_SESSION['admin'] = "ADM";
+          header("Location: 2fa.php");
+        }else{
+          session_start();
+          $_SESSION['usuario'] = $usuario['usu_id'];
+          $_SESSION['admin'] = "CLIENTE";
+          header("Location: index.html");
+        }
       }
     }
   }
@@ -47,7 +54,7 @@ if (isset($_POST['email']) && isset($_POST['senha'])) {
 
 <body>
   <div>
-    <img src="../../Assets/Logo/telecall-logo.png" alt="logoTelecall"  />
+    <img src="../../Assets/Logo/telecall-logo.png" alt="logoTelecall" />
   </div>
   <form action="" method="post">
     <div>
@@ -65,4 +72,3 @@ if (isset($_POST['email']) && isset($_POST['senha'])) {
 </body>
 
 </html>
-

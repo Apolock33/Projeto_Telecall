@@ -68,7 +68,7 @@ $num_usuarios = $query_usuarios->num_rows;
             <td><?php echo $usuario['usu_mae'] ?></td>
             <td><?php echo $usuario['usu_cadastro'] ?></td>
             <td>
-              <a href="ver_usuario.php?id=<?php echo $usuario['usu_id'] ?>">Ver</a>
+              <a href="ver_usuario.php?id=<?php echo $usuario['usu_id'] ?>">Ver</a><br/>
               <a href="editar_usuario.php?id=<?php echo $usuario['usu_id'] ?>">Editar</a>
               <a href="deletar_usuario.php?id=<?php echo $usuario['usu_id'] ?>">Deletar</a>
             </td>
