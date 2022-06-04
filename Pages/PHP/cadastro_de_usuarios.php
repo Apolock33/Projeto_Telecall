@@ -151,6 +151,7 @@ if (count($_POST) > 0) {
     $sql_code = "INSERT INTO usuario (usu_cpf, usu_nome, usu_email, usu_senha, usu_celular, usu_fixo, usu_nascimento, usu_mae, usu_cadastro, usu_tipo) VALUES ('$cpf', '$nome', '$email', '$senha', '$telefone', '$fixo', '$nascimento','$nome_mae', NOW(), 0)";
     $sucesso = $mysqli->query($sql_code) or die($mysqli->error);
     if ($sucesso) {
+      $id = mysqli_insert_id($mysqli);
       enviar_email(
         $email,
         "Informações Cadastrais",
@@ -166,7 +167,7 @@ if (count($_POST) > 0) {
           </div>"
       );
       
-      header('Location: cadastro_endereco.php');
+      header("Location: cadastro_endereco.php?id=$id");
       unset($_POST);
     }
   }

@@ -19,6 +19,7 @@ if (count($_POST) > 0) {
     $cidade = $_POST['cidade'];
     $estado = $_POST['estado'];
     $referencia = $_POST['referencia'];
+    $id = $_GET['id'];
 
     if (empty($cep)) {
         $erro = "Prencha o campo CEP";
@@ -49,7 +50,7 @@ if (count($_POST) > 0) {
     if ($erro) {
         echo "<p><b>$erro</b></p>";
     } else {
-        $sql_code_end = "INSERT INTO endereco (end_cep, end_endereco, end_numero, end_referencia, end_bairro, end_cidade, end_estado, usu_id) VALUES ('$cep', '$endereco', '$numero', '$referencia', '$bairro', '$cidade', '$estado', 1)"; //necessário ajeitar o id
+        $sql_code_end = "INSERT INTO endereco (end_cep, end_endereco, end_numero, end_referencia, end_bairro, end_cidade, end_estado, usu_id) VALUES ('$cep', '$endereco', '$numero', '$referencia', '$bairro', '$cidade', '$estado', '$id')"; //necessário ajeitar o id
         $sucesso = $mysqli->query($sql_code_end) or die($mysqli->error);
         header("Location: index.php");
         unset($_POST);
