@@ -18,26 +18,21 @@ if (isset($_POST['email']) && isset($_POST['senha'])) {
     if (!password_verify($senha, $usuario['usu_senha'])) {
       echo "Senha Incorreta";
     } else {
+      $id = mysqli_insert_id($mysqli);
       if (!isset($_SESSION)) {
-        if ($usuario['usu_tipo'] == 1) {
           session_start();
           $_SESSION['usuario'] = $usuario['usu_id'];
           $_SESSION['admin'] = "ADM";
-          header("Location: 2fa.php");
-        }else{
-          session_start();
-          $_SESSION['usuario'] = $usuario['usu_id'];
-          $_SESSION['admin'] = "CLIENTE";
-          header("Location: index.html");
-        }
+          header("Location: 2fa.php?id=$id"); 
       }
     }
   }
 
-  if (!$erro) {
-  } else {
-    echo $erro;
-  }
+    if (!$erro) {
+    } else {
+      echo $erro;
+    }
+
 }
 
 ?>
@@ -70,5 +65,4 @@ if (isset($_POST['email']) && isset($_POST['senha'])) {
     </div>
   </form>
 </body>
-
 </html>

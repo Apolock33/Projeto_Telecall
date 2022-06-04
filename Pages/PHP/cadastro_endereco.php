@@ -51,6 +51,7 @@ if (count($_POST) > 0) {
         echo "<p><b>$erro</b></p>";
     } else {
         $sql_code_end = "INSERT INTO endereco (end_cep, end_endereco, end_numero, end_referencia, end_bairro, end_cidade, end_estado, usu_id) VALUES ('$cep', '$endereco', '$numero', '$referencia', '$bairro', '$cidade', '$estado', '$id')"; //necessário ajeitar o id
+        
         $sucesso = $mysqli->query($sql_code_end) or die($mysqli->error);
         header("Location: index.php");
         unset($_POST);
