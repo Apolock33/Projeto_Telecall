@@ -1,15 +1,17 @@
 O que é necessário para o projeto final de módulo da faculdade?
 
+Realizado
 - Cadastro de usuário (Nome, Nascimento, Nome da Mãe, CPF, Celular, Fixo, Login, Senha. (Foi)
 - Update(Foi)
 - Read geral(Foi)
-- Read por id(Quase)
 - Delete(Foi)
 - autenticação com validação de login e senha(Foi)
 - Login com Vários Níveis(2 níveis)(Foi)
-- 2FA
-- atualizar status/log(trabalhando, de férias, demitido(log deve ser mantido))(Quase, falta pensar em php)
+- 2FA(Dificuldade)
 - Ajeitar Modelo de Dados(Foi)
-- Ajeitar paginas de Endereço
-- Colocar id do usuário para combinar com usu_id na tabela endereço
+
+Não Realizado
+- Colocar id do usuário para combinar com usu_id na tabela endereço(Dificuldade em coletar o id do usuário)
+- Read por id(Quase)
 - Configurar para rodar em qualquer computador
+- atualizar status/log(trabalhando, de férias, demitido(log deve ser mantido))(Quase, falta pensar em php)

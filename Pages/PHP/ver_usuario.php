@@ -4,6 +4,10 @@ require_once('config.php');
 $sql_read = "SELECT * FROM usuario";
 $query_usuarios = $mysqli->query($sql_read) or die($mysqli->error);
 $num_usuarios = $query_usuarios->num_rows;
+
+$sql_read2 = "SELECT * FROM endereco";
+$query_endereco = $mysqli->query($sql_read2) or die($mysqli->error);
+$num_endereco = $query_endereco->num_rows;
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -66,12 +70,47 @@ $num_usuarios = $query_usuarios->num_rows;
                     <td><?php echo $usuario['usu_mae'] ?></td>
                     <td><?php echo $usuario['usu_cadastro'] ?></td>
                 </tr>
-                
+
         <?php
             }
         } ?>
     </tbody>
+</table><br />
 
+<table border="1" cellpadding="10">
+    <thead>
+        <th>ID</th>
+        <th>CEP</th>
+        <th>Endereço</th>
+        <th>Número</th>
+        <th>Complemento</th>
+        <th>Celular</th>
+        <th>Bairro</th>
+        <th>Cidade</th>
+        <th>Estado</th>
+    </thead>
+    <tbody>
+        <?php if ($num_endereco == 0) { ?>
+            <tr>
+                <td colspan="11">Nenhum Usuário Foi Cadastrado!</td>
+            </tr>
+            <?php } else {
+            while ($endereco = $query_endereco->fetch_assoc()) {
+            ?>
+                <tr>
+                    <td><?php echo $endereco['end_id'] ?></td>
+                    <td><?php echo $endereco['end_cep'] ?></td>
+                    <td><?php echo $endereco['end_endereco']; ?></td>
+                    <td><?php echo $endereco['end_numero']; ?></td>
+                    <td><?php echo $endereco['end_bairro']; ?></td>
+                    <td><?php echo $endereco['end_cidade']; ?></td>
+                    <td><?php echo $endereco['end_estado']; ?></td>
+                </tr>
+
+        <?php
+            }
+        } ?>
+    </tbody>
 </table><br />
 <a href="lista_de_usuarios.php">lista de usuarios</a>
 </body>

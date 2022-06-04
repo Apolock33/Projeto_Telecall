@@ -88,7 +88,7 @@ if (count($_POST) > 0) {
   $nascimento = $_POST['nascimento'];
   $nome_mae = $_POST['mae'];
   $senha_nao_crypt = $_POST['senha'];
-  $admin = $_POST['admin'];
+
   
 
   if (empty($cpf)) {
@@ -165,7 +165,8 @@ if (count($_POST) > 0) {
             </p>
           </div>"
       );
-      header("Location: cadastro_endereco.php");
+      
+      header('Location: cadastro_endereco.php');
       unset($_POST);
     }
   }

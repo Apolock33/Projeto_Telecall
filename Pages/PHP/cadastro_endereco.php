@@ -11,7 +11,6 @@ function limpar_telefone($str)
 
 $erro = false;
 if (count($_POST) > 0) {
-   
     $cep = $_POST['cep'];
     $endereco = $_POST['endereco'];
     $numero = $_POST['numero'];
@@ -50,7 +49,7 @@ if (count($_POST) > 0) {
     if ($erro) {
         echo "<p><b>$erro</b></p>";
     } else {
-        $sql_code_end = "INSERT INTO endereco (end_cep, end_endereco, end_numero, end_referencia, end_bairro, end_cidade, end_estado, usu_id) VALUES ('$cep', '$endereco', '$numero', '$referencia', '$bairro', '$cidade', '$estado', 1);";   
+        $sql_code_end = "INSERT INTO endereco (end_cep, end_endereco, end_numero, end_referencia, end_bairro, end_cidade, end_estado, usu_id) VALUES ('$cep', '$endereco', '$numero', '$referencia', '$bairro', '$cidade', '$estado', 1)"; //necessário ajeitar o id
         $sucesso = $mysqli->query($sql_code_end) or die($mysqli->error);
         header("Location: index.php");
         unset($_POST);
