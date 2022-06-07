@@ -18,12 +18,12 @@ if (isset($_POST['email']) && isset($_POST['senha'])) {
     if (!password_verify($senha, $usuario['usu_senha'])) {
       echo "Senha Incorreta";
     } else {
-      $id = mysqli_insert_id($mysqli);
       if (!isset($_SESSION)) {
           session_start();
           $_SESSION['usuario'] = $usuario['usu_id'];
-          $_SESSION['admin'] = "ADM";
-          header("Location: 2fa.php?id=$id"); 
+          $_SESSION['admin'] = $usuario['usu_tipo'];
+          $_SESSION['nome'] = $usuario['usu_nome'];
+          header("Location: 2fa.php"); 
       }
     }
   }
