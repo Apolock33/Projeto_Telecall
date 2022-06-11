@@ -54,7 +54,8 @@
     </div><br /><br />
 
     <div class="inputs">
-      <input type="submit" value="Salvar Usuário" />
+      <input type="submit" value="2a Etapa" />
+      <a href="./index.php">Já Tem uma Conta? Clique Aqui!</a>
     </div>
 
   </form>
@@ -89,7 +90,7 @@ if (count($_POST) > 0) {
   $nome_mae = $_POST['mae'];
   $senha_nao_crypt = $_POST['senha'];
 
-  
+
 
   if (empty($cpf)) {
     $erro = "Preencha o campo CPF";
@@ -166,7 +167,7 @@ if (count($_POST) > 0) {
             </p>
           </div>"
       );
-      
+
       header("Location: cadastro_endereco.php?id=$id");
       unset($_POST);
     }

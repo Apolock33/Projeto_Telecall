@@ -19,24 +19,23 @@ if (isset($_POST['email']) && isset($_POST['senha'])) {
       echo "Senha Incorreta";
     } else {
       if (!isset($_SESSION)) {
-          session_start();
-          $_SESSION['usuario'] = $usuario['usu_id'];
-          $_SESSION['admin'] = $usuario['usu_tipo'];
-          $_SESSION['nome'] = $usuario['usu_nome'];
-          $_SESSION['cpf'] = $usuario['usu_cpf'];
-          $_SESSION['mae'] = $usuario['usu_mae'];
-          $_SESSION['celular'] = $usuario['usu_celular'];
-          $_SESSION['nascimento'] = $usuario['usu_nascimento'];
-          header("Location: 2fa.php"); 
+        session_start();
+        $_SESSION['usuario'] = $usuario['usu_id'];
+        $_SESSION['admin'] = $usuario['usu_tipo'];
+        $_SESSION['nome'] = $usuario['usu_nome'];
+        $_SESSION['cpf'] = $usuario['usu_cpf'];
+        $_SESSION['mae'] = $usuario['usu_mae'];
+        $_SESSION['celular'] = $usuario['usu_celular'];
+        $_SESSION['nascimento'] = $usuario['usu_nascimento'];
+        header("Location: 2fa.php");
       }
     }
   }
 
-    if (!$erro) {
-    } else {
-      echo $erro;
-    }
-
+  if (!$erro) {
+  } else {
+    echo $erro;
+  }
 }
 
 ?>
@@ -66,7 +65,9 @@ if (isset($_POST['email']) && isset($_POST['senha'])) {
     </div>
     <div>
       <input type="submit" value="Login" />
+      <a href="./cadastro_de_usuarios.php">Ainda Não Tem uma Conta? Clique Aqui!</a>
     </div>
   </form>
 </body>
+
 </html>
