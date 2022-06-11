@@ -23,6 +23,10 @@ if (isset($_POST['email']) && isset($_POST['senha'])) {
           $_SESSION['usuario'] = $usuario['usu_id'];
           $_SESSION['admin'] = $usuario['usu_tipo'];
           $_SESSION['nome'] = $usuario['usu_nome'];
+          $_SESSION['cpf'] = $usuario['usu_cpf'];
+          $_SESSION['mae'] = $usuario['usu_mae'];
+          $_SESSION['celular'] = $usuario['usu_celular'];
+          $_SESSION['nascimento'] = $usuario['usu_nascimento'];
           header("Location: 2fa.php"); 
       }
     }

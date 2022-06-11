@@ -13,21 +13,22 @@
     <h3>Apenas por segurança, nos confirme que é você mesmo!</h3>
 
     <?php
+    require_once('config.php');
 
-    $mae = $_POST['mae'];
-    $celular = $_POST['celular'];
-    $nascimento = $_POST['nascimento'];
-    $ultimos = $_POST['ultimos'];
-    $primeiros = $_POST['primeiros'];
-        
-    $sql_code = "SELECT * FROM usuario where usu_id = '$id'";
-
-    function gerador_numerico($numero)
-    {
-        return $numero;
-    }
-
-    switch (gerador_numerico(rand(1, 5))) {
+    session_start();
+    $id = $_SESSION['usuario'];
+    $tipo = $_SESSION['admin'];
+    $nome = $_SESSION['nome'];
+    $mae = $_SESSION['mae'];
+    $celular = $_SESSION['celular'];
+    $nascimento =$_SESSION['nascimento'];
+    $cpf = $_SESSION['cpf'];
+    
+    $sql_code = "SELECT usu_mae, usu_celular, usu_nascimento, usu_cpf FROM usuario where usu_id = '$id'";
+    $sql_query = $mysqli->query($sql_code) or die($mysql_error());
+   
+    $numero = rand(1,5);
+    switch ($numero) {
         case 1:
             echo "<form>
                     <div>
