@@ -15,10 +15,10 @@ Realizado
 - Direcionar usuários para suas respectivas páginas(Foi)
 - Bloquear acessos sem session(Foi)
 - Drop de session(Foi)
+- Consertar Delete(Foi)
 
 Não Realizado
 - Read por id(Reiniciado)
-- Consertar Delete(Quebrado)
 - Fazer Front-End(Tenho apenas o modelo)
 
 Secundarios
