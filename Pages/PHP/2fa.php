@@ -94,7 +94,7 @@ if (isset($dados['btn'])) {
             if ($tipo == 1) {
                 header('Location: lista_de_usuarios.php'); 
             } else {
-                header('Location: ../HTML/home.html');
+                header('Location: home.php');
             }
             
         }else{
@@ -113,7 +113,7 @@ if (isset($dados['btn'])) {
             if ($tipo == 1) {
                 header('Location: lista_de_usuarios.php');
             } else {
-                header('Location: ../HTML/home.html');
+                header('Location: home.php');
             }
         } else {
             $query_log = "INSERT INTO log (usu_id, log_data, log_meth, log_status) VALUES ('$usu', NOW(), 'Data_Nascimento', 'Erro de Login')";
@@ -131,7 +131,7 @@ if (isset($dados['btn'])) {
             if ($tipo == 1) {
                 header('Location: lista_de_usuarios.php');
             } else {
-                header('Location: ../HTML/home.html');
+                header('Location: home.php');
             }
         } else {
             $query_log = "INSERT INTO log (usu_id, log_data, log_meth, log_status) VALUES ('$usu', NOW(), 'Celular', 'Erro de Login')";
@@ -151,7 +151,7 @@ if (isset($dados['btn'])) {
             if ($tipo == 1) {
                 header('Location: lista_de_usuarios.php');
             } else {
-                header('Location: ../HTML/home.html');
+                header('Location: home.php');
             }
         } else {
             $query_log = "INSERT INTO log (usu_id, log_data, log_meth, log_status) VALUES ('$usu', NOW(), '3_Ultimos', 'Erro de Login')";
@@ -169,7 +169,7 @@ if (isset($dados['btn'])) {
             if ($tipo == 1) {
                 header('Location: lista_de_usuarios.php');
             } else {
-                header('Location: ../HTML/home.html');
+                header('Location: home.php');
             }
         } else {
             $query_log = "INSERT INTO log (usu_id, log_data, log_meth, log_status) VALUES ('$usu', NOW(), '3_Primeiros', 'Erro de Login')";

@@ -14,6 +14,11 @@ if (!isset($_SESSION) && $tipo != 1) {
   header('Location: index.php');
 }
 
+if ($tipo !== 1) {
+  session_destroy();
+  header('Location: index.php');
+}
+
 require_once('config.php');
 $id = intval($_GET['id']);
 function limpar_telefone($str) {
