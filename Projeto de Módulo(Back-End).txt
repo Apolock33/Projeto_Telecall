@@ -1,4 +1,4 @@
-O que é necessário para o projeto final de módulo da faculdade?
+Projeto de Módulo da Faculdade?
 
 Realizado
 - Cadastro de usuário (Nome, Nascimento, Nome da Mãe, CPF, Celular, Fixo, Login, Senha. (Foi)
@@ -20,3 +20,7 @@ Não Realizado
 - Read por id(Reiniciado)
 - Consertar Delete(Quebrado)
 - Fazer Front-End(Tenho apenas o modelo)
+
+Secundarios
+- Pagina para mostrar logs
+- Baixar PDF de Logs
