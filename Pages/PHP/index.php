@@ -20,7 +20,6 @@ if (isset($_POST['email']) && isset($_POST['senha'])) {
     } else {
       if (!isset($_SESSION)) {
         session_start();
-
         $_SESSION['usuario'] = $usuario['usu_id'];
         $_SESSION['admin'] = $usuario['usu_tipo'];
         $_SESSION['nome'] = $usuario['usu_nome'];

@@ -1,8 +1,18 @@
 <?php
 require_once('config.php');
+session_start();
 
-if(isset($_SESSION["id"]) == false && isset($_SESSION["admin"]) == false){
-  header("Location: index.php");
+$id = $_SESSION['usuario'];
+$tipo = $_SESSION['admin'];
+$nome = $_SESSION['nome'];
+$mae = $_SESSION['mae'];
+$celular = $_SESSION['celular'];
+$nascimento = $_SESSION['nascimento'];
+$cpf = $_SESSION['cpf'];
+
+if (!isset($_SESSION) && $tipo != 1) {
+  session_destroy();
+  header('Location: index.php');
 }
 
 $sql_read = "SELECT * FROM usuario";
@@ -72,7 +82,7 @@ $num_usuarios = $query_usuarios->num_rows;
             <td><?php echo $usuario['usu_mae'] ?></td>
             <td><?php echo $usuario['usu_cadastro'] ?></td>
             <td>
-              <a href="ver_usuario.php?id=<?php echo $usuario['usu_id'] ?>">Ver</a><br/>
+              <a href="ver_usuario.php?id=<?php echo $usuario['usu_id'] ?>">Ver</a><br />
               <a href="editar_usuario.php?id=<?php echo $usuario['usu_id'] ?>">Editar</a>
               <a href="deletar_usuario.php?id=<?php echo $usuario['usu_id'] ?>">Deletar</a>
             </td>

@@ -33,8 +33,8 @@
         case 1:
             echo "<form method='POST' action=''>
                     <div>
-                        <label for='usu_mae'>Digite o Nome de sua Mãe:</label><br/><br/>
-                        <input type='text' name='usu_mae' id='usu_mae' /><br/><br/>
+                        <label for='mae'>Digite o Nome de sua Mãe:</label><br/><br/>
+                        <input type='text' name='mae' id='mae' /><br/><br/>
                         <input type='submit' value='Autenticar' name='btn' />
                     </div>
                 </form>";
@@ -85,18 +85,20 @@ $usu = $_SESSION['usuario'];
 $dados = filter_input_array(INPUT_POST, FILTER_DEFAULT);
 if (isset($dados['btn'])) {
 
-    if (isset($dados['usu_mae'])) {
+    if (isset($dados['mae'])) {
 
-        if ($resultado['usu_mae'] == $dados['usu_mae']) {
+        if ($resultado['usu_mae'] == $dados['mae']) {
             $query_log = "INSERT INTO log (usu_id, log_data, log_meth, log_status) VALUES ('$usu', NOW(), 'Nome_Mae', 'Login Bem Sucedido')";
             $sql_query = $mysqli->query($query_log) or die($mysqli->error);
+            
             if ($tipo == 1) {
-                header('Location: lista_de_usuarios.php');
+                header('Location: lista_de_usuarios.php'); 
             } else {
                 header('Location: ../HTML/home.html');
             }
-        } else {
-            $query_log = "INSERT INTO log (usu_id, log_data, log_meth, log_status) VALUES ('$usu', NOW(), 'Nome_Mae', 'Erro de Login')";
+            
+        }else{
+            $query_log = "INSERT INTO log (usu_id, log_data, log_meth, log_status) VALUES ('$usu', NOW(), 'Data_Nascimento', 'Erro de Login')";
             $sql_query = $mysqli->query($query_log) or die($mysqli->error);
             session_destroy();
             header('Location: index.php');
