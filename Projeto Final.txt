@@ -19,3 +19,4 @@ Realizado
 Não Realizado
 - Read por id(Reiniciado)
 - Consertar Delete(Quebrado)
+- Fazer Front-End(Tenho apenas o modelo)
