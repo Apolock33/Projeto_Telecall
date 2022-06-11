@@ -28,9 +28,6 @@ if (isset($_POST['email']) && isset($_POST['senha'])) {
         $_SESSION['mae'] = $usuario['usu_mae'];
         $_SESSION['celular'] = $usuario['usu_celular'];
         $_SESSION['nascimento'] = $usuario['usu_nascimento'];
-        $usu = $usuario['usu_id'];
-        $query_log = "INSERT INTO log (usu_id, log_data) VALUES ('$usu', NOW())";
-        $sql_query = $mysqli->query($query_log) or die($mysqli->error);
         header("Location: 2fa.php");
       }
     }

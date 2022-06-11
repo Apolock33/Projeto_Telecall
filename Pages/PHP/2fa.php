@@ -14,63 +14,64 @@
 
     <?php
     require_once('config.php');
-
     session_start();
     $id = $_SESSION['usuario'];
     $tipo = $_SESSION['admin'];
     $nome = $_SESSION['nome'];
     $mae = $_SESSION['mae'];
     $celular = $_SESSION['celular'];
-    $nascimento =$_SESSION['nascimento'];
+    $nascimento = $_SESSION['nascimento'];
     $cpf = $_SESSION['cpf'];
-    
+
     $sql_code = "SELECT usu_mae, usu_celular, usu_nascimento, usu_cpf FROM usuario where usu_id = '$id'";
     $sql_query = $mysqli->query($sql_code) or die($mysql_error());
-   
-    $numero = rand(1,5);
+
+    $resultado = mysqli_fetch_array($sql_query);
+
+    $numero = rand(1, 5);
     switch ($numero) {
         case 1:
-            echo "<form>
+            echo "<form method='POST' action=''>
                     <div>
                         <label for='usu_mae'>Digite o Nome de sua Mãe:</label><br/><br/>
                         <input type='text' name='usu_mae' id='usu_mae' /><br/><br/>
-                        <input type='submit' value='Autenticar' />
+                        <input type='submit' value='Autenticar' name='btn' />
                     </div>
                 </form>";
             break;
         case 2:
-            echo "<form>
+            echo "<form method='POST' action=''>
                     <div>
                         <label for='celular'>Digite o seu Telefone Celular:</label><br/><br/>
                         <input type='text' name='celular' id='celular' /><br/><br/>
-                        <input type='submit' value='Autenticar' />
+                        <input type='submit' value='Autenticar' name='btn' />
                     </div>
                 </form>";
             break;
         case 3:
-            echo "<form>
+            echo "<form method='POST' action=''>
                     <div>
                         <label for='nascimento'>Digite sua Data de Nascimento:</label><br/><br/>
-                        <input type='text' name='nascimento' id='nascimento' /><br/><br/>
-                        <input type='submit' value='Autenticar' />
+                        <input type='date' name='nascimento' id='nascimento' /><br/><br/>
+                        <input type='submit' value='Autenticar' name='btn' />   
                     </div>
                 </form>";
             break;
         case 4:
-            echo "<form>
+            echo "<form method='POST' action=''>
                     <div>
                         <label for='ultimos'>Digite os 3 Últimos Digitos do Seu CPF:</label><br/><br/>
                         <input type='text' name='ultimos' id='ultimos' /><br/><br/>
-                        <input type='submit' value='Autenticar' />
+                        <input type='submit' value='Autenticar' name='btn' />
                     </div>
                 </form>";
             break;
         case 5:
-            echo "<form>
+            echo "<form method='POST' action=''>
                     <div>
                         <label for='primeiros'>Digite os 3 Primeiros Digitos do Seu CPF:</label><br/><br/>
                         <input type='text' name='primeiros' id='primeiros' /><br/><br/>
-                        <input type='submit' value='Autenticar' />
+                        <input type='submit' value='Autenticar' name='btn' />
                     </div>
                 </form>";
             break;
@@ -79,3 +80,102 @@
 </body>
 
 </html>
+<?php
+$usu = $_SESSION['usuario'];
+$dados = filter_input_array(INPUT_POST, FILTER_DEFAULT);
+if (isset($dados['btn'])) {
+
+    if (isset($dados['usu_mae'])) {
+
+        if ($resultado['usu_mae'] == $dados['usu_mae']) {
+            $query_log = "INSERT INTO log (usu_id, log_data, log_meth, log_status) VALUES ('$usu', NOW(), 'Nome_Mae', 'Login Bem Sucedido')";
+            $sql_query = $mysqli->query($query_log) or die($mysqli->error);
+            if ($tipo == 1) {
+                header('Location: lista_de_usuarios.php');
+            } else {
+                header('Location: ../HTML/home.html');
+            }
+        } else {
+            $query_log = "INSERT INTO log (usu_id, log_data, log_meth, log_status) VALUES ('$usu', NOW(), 'Nome_Mae', 'Erro de Login')";
+            $sql_query = $mysqli->query($query_log) or die($mysqli->error);
+            session_destroy();
+            header('Location: index.php');
+        }
+    }
+
+    if (isset($dados['nascimento'])) {
+
+        if ($resultado['usu_nascimento'] == $dados['nascimento']) {
+            $query_log = "INSERT INTO log (usu_id, log_data, log_meth, log_status) VALUES ('$usu', NOW(), 'Data_Nascimento', 'Login Bem Sucedido')";
+            $sql_query = $mysqli->query($query_log) or die($mysqli->error);
+            if ($tipo == 1) {
+                header('Location: lista_de_usuarios.php');
+            } else {
+                header('Location: ../HTML/home.html');
+            }
+        } else {
+            $query_log = "INSERT INTO log (usu_id, log_data, log_meth, log_status) VALUES ('$usu', NOW(), 'Data_Nascimento', 'Erro de Login')";
+            $sql_query = $mysqli->query($query_log) or die($mysqli->error);
+            session_destroy();
+            header('Location: index.php');
+        }
+    }
+
+    if (isset($dados['celular'])) {
+
+        if ($resultado['usu_celular'] == $dados['celular']) {
+            $query_log = "INSERT INTO log (usu_id, log_data, log_meth, log_status) VALUES ('$usu', NOW(), 'Celular', 'Login Bem Sucedido')";
+            $sql_query = $mysqli->query($query_log) or die($mysqli->error);
+            if ($tipo == 1) {
+                header('Location: lista_de_usuarios.php');
+            } else {
+                header('Location: ../HTML/home.html');
+            }
+        } else {
+            $query_log = "INSERT INTO log (usu_id, log_data, log_meth, log_status) VALUES ('$usu', NOW(), 'Celular', 'Erro de Login')";
+            $sql_query = $mysqli->query($query_log) or die($mysqli->error);
+            session_destroy();
+            header('Location: index.php');
+        }
+    }
+
+
+
+    if (isset($dados['ultimos'])) {
+        $ultimos = substr($cpf, -3);
+        if ($ultimos == $dados['ultimos']) {
+            $query_log = "INSERT INTO log (usu_id, log_data, log_meth, log_status) VALUES ('$usu', NOW(), '3_Ultimos', 'Login Bem Sucedido')";
+            $sql_query = $mysqli->query($query_log) or die($mysqli->error);
+            if ($tipo == 1) {
+                header('Location: lista_de_usuarios.php');
+            } else {
+                header('Location: ../HTML/home.html');
+            }
+        } else {
+            $query_log = "INSERT INTO log (usu_id, log_data, log_meth, log_status) VALUES ('$usu', NOW(), '3_Ultimos', 'Erro de Login')";
+            $sql_query = $mysqli->query($query_log) or die($mysqli->error);
+            session_destroy();
+            header('Location: index.php');
+        }
+    }
+
+    if (isset($dados['primeiros'])) {
+        $primeiros = substr($cpf, 0, 3);
+        if ($primeiros == $dados['primeiros']) {
+            $query_log = "INSERT INTO log (usu_id, log_data, log_meth, log_status) VALUES ('$usu', NOW(), '3_Primeiros', 'Login Bem Sucedido')";
+            $sql_query = $mysqli->query($query_log) or die($mysqli->error);
+            if ($tipo == 1) {
+                header('Location: lista_de_usuarios.php');
+            } else {
+                header('Location: ../HTML/home.html');
+            }
+        } else {
+            $query_log = "INSERT INTO log (usu_id, log_data, log_meth, log_status) VALUES ('$usu', NOW(), '3_Primeiros', 'Erro de Login')";
+            $sql_query = $mysqli->query($query_log) or die($mysqli->error);
+            session_destroy();
+            header('Location: index.php');
+        }
+    }
+}
+
+?>
