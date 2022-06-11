@@ -19,7 +19,7 @@
     $nascimento = $_POST['nascimento'];
     $ultimos = $_POST['ultimos'];
     $primeiros = $_POST['primeiros'];
-    
+        
     $sql_code = "SELECT * FROM usuario where usu_id = '$id'";
 
     function gerador_numerico($numero)
