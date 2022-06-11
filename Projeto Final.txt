@@ -1,18 +1,19 @@
 O que é necessário para o projeto final de módulo da faculdade?
 
 Realizado
-- Cadastro de usuário (Nome, Nascimento, Nome da Mãe, CPF, Celular, Fixo, Login, Senha. (Foi))
+- Cadastro de usuário (Nome, Nascimento, Nome da Mãe, CPF, Celular, Fixo, Login, Senha. (Foi)
 - Update(Foi)
 - Read geral(Foi)
 - Delete(Foi)
 - autenticação com validação de login e senha(Foi)
 - Login com Vários Níveis(2 níveis)(Foi)
-
+- log(Feito)
 - Ajeitar Modelo de Dados(Foi)
 - Configurar para rodar em qualquer computador(Foi)
 - Colocar id do usuário para combinar com usu_id na tabela endereço(Foi)
 
 Não Realizado
-- Read por id(Quase)
-- atualizar status/log(trabalhando, de férias, demitido(log deve ser mantido))(Quase, falta pensar em php)
-- 2FA(Dificuldade)
+- Read por id(Reiniciado)
+- 2FA(Dificuldade)(Utilizei de session para capturar os valores que são necessários para validação, e trouxe eles de volta na outra pagina, agora, é necessário transformar os echos em html, capturar seus names em variaveis com post e utilizar de condições para valida-los)
+- Direcionar usuários para suas respectivas páginas(Quase/ precisa do 2fa)
+- Bloquear acessos sem session(Falta)

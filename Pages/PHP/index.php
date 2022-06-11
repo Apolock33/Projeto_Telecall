@@ -20,6 +20,7 @@ if (isset($_POST['email']) && isset($_POST['senha'])) {
     } else {
       if (!isset($_SESSION)) {
         session_start();
+
         $_SESSION['usuario'] = $usuario['usu_id'];
         $_SESSION['admin'] = $usuario['usu_tipo'];
         $_SESSION['nome'] = $usuario['usu_nome'];
@@ -27,6 +28,9 @@ if (isset($_POST['email']) && isset($_POST['senha'])) {
         $_SESSION['mae'] = $usuario['usu_mae'];
         $_SESSION['celular'] = $usuario['usu_celular'];
         $_SESSION['nascimento'] = $usuario['usu_nascimento'];
+        $usu = $usuario['usu_id'];
+        $query_log = "INSERT INTO log (usu_id, log_data) VALUES ('$usu', NOW())";
+        $sql_query = $mysqli->query($query_log) or die($mysqli->error);
         header("Location: 2fa.php");
       }
     }
