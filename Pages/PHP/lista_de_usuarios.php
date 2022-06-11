@@ -1,6 +1,10 @@
 <?php
 require_once('config.php');
 
+if(isset($_SESSION["id"]) == false && isset($_SESSION["admin"]) == false){
+  header("Location: index.php");
+}
+
 $sql_read = "SELECT * FROM usuario";
 $query_usuarios = $mysqli->query($sql_read) or die($mysqli->error);
 $num_usuarios = $query_usuarios->num_rows;
@@ -79,6 +83,7 @@ $num_usuarios = $query_usuarios->num_rows;
     </tbody>
   </table><br />
   <a href="cadastro_de_usuarios.php">Cadastrar usuario</a>
+  <a href="./session_drop.php">Sair</a>
 </body>
 
 </html>

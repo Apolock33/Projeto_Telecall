@@ -18,3 +18,4 @@ Não Realizado
 - Read por id(Reiniciado)
 - Bloquear acessos sem session(Falta)
 - Consertar Delete(Quebrado)
+- Drop de session(Falta)

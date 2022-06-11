@@ -1,4 +1,9 @@
 <?php
+
+if(isset($_SESSION["id"]) == false && isset($_SESSION["admin"]) == false){
+  header("Location: index.php");
+}
+
 require_once('config.php');
 $id = intval($_GET['id']);
 function limpar_telefone($str) {
