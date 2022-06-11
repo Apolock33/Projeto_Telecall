@@ -13,9 +13,9 @@ Realizado
 - Colocar id do usuário para combinar com usu_id na tabela endereço(Foi)
 - 2FA(Foi)
 - Direcionar usuários para suas respectivas páginas(Foi)
+- Bloquear acessos sem session(Foi)
+- Drop de session(Foi)
 
 Não Realizado
 - Read por id(Reiniciado)
-- Bloquear acessos sem session(Falta)
 - Consertar Delete(Quebrado)
-- Drop de session(Falta)
