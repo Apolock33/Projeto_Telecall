@@ -10,10 +10,6 @@ $celular = $_SESSION['celular'];
 $nascimento = $_SESSION['nascimento'];
 $cpf = $_SESSION['cpf'];
 
-if (!isset($_SESSION)) {
-    session_destroy();
-    header('Location: index.php');
-  }
 ?>
 
 <!DOCTYPE html>

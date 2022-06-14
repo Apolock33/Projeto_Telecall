@@ -11,16 +11,6 @@ $celular = $_SESSION['celular'];
 $nascimento = $_SESSION['nascimento'];
 $cpf = $_SESSION['cpf'];
 
-if (!isset($_SESSION) && $tipo != 1) {
-    session_destroy();
-    header('Location: index.php');
-  }
-  
-  if ($tipo !== 1) {
-    session_destroy();
-    header('Location: index.php');
-  }
-
 $sql_read_usu = "SELECT * FROM usuario WHERE usu_id = $id";
 $query_usuarios = $mysqli->query($sql_read_usu) or die($mysqli->error);
 $num_usuarios = $query_usuarios->num_rows;
