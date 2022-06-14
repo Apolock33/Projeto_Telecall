@@ -88,6 +88,7 @@ $num_usuarios = $query_usuarios->num_rows;
     </tbody>
   </table><br />
   <a href="cadastro_de_usuarios.php">Cadastrar usuario</a>
+  <a href="./perfil.php">Perfil</a>
   <a href="./session_drop.php">Sair</a>
 </body>
 

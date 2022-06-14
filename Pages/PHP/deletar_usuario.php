@@ -9,10 +9,6 @@ $celular = $_SESSION['celular'];
 $nascimento = $_SESSION['nascimento'];
 $cpf = $_SESSION['cpf'];
 
-<<<<<<< HEAD
-=======
-
->>>>>>> addbdd06c1a2fe39000189da38e7a440a18508dc
 if (isset($_POST['confirmar'])) {
     require_once('config.php');
     $id = intval($_GET['id']);
