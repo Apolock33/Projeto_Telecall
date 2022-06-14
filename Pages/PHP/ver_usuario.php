@@ -11,14 +11,12 @@ $celular = $_SESSION['celular'];
 $nascimento = $_SESSION['nascimento'];
 $cpf = $_SESSION['cpf'];
 
-
-
-$sql_read = "SELECT * FROM usuario";
-$query_usuarios = $mysqli->query($sql_read) or die($mysqli->error);
+$sql_read_usu = "SELECT * FROM usuario WHERE usu_id = $id";
+$query_usuarios = $mysqli->query($sql_read_usu) or die($mysqli->error);
 $num_usuarios = $query_usuarios->num_rows;
 
-$sql_read2 = "SELECT * FROM endereco";
-$query_endereco = $mysqli->query($sql_read2) or die($mysqli->error);
+$sql_read_end = "SELECT * FROM endereco WHERE usu_id = $id";
+$query_endereco = $mysqli->query($sql_read_end) or die($mysqli->error);
 $num_endereco = $query_endereco->num_rows;
 ?>
 <!DOCTYPE html>

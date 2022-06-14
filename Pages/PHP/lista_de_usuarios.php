@@ -10,7 +10,6 @@ $celular = $_SESSION['celular'];
 $nascimento = $_SESSION['nascimento'];
 $cpf = $_SESSION['cpf'];
 
-
 $sql_read = "SELECT * FROM usuario";
 $query_usuarios = $mysqli->query($sql_read) or die($mysqli->error);
 $num_usuarios = $query_usuarios->num_rows;
