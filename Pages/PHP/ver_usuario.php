@@ -2,14 +2,19 @@
 require_once('config.php');
 
 session_start();
+  $id = $_SESSION['usuario'];
+  $tipo = $_SESSION['admin'];
+  $nome = $_SESSION['nome'];
+  $mae = $_SESSION['mae'];
+  $celular = $_SESSION['celular'];
+  $nascimento = $_SESSION['nascimento'];
+  $cpf = $_SESSION['cpf'];
+if ($_SESSION['admin'] == 1) {
+} else {
+  session_destroy();
+  header('Location: index.php');
+}
 
-$id = $_SESSION['usuario'];
-$tipo = $_SESSION['admin'];
-$nome = $_SESSION['nome'];
-$mae = $_SESSION['mae'];
-$celular = $_SESSION['celular'];
-$nascimento = $_SESSION['nascimento'];
-$cpf = $_SESSION['cpf'];
 
 $query_user = "SELECT usu_id, usu_cpf, usu_nome, usu_celular, usu_fixo, usu_nascimento, usu_email, usu_mae, usu_tipo FROM usuario WHERE usu_id = '$id' LIMIT 1";
 $resultado_usu = $mysqli->query($query_user) or die($mysqli->error);
@@ -80,7 +85,7 @@ $resultado_end = $mysqli->query($query_end) or die($mysqli->error);
             <?php }
             } ?>
         </tbody>
-    </table> 
+    </table>
     <div align="center">
         <h1>Dados Residenciais</h1>
     </div>
@@ -117,7 +122,7 @@ $resultado_end = $mysqli->query($query_end) or die($mysqli->error);
             <?php }
             } ?>
         </tbody>
-    </table><br/><br/>
+    </table><br /><br />
     <div align="center">
         <a href="./lista_de_usuarios.php">Lista de Usuários</a>
     </div>

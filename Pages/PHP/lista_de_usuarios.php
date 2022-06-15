@@ -1,8 +1,6 @@
 <?php
 require_once('config.php');
-if (!isset($_SESSION)) {
-  session_start();
-}
+session_start();
   $id = $_SESSION['usuario'];
   $tipo = $_SESSION['admin'];
   $nome = $_SESSION['nome'];
@@ -10,6 +8,13 @@ if (!isset($_SESSION)) {
   $celular = $_SESSION['celular'];
   $nascimento = $_SESSION['nascimento'];
   $cpf = $_SESSION['cpf'];
+if ($_SESSION['admin'] == 1) {
+} else {
+  session_destroy();
+  header('Location: index.php');
+}
+
+
 
 
 $sql_read = "SELECT * FROM usuario";

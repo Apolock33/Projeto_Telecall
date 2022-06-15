@@ -10,6 +10,10 @@ $celular = $_SESSION['celular'];
 $nascimento = $_SESSION['nascimento'];
 $cpf = $_SESSION['cpf'];
 
+if ($_SESSION['admin'] == 1 || !$_SESSION['admin'] == 0) {
+    session_destroy();
+    header('Location: index.php');
+}
 ?>
 
 <!DOCTYPE html>
@@ -19,9 +23,8 @@ $cpf = $_SESSION['cpf'];
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"/>
-    <link rel="stylesheet" type="text/css" href="../CSS/homecss.css"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
+    <link rel="stylesheet" type="text/css" href="../CSS/homecss.css" />
     <title>Telecall - Home</title>
 </head>
 
@@ -30,8 +33,7 @@ $cpf = $_SESSION['cpf'];
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container-fluid">
                 <a class="navbar-brand" href="home.php"><img class="navbar-brand" src="../../Assets/Logo/telecall-logo.png" alt="Logo" width='300'></a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
@@ -54,8 +56,7 @@ $cpf = $_SESSION['cpf'];
     <section class="container-fluid capa">
         <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
             <div class="col-10 col-sm-8 col-lg-6">
-                <img src="https://media-cdn.tripadvisor.com/media/photo-s/15/a4/9b/77/legacy-hotel-at-img-academy.jpg"
-                    class="d-block mx-lg-auto img-fluid" alt="Bootstrap Themes" width="700" height="500" loading="lazy">
+                <img src="https://media-cdn.tripadvisor.com/media/photo-s/15/a4/9b/77/legacy-hotel-at-img-academy.jpg" class="d-block mx-lg-auto img-fluid" alt="Bootstrap Themes" width="700" height="500" loading="lazy">
             </div>
             <div class="col-lg-6">
                 <h1 class="display-5 fw-bold lh-1 mb-3">Somos a Sua Escolha Inteligente</h1>
@@ -69,8 +70,7 @@ $cpf = $_SESSION['cpf'];
 
     <section class="container-fluid sobre">
         <div class="px-4 py-5 my-5 text-center">
-            <img class="d-block mx-auto mb-4" src="" alt="" width="72"
-                height="57">
+            <img class="d-block mx-auto mb-4" src="" alt="" width="72" height="57">
             <h1 class="display-5 fw-bold">Serviços</h1>
             <div class="col-lg-6 mx-auto">
                 <p class="lead mb-4">Garanta os melhores serviços e custos otimizados para sua empresa, com toda mobilidade e segurança que só a Telecall oferece para você no mercado.</p>
@@ -85,14 +85,12 @@ $cpf = $_SESSION['cpf'];
     <section class="container-fluid servicos">
         <div class="row row-cols-1 row-cols-lg-3 align-items-stretch g-4 py-5">
             <div class="col">
-                <div class="card card-cover h-100 overflow-hidden text-white bg-dark rounded-5 shadow-lg"
-                    style="background-image: url('../../Assets/Imgs/Afinal-o-que-e-banda-larga.jpg')">
+                <div class="card card-cover h-100 overflow-hidden text-white bg-dark rounded-5 shadow-lg" style="background-image: url('../../Assets/Imgs/Afinal-o-que-e-banda-larga.jpg')">
                     <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
                         <h2 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">Internet</h2>
                         <ul class="d-flex list-unstyled mt-auto">
                             <li class="me-auto">
-                                <img src="" alt="Bootstrap" width="32" height="32"
-                                    class="rounded-circle border border-white">
+                                <img src="" alt="Bootstrap" width="32" height="32" class="rounded-circle border border-white">
                             </li>
                             <li class="d-flex align-items-center me-3">
                                 <svg class="bi me-2" width="1em" height="1em">
@@ -112,15 +110,13 @@ $cpf = $_SESSION['cpf'];
             </div>
 
             <div class="col">
-                <div class="card card-cover h-100 overflow-hidden text-white bg-dark rounded-5 shadow-lg"
-                    style="background-image: url('unsplash-photo-2.jpg');">
+                <div class="card card-cover h-100 overflow-hidden text-white bg-dark rounded-5 shadow-lg" style="background-image: url('unsplash-photo-2.jpg');">
                     <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
                         <h2 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">Much longer title that wraps to multiple lines
                         </h2>
                         <ul class="d-flex list-unstyled mt-auto">
                             <li class="me-auto">
-                                <img src="https://github.com/twbs.png" alt="Bootstrap" width="32" height="32"
-                                    class="rounded-circle border border-white" width="100px">
+                                <img src="https://github.com/twbs.png" alt="Bootstrap" width="32" height="32" class="rounded-circle border border-white" width="100px">
                             </li>
                             <li class="d-flex align-items-center me-3">
                                 <svg class="bi me-2" width="1em" height="1em">
@@ -140,14 +136,12 @@ $cpf = $_SESSION['cpf'];
             </div>
 
             <div class="col">
-                <div class="card card-cover h-100 overflow-hidden text-white bg-dark rounded-5 shadow-lg"
-                    style="background-image: url('unsplash-photo-3.jpg');">
+                <div class="card card-cover h-100 overflow-hidden text-white bg-dark rounded-5 shadow-lg" style="background-image: url('unsplash-photo-3.jpg');">
                     <div class="d-flex flex-column h-100 p-5 pb-3 text-shadow-1">
                         <h2 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">Banda Larga</h2>
                         <ul class="d-flex list-unstyled mt-auto">
                             <li class="me-auto">
-                                <img src="https://github.com/twbs.png" alt="Bootstrap" width="32" height="32"
-                                    class="rounded-circle border border-white">
+                                <img src="https://github.com/twbs.png" alt="Bootstrap" width="32" height="32" class="rounded-circle border border-white">
                             </li>
                             <li class="d-flex align-items-center me-3">
                                 <svg class="bi me-2" width="1em" height="1em">
@@ -170,17 +164,14 @@ $cpf = $_SESSION['cpf'];
 
     <section>
         <div align="center">
-        <h1>Somos Uma Empresa Global!</h1>
+            <h1>Somos Uma Empresa Global!</h1>
         </div>
         <div class="container-fluid imgmapa justify-content-center align-items-center">
-            <img class="d-block mx-auto mb-4" src="https://www.telecall.com/media/images/home2021/MapaRJ.png" alt=""
-                width="900">
+            <img class="d-block mx-auto mb-4" src="https://www.telecall.com/media/images/home2021/MapaRJ.png" alt="" width="900">
         </div>
     </section>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
 
 </html>

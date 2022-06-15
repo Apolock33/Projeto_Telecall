@@ -1,17 +1,19 @@
 <?php
 require_once('config.php');
 
-if (!isset($_SESSION)) {
-    session_start();
+session_start();
+  $id = $_SESSION['usuario'];
+  $tipo = $_SESSION['admin'];
+  $nome = $_SESSION['nome'];
+  $mae = $_SESSION['mae'];
+  $celular = $_SESSION['celular'];
+  $nascimento = $_SESSION['nascimento'];
+  $cpf = $_SESSION['cpf'];
+if ($_SESSION['admin'] == 1) {
+} else {
+  session_destroy();
+  header('Location: index.php');
 }
-
-$id = $_SESSION['usuario'];
-$tipo = $_SESSION['admin'];
-$nome = $_SESSION['nome'];
-$mae = $_SESSION['mae'];
-$celular = $_SESSION['celular'];
-$nascimento = $_SESSION['nascimento'];
-$cpf = $_SESSION['cpf'];
 
 $sql_logs = "SELECT * FROM log";
 $query_log = $mysqli->query($sql_logs) or die($mysqli->error);
