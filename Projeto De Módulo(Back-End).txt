@@ -16,9 +16,11 @@ Realizado
 - Bloquear acessos sem session(Foi)
 - Drop de session(Foi)
 - Consertar Delete(Foi)
+- Read por id(Foi)
 
 Não Realizado
-- Read por id(Reiniciado)
+- Pagina de Perfil(Descobri recentemente)
+- Bloqueio de Páginas(Reiniciado)
 - Fazer Front-End(Tenho apenas o modelo)
 
 Secundarios
