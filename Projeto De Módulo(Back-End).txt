@@ -25,5 +25,4 @@ Não Realizado
 - Fazer Front-End(Tenho apenas o modelo)
 
 Secundarios
-- Pagina para mostrar logs
 - Baixar PDF de Logs
