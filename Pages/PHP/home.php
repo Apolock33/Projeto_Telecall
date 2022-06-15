@@ -1,7 +1,6 @@
 <?php
 require_once('config.php');
 session_start();
-
 $id = $_SESSION['usuario'];
 $tipo = $_SESSION['admin'];
 $nome = $_SESSION['nome'];
@@ -9,8 +8,8 @@ $mae = $_SESSION['mae'];
 $celular = $_SESSION['celular'];
 $nascimento = $_SESSION['nascimento'];
 $cpf = $_SESSION['cpf'];
-
-if ($_SESSION['admin'] == 1 || !$_SESSION['admin'] == 0) {
+if ($_SESSION['admin'] == 1 || $_SESSION['admin'] == 0) {
+} else {
     session_destroy();
     header('Location: index.php');
 }
