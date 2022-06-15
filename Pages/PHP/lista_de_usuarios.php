@@ -1,14 +1,16 @@
 <?php
 require_once('config.php');
-session_start();
+if (!isset($_SESSION)) {
+  session_start();
+}
+  $id = $_SESSION['usuario'];
+  $tipo = $_SESSION['admin'];
+  $nome = $_SESSION['nome'];
+  $mae = $_SESSION['mae'];
+  $celular = $_SESSION['celular'];
+  $nascimento = $_SESSION['nascimento'];
+  $cpf = $_SESSION['cpf'];
 
-$id = $_SESSION['usuario'];
-$tipo = $_SESSION['admin'];
-$nome = $_SESSION['nome'];
-$mae = $_SESSION['mae'];
-$celular = $_SESSION['celular'];
-$nascimento = $_SESSION['nascimento'];
-$cpf = $_SESSION['cpf'];
 
 $sql_read = "SELECT * FROM usuario";
 $query_usuarios = $mysqli->query($sql_read) or die($mysqli->error);
@@ -88,6 +90,7 @@ $num_usuarios = $query_usuarios->num_rows;
     </tbody>
   </table><br />
   <a href="cadastro_de_usuarios.php">Cadastrar usuario</a>
+  <a href="logs.php">Visualizar Logs de Acesso</a>
   <a href="./perfil.php">Perfil</a>
   <a href="./session_drop.php">Sair</a>
 </body>

@@ -29,11 +29,7 @@ $cpf = $_SESSION['cpf'];
     <header>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container-fluid">
-<<<<<<< HEAD
-                <a class="navbar-brand" href="#">Navbar</a> 
-=======
                 <a class="navbar-brand" href="home.php"><img class="navbar-brand" src="../../Assets/Logo/telecall-logo.png" alt="Logo" width='300'></a>
->>>>>>> addbdd06c1a2fe39000189da38e7a440a18508dc
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                     aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
