@@ -17,6 +17,7 @@ Realizado
 - Drop de session(Foi)
 - Consertar Delete(Foi)
 - Read por id(Foi)
+- Visualização de Logs(Foi)
 
 Não Realizado
 - Pagina de Perfil(Descobri recentemente)
