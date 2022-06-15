@@ -7,7 +7,7 @@ Realizado
 - Delete(Foi)
 - autenticação com validação de login e senha(Foi)
 - Login com Vários Níveis(2 níveis)(Foi)
-- log(Feito)
+- log(Foi)
 - Ajeitar Modelo de Dados(Foi)
 - Configurar para rodar em qualquer computador(Foi)
 - Colocar id do usuário para combinar com usu_id na tabela endereço(Foi)
@@ -18,10 +18,10 @@ Realizado
 - Consertar Delete(Foi)
 - Read por id(Foi)
 - Visualização de Logs(Foi)
+- Bloqueio de Páginas(Foi)
 
 Não Realizado
 - Pagina de Perfil(Descobri recentemente)
-- Bloqueio de Páginas(Reiniciado)
 - Fazer Front-End(Tenho apenas o modelo)
 
 Secundarios
