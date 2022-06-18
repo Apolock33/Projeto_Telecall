@@ -45,7 +45,10 @@ if ($_SESSION['admin'] == 1 || $_SESSION['admin'] == 0) {
                             <a class="nav-link" href="#">Sobre Nós</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Serviços</a>
+                            <a class="nav-link" href="perfil.php">Perfil</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="session_drop.php">Sair</a>
                         </li>
                     </ul>
                 </div>
