@@ -7,26 +7,34 @@
   margin: 60px auto;
   max-width: 300px;
 }
-
-
-
-form .inputs{
+.formulario{
+  display: flex;
+  align-items: center;
+}
+form{
+  background-color: #0e4e7c;
+  max-width: 900px;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
 }
-
+.inputs{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 div label {
   font-size: 18px !important;
   font-family: 'santico', sans-serif;
-  color: #0e4e7c;
+  color: #ffffff;
   font-weight: bold;
 }
 
 div input {
   font-family: 'santico', sans-serif;
   color: #0e4e7c !important;
-  font-weight: bold;
+  font-weight: bold;  
 }
 
 .botao {

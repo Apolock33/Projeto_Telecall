@@ -5,61 +5,63 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="../CSS/Cadastro.css">
+  <link rel="stylesheet" type="text/css" href="../CSS/Cadastro.css">
   <title>Telecall - Cadastro de Usuário</title>
 </head>
 
 <body>
-  <form action="" method="POST">
-    <div class="logo">
-      <img src="../../Assets/Logo/telecall-logo.png" alt="logoCadastro">
-    </div>
-    <div class="inputs">
-      <label for="cpf">CPF:</label>
-      <input type="text" name="cpf" id="cpf" value="<?php if (isset($_POST["cpf"])) echo $_POST["cpf"] ?>" />
-    </div><br /><br />
+  <div class="logo">
+    <img src="../../Assets/Logo/telecall-logo.png" alt="logoCadastro">
+  </div>
+  <section class='formulario'>
+    <form action="" method="POST">
 
-    <div class="inputs">
-      <label for="nome">Nome:</label>
-      <input type="text" name="nome" id="nome" value="<?php if (isset($_POST["nome"])) echo $_POST["nome"] ?>" />
-    </div><br /><br />
+      <div class="inputs">
+        <label for="cpf">CPF:</label>
+        <input type="text" name="cpf" id="cpf" value="<?php if (isset($_POST["cpf"])) echo $_POST["cpf"] ?>" />
+      </div><br /><br />
 
-    <div class="inputs">
-      <label for="email">E-mail:</label>
-      <input type="email" name="email" id="email" value="<?php if (isset($_POST["email"])) echo $_POST["email"] ?>" />
-    </div><br /><br />
+      <div class="inputs">
+        <label for="nome">Nome:</label>
+        <input type="text" name="nome" id="nome" value="<?php if (isset($_POST["nome"])) echo $_POST["nome"] ?>" />
+      </div><br /><br />
 
-    <div class="inputs">
-      <label for="senha">Senha:</label>
-      <input type="password" name="senha" id="senha" value="<?php if (isset($_POST["senha"])) echo $_POST["senha"] ?>" />
-    </div><br /><br />
+      <div class="inputs">
+        <label for="email">E-mail:</label>
+        <input type="email" name="email" id="email" value="<?php if (isset($_POST["email"])) echo $_POST["email"] ?>" />
+      </div><br /><br />
 
-    <div class="inputs">
-      <label for="telefone">Celular:</label>
-      <input type="text" name="telefone" id="telefone" placeholder="(11) 98888-8888" value="<?php if (isset($_POST["telefone"])) echo $_POST["telefone"] ?>" />
-    </div><br /><br />
-    <div class="inputs">
-      <label for="fixo">Telefone Fixo:</label>
-      <input type="text" name="fixo" id="fixo" placeholder="(11) 2121-2121" value="<?php if (isset($_POST["fixo"])) echo $_POST["fixo"] ?>" />
-    </div><br /><br />
+      <div class="inputs">
+        <label for="senha">Senha:</label>
+        <input type="password" name="senha" id="senha" value="<?php if (isset($_POST["senha"])) echo $_POST["senha"] ?>" />
+      </div><br /><br />
 
-    <div class="inputs">
-      <label for="nascimento">Data de Nascimento:</label>
-      <input type="text" name="nascimento" id="nascimento" value="<?php if (isset($_POST["nascimento"])) echo $_POST["nascimento"] ?>" />
-    </div><br /><br />
+      <div class="inputs">
+        <label for="telefone">Celular:</label>
+        <input type="text" name="telefone" id="telefone" placeholder="(11) 98888-8888" value="<?php if (isset($_POST["telefone"])) echo $_POST["telefone"] ?>" />
+      </div><br /><br />
+      <div class="inputs">
+        <label for="fixo">Telefone Fixo:</label>
+        <input type="text" name="fixo" id="fixo" placeholder="(11) 2121-2121" value="<?php if (isset($_POST["fixo"])) echo $_POST["fixo"] ?>" />
+      </div><br /><br />
 
-    <div class="inputs">
-      <label for="mae">Nome da Mãe:</label>
-      <input type="text" name="mae" id="mae" value="<?php if (isset($_POST["mae"])) echo $_POST["mae"] ?>" />
-    </div><br /><br />
+      <div class="inputs">
+        <label for="nascimento">Data de Nascimento:</label>
+        <input type="text" name="nascimento" id="nascimento" value="<?php if (isset($_POST["nascimento"])) echo $_POST["nascimento"] ?>" />
+      </div><br /><br />
 
-    <div class="inputs">
-      <input type="submit" value="2a Etapa" />
-      <a href="./index.php">Já Tem uma Conta? Clique Aqui!</a>
-    </div>
+      <div class="inputs">
+        <label for="mae">Nome da Mãe:</label>
+        <input type="text" name="mae" id="mae" value="<?php if (isset($_POST["mae"])) echo $_POST["mae"] ?>" />
+      </div><br /><br />
 
-  </form>
+      <div class="inputs">
+        <input type="submit" value="2a Etapa" />
+        <a href="./index.php">Já Tem uma Conta? Clique Aqui!</a>
+      </div>
 
+    </form>
+  </section>
 </body>
 
 </html>
