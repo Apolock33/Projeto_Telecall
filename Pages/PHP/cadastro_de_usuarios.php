@@ -155,7 +155,7 @@ if (count($_POST) > 0) {
     $sucesso = $mysqli->query($sql_code) or die($mysqli->error);
     if ($sucesso) {
       $id = mysqli_insert_id($mysqli);
-      enviar_email(
+      /* enviar_email(
         $email,
         "Informações Cadastrais",
         "Cadastro Realizado!",
@@ -168,7 +168,7 @@ if (count($_POST) > 0) {
               <b>Senha:</b> $senha_nao_crypt
             </p>
           </div>"
-      );
+      ); */
 
       header("Location: cadastro_endereco.php?id=$id");
       unset($_POST);

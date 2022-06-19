@@ -14,13 +14,13 @@ $cpf = $_SESSION['cpf'];
 if (isset($_POST['confirmar'])) {
     require_once('config.php');
     $id = intval($_GET['id']);
-    $sql_code = "DELETE FROM usuario WHERE usu_id = '$id'";
+    $sql_code_usu = "DELETE FROM usuario WHERE usu_id = '$id'";
     $sql_code_end = "DELETE FROM endereco WHERE usu_id = '$id'";
     $sql_code_log = "DELETE FROM log WHERE usu_id = '$id'";
     $sql_query_log = $mysqli->query($sql_code_log) or die($mysqli->error);
     $sql_query_end = $mysqli->query($sql_code_end) or die($mysqli->error);
-    $sql_query = $mysqli->query($sql_code) or die($mysqli->error);
-    if ($sql_query && $sql_query2) { ?>
+    $sql_query_usu = $mysqli->query($sql_code_usu) or die($mysqli->error);
+    if ($sql_query_usu && $sql_query_end && $sql_code_log) { ?>
       
       <h1>Usuário Deletado Com Sucesso</h1>
       <p><a href='lista_de_usuarios.php'>Clique Aqui</a> para voltar a lista de usuários</p>
