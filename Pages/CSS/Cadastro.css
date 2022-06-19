@@ -7,16 +7,10 @@
   margin: 60px auto;
   max-width: 300px;
 }
-.formulario{
-  display: flex;
-  align-items: center;
-}
 form{
   background-color: #0e4e7c;
-  max-width: 900px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
 }
 .inputs{
