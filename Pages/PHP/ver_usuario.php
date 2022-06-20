@@ -2,17 +2,17 @@
 require_once('config.php');
 
 session_start();
-  $id = $_SESSION['usuario'];
-  $tipo = $_SESSION['admin'];
-  $nome = $_SESSION['nome'];
-  $mae = $_SESSION['mae'];
-  $celular = $_SESSION['celular'];
-  $nascimento = $_SESSION['nascimento'];
-  $cpf = $_SESSION['cpf'];
+$id = $_SESSION['usuario'];
+$tipo = $_SESSION['admin'];
+$nome = $_SESSION['nome'];
+$mae = $_SESSION['mae'];
+$celular = $_SESSION['celular'];
+$nascimento = $_SESSION['nascimento'];
+$cpf = $_SESSION['cpf'];
 if ($_SESSION['admin'] == 1) {
 } else {
-  session_destroy();
-  header('Location: index.php');
+    session_destroy();
+    header('Location: index.php');
 }
 
 
@@ -30,13 +30,17 @@ $resultado_end = $mysqli->query($query_end) or die($mysqli->error);
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Telecall - Read Usuário</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
 </head>
 
 <body>
-    <div align="center">
+    <div align="center"><br /><br />
+        <img src="../../Assets/Logo/telecall-logo.png" alt="" width="300">
+    </div><br />
+    <div align="center"><br />
         <h1>Dados do Cliente</h1>
-    </div>
-    <table border="1" cellpadding="10" align="center">
+    </div><br />
+    <table cellpadding="10" align="center">
         <thead>
             <th>Id</th>
             <th>Tipo</th>
@@ -86,10 +90,10 @@ $resultado_end = $mysqli->query($query_end) or die($mysqli->error);
             } ?>
         </tbody>
     </table>
-    <div align="center">
+    <div align="center"><br /><br />
         <h1>Dados Residenciais</h1>
-    </div>
-    <table border="1" cellpadding="10" align="center">
+    </div><br />
+    <table cellpadding="10" align="center">
         <thead>
             <th>Id</th>
             <th>CEP</th>
@@ -124,8 +128,10 @@ $resultado_end = $mysqli->query($query_end) or die($mysqli->error);
         </tbody>
     </table><br /><br />
     <div align="center">
-        <a href="./lista_de_usuarios.php">Lista de Usuários</a>
+        <a href="./lista_de_usuarios.php" class="btn btn-primary">Lista de Usuários</a>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
 </body>
 
 </html>

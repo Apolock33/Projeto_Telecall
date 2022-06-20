@@ -43,7 +43,7 @@ if (count($_POST) > 0) {
 
     if (empty($referencia)) {
         $erro = "Prencha o campo Referencia";
-    }else if(strlen($referencia) > 255){
+    } else if (strlen($referencia) > 255) {
         $erro = "Maximo de caracteres atingido no campo referencia. Por favor, coloque em menos palavras.";
     }
 
@@ -51,7 +51,7 @@ if (count($_POST) > 0) {
         echo "<p><b>$erro</b></p>";
     } else {
         $sql_code_end = "INSERT INTO endereco (end_cep, end_endereco, end_numero, end_complemento, end_referencia, end_bairro, end_cidade, end_estado, usu_id) VALUES ('$cep', '$endereco', '$numero','$complemento', '$referencia', '$bairro', '$cidade', '$estado', '$id')";
-        
+
         $sucesso = $mysqli->query($sql_code_end) or die($mysqli->error);
         header("Location: index.php");
         unset($_POST);
@@ -71,49 +71,49 @@ if (count($_POST) > 0) {
 </head>
 
 <body>
-    <div class="logo" align="center"><br/><br/>
+    <div class="logo" align="center"><br /><br />
         <img src="../../Assets/Logo/telecall-logo.png" alt="logoCadastro" width="300">
     </div>
     <form method="POST" action="" align="center">
-        <div><br/><br/>
+        <div><br /><br />
             <h2>Informações Postais</h2>
-            <br/>
+            <br />
         </div>
         <div align="center">
-            <label for="cep" class="h5 mb-3 fw-normal">CEP:</label><br/>
-            <input type="text" name="cep" id="cep" placeholder="21212-121" class="form-control w-25"/>
-        </div><br/>
+            <label for="cep" class="h5 mb-3 fw-normal">CEP:</label><br />
+            <input type="text" name="cep" id="cep" placeholder="21212-121" class="form-control w-25" />
+        </div><br />
         <div align="center">
-            <label for="endereco" class="h5 mb-3 fw-normal">Endereço:</label><br/>
-            <input type="text" name="endereco" id="endereco" placeholder="Digite o Endereço" class="form-control w-25"/>
-        </div><br/>
+            <label for="endereco" class="h5 mb-3 fw-normal">Endereço:</label><br />
+            <input type="text" name="endereco" id="endereco" placeholder="Digite o Endereço" class="form-control w-25" />
+        </div><br />
         <div align="center">
-            <label for="numero" class="h5 mb-3 fw-normal">Número</label><br/>
-            <input type="text" name="numero" id="numero" placeholder="Digite o Número" class="form-control w-25"/>
-        </div><br/>
+            <label for="numero" class="h5 mb-3 fw-normal">Número</label><br />
+            <input type="text" name="numero" id="numero" placeholder="Digite o Número" class="form-control w-25" />
+        </div><br />
         <div align="center">
-            <label for="complemento" class="h5 mb-3 fw-normal">Complemento:</label><br/>
-            <input type="text" name="complemento" id="complemento" placeholder="Digite o Complemento" class="form-control w-25"/>
-        </div><br/>
+            <label for="complemento" class="h5 mb-3 fw-normal">Complemento:</label><br />
+            <input type="text" name="complemento" id="complemento" placeholder="Digite o Complemento" class="form-control w-25" />
+        </div><br />
         <div align="center">
-            <label for="bairro" class="h5 mb-3 fw-normal">Bairro:</label><br/>
-            <input type="text" name="bairro" id="bairro" placeholder="Digite o Bairro" class="form-control w-25"/>
-        </div><br/>
+            <label for="bairro" class="h5 mb-3 fw-normal">Bairro:</label><br />
+            <input type="text" name="bairro" id="bairro" placeholder="Digite o Bairro" class="form-control w-25" />
+        </div><br />
         <div align="center">
-            <label for="cidade" class="h5 mb-3 fw-normal">Cidade:</label><br/>
-            <input type="text" name="cidade" id="cidade" placeholder="Digite o Cidade" class="form-control w-25"/>
-        </div><br/>
+            <label for="cidade" class="h5 mb-3 fw-normal">Cidade:</label><br />
+            <input type="text" name="cidade" id="cidade" placeholder="Digite o Cidade" class="form-control w-25" />
+        </div><br />
         <div align="center">
-            <label for="estado" class="h5 mb-3 fw-normal">Estado:</label><br/>
-            <input type="text" name="estado" id="estado" placeholder="Digite o Estado" class="form-control w-25"/>
-        </div><br/>
+            <label for="estado" class="h5 mb-3 fw-normal">Estado:</label><br />
+            <input type="text" name="estado" id="estado" placeholder="Digite o Estado" class="form-control w-25" />
+        </div><br />
         <div align="center">
-            <label for="referencia" class="h5 mb-3 fw-normal">Referência:</label><br/>
-            <textarea name="referencia" id="referencia"  placeholder="Digite uma Referência" class="form-control w-25"></textarea>
-        </div><br/>
+            <label for="referencia" class="h5 mb-3 fw-normal">Referência:</label><br />
+            <textarea name="referencia" id="referencia" placeholder="Digite uma Referência" class="form-control w-25"></textarea>
+        </div><br />
         <div align="center">
-            <input type="submit" name="submit" id="submit" value="Enviar"/>
-        </div><br/><br />
+            <input type="submit" name="submit" id="submit" value="Enviar" />
+        </div><br /><br />
     </form>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>

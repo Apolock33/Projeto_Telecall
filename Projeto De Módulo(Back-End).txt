@@ -19,10 +19,8 @@ Realizado
 - Read por id(Foi)
 - Visualização de Logs(Foi)
 - Bloqueio de Páginas(Foi)
+- Fazer Front-End(Foi)
+- Pagina de Perfil(Foi)
 
 Não Realizado
-- Pagina de Perfil(Descobri recentemente)
-- Fazer Front-End(Tenho apenas o modelo)
-
-Secundarios
 - Baixar PDF de Logs
