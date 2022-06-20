@@ -61,11 +61,11 @@ if (isset($_POST['email']) && isset($_POST['senha'])) {
 
         <div align="center">
           <label for="email" class="h5 mb-3 fw-normal">Email:</label>
-          <input type="email" class="form-control w-25" name="email" id="email" placeholder="name@example.com">
+          <input type="email" class="form-control w-25" name="email" id="email" placeholder="nome@exemplo.com">
         </div><br />
         <div align="center">
           <label for="senha" class="h5 mb-3 fw-normal">Senha:</label>
-          <input type="password" class="form-control w-25" name="senha" id="senha" placeholder="Password" align="center">
+          <input type="password" class="form-control w-25" name="senha" id="senha" placeholder="Senha" align="center">
         </div><br />
         <button class="w-25 btn btn-lg btn-primary" type="submit">Entrar</button>
       </form>
