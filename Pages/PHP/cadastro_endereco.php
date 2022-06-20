@@ -1,16 +1,8 @@
 <?php
-require_once('config.php');
-
-require_once('lib/mail.php');
-
-function limpar_telefone($str)
-{
-    return preg_replace("/[^0-9]/", "", $str);
-}
-
+require_once('config.php'); //Todos os require_once de todo o codigo começam dessa forma para serem utilizados de forma global por toda a pagina
 
 $erro = false;
-if (count($_POST) > 0) {
+if (count($_POST) > 0) { //nesta linha, faz-se a contagem de posts, se essa contagem for maior que 0 ele atribui cada post a sua respectiva variavel
     $cep = $_POST['cep'];
     $endereco = $_POST['endereco'];
     $numero = $_POST['numero'];
@@ -21,6 +13,7 @@ if (count($_POST) > 0) {
     $referencia = $_POST['referencia'];
     $id = $_GET['id'];
 
+    //A partir daqui, configuro algumas validações para o formulario. Da linha 105 ate 128 ele indica que, caso o campo não seja preenchido, o PHP vai apresentar um erro no Front
     if (empty($cep)) {
         $erro = "Prencha o campo CEP";
     }
@@ -46,15 +39,13 @@ if (count($_POST) > 0) {
     } else if (strlen($referencia) > 255) {
         $erro = "Maximo de caracteres atingido no campo referencia. Por favor, coloque em menos palavras.";
     }
-
-    if ($erro) {
+//A partir daqui, ele verifica se há erros ao enviar informações pelo Input
+    if ($erro) {//caso seja true, ele apresenta o erro
         echo "<p><b>$erro</b></p>";
-    } else {
+    } else {//caso seja false, ele define o comando sql a ser utilizado no envio de dados e define uma variavel que, caso realize a query(true) ele insere dados no Banco, caso seja false ele faz o script parar de rodar e apresenta o erro que ocorreu
         $sql_code_end = "INSERT INTO endereco (end_cep, end_endereco, end_numero, end_complemento, end_referencia, end_bairro, end_cidade, end_estado, usu_id) VALUES ('$cep', '$endereco', '$numero','$complemento', '$referencia', '$bairro', '$cidade', '$estado', '$id')";
-
         $sucesso = $mysqli->query($sql_code_end) or die($mysqli->error);
         header("Location: index.php");
-        unset($_POST);
     }
 }
 
@@ -112,7 +103,7 @@ if (count($_POST) > 0) {
             <textarea name="referencia" id="referencia" placeholder="Digite uma Referência" class="form-control w-25"></textarea>
         </div><br />
         <div align="center">
-            <input type="submit" name="submit" id="submit" value="Enviar" />
+            <input class="btn btn-success" type="submit" name="submit" id="submit" value="Enviar" />
         </div><br /><br />
     </form>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
