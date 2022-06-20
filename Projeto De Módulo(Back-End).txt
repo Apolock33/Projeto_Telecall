@@ -21,6 +21,9 @@ Realizado
 - Bloqueio de Páginas(Foi)
 - Fazer Front-End(Foi)
 - Pagina de Perfil(Foi)
+- Colocar Modelo de Dados(Foi)
+- Baixar PDF de Logs(Foi)
 
 Não Realizado
-- Baixar PDF de Logs
+
+

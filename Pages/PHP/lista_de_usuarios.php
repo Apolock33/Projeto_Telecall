@@ -102,7 +102,9 @@ $num_usuarios = $query_usuarios->num_rows;
   </div>
   <div align="center" name>
     <a href="cadastro_de_usuarios.php" class="btn btn-primary">Cadastrar usuario</a>
+    <a href="modelo_de_dados.php" class="btn btn-warning">Modelo De Dados</a>
     <a href="logs.php" class="btn btn-success">Visualizar Logs de Acesso</a>
+    <a href="../../Pagina_Perfil/index.html" class="btn btn-dark">Perfil</a>
     <a href="./session_drop.php" class="btn btn-danger">Sair</a>
     <br/><br/>
   </div>

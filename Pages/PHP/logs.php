@@ -31,8 +31,8 @@ $num_logs = $query_log->num_rows;
 </head>
 
 <body>
-    <div align="center">
-        <h1>Logs Do Sistema</h1>
+    <div align="center"><br/><br/>
+        <h1>Logs Do Sistema</h1><br/>
     </div>
     <table cellpadding="10" align="center">
         <thead>
@@ -62,6 +62,7 @@ $num_logs = $query_log->num_rows;
     </table><br /><br />
     <div align="center">
         <a href="lista_de_usuarios.php" class="btn btn-primary">Lista de Usuários</a>
+        <a href="baixarlog.php" class="btn btn-success">Baixar Logs de Acesso</a>
     </div><br/><br/>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
