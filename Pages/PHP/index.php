@@ -48,26 +48,32 @@ if (isset($_POST['email']) && isset($_POST['senha'])) {
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Telecall - Login</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
 </head>
 
 <body>
-  <div>
-    <img src="../../Assets/Logo/telecall-logo.png" alt="logoTelecall" />
-  </div>
-  <form action="" method="post">
-    <div>
-      <label for="">E-mail:</label>
-      <input type="email" name="email" id="email" />
+  <br /><br /><br /><br /><br /><br />
+  <section class="align-items-center justify-content-center">
+    <div class='container-fluid justify-content-center align-items-center' align="center">
+      <form action='' method="POST" align="center">
+        <img class="mb-4" src="../../Assets/Logo/telecall-logo.png" alt="" width="300">
+        <h1 class="h3 mb-3 fw-normal">Entre com seu Usuário</h1>
+
+        <div align="center">
+          <label for="email" class="h5 mb-3 fw-normal">Email:</label>
+          <input type="email" class="form-control w-25" name="email" id="email" placeholder="name@example.com">
+        </div><br />
+        <div align="center">
+          <label for="senha" class="h5 mb-3 fw-normal">Senha:</label>
+          <input type="password" class="form-control w-25" name="senha" id="senha" placeholder="Password" align="center">
+        </div><br />
+        <button class="w-25 btn btn-lg btn-primary" type="submit">Entrar</button>
+      </form>
+      <br />
+      <a align="center" href="./cadastro_de_usuarios.php" class="btn btn-warning">Ainda Não Tem uma Conta? Clique Aqui!</a>
     </div>
-    <div>
-      <label for="senha">Senha:</label>
-      <input type="password" name="senha" id="senha" />
-    </div>
-    <div>
-      <input type="submit" value="Login" />
-      <a href="./cadastro_de_usuarios.php">Ainda Não Tem uma Conta? Clique Aqui!</a>
-    </div>
-  </form>
+  </section>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
 
 </html>

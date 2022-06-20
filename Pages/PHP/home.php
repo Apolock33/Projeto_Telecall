@@ -34,10 +34,6 @@ if (!isset($_SESSION)) {
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav">
-
-            <li class="nav-item">
-              <a class="nav-link" href="#">Home</a>
-            </li>
             <li class="nav-item">
               <a class="nav-link" href="../../Pagina_Perfil/index.html">Perfil</a>
             </li>
@@ -59,7 +55,7 @@ if (!isset($_SESSION)) {
   <section class="container-fluid capa">
     <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
       <div class="col-10 col-sm-8 col-lg-6">
-        <img src="https://media-cdn.tripadvisor.com/media/photo-s/15/a4/9b/77/legacy-hotel-at-img-academy.jpg" class="d-block mx-lg-auto img-fluid" alt="Bootstrap Themes" width="700" height="500" loading="lazy">
+        <img src="https://media-cdn.tripadvisor.com/media/photo-s/15/a4/9b/77/legacy-hotel-at-img-academy.jpg" class="d-block mx-lg-auto img-fluid" alt="Bootstrap Themes" width="600" loading="lazy">
       </div>
       <div class="col-lg-6">
         <h1 class="display-5 fw-bold lh-1 mb-3">Somos a Sua Escolha Inteligente</h1>
@@ -85,7 +81,7 @@ if (!isset($_SESSION)) {
     </div>
   </section>
 
-  <section class="container-fluid servicos">
+  <section class="container-fluid">
     <div class="row row-cols-1 row-cols-lg-3 align-items-stretch g-4 py-5">
       <div class="col">
         <div class="card card-cover h-100 overflow-hidden text-white bg-dark rounded-5 shadow-lg" style="background-image: url('../../Assets/Imgs/img5.png'); background-repeat: no-repeat; background-size:cover;">
@@ -161,14 +157,15 @@ if (!isset($_SESSION)) {
       <h1>Somos Uma Empresa Global!</h1>
     </div>
     <div class="container-fluid imgmapa justify-content-center align-items-center">
-      <img class="d-block mx-auto mb-4" src="https://www.telecall.com/media/images/home2021/MapaRJ.png" alt="" width="900">
+      <img class="d-block mx-auto mb-4" src="https://www.telecall.com/media/images/home2021/MapaRJ.png" alt="" width="700">
     </div>
   </section>
 
   <main>
     <div class="container-fluid">
       <div class="">
-        <h1>Experiemnte Nosso Serviço de Armazenamento Empresarial em Nuvem</h1>
+        <br /><br />
+        <h1 align='center'>Armazenamento Empresarial em Nuvem</h1><br /><br />
       </div>
       <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
 
@@ -226,69 +223,11 @@ if (!isset($_SESSION)) {
       </div>
     </div>
 
-    <main>
-      <div class="container-fluid">
-        <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
-          <div class="carousel-indicators">
-            <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="" aria-label="Slide 1"></button>
-            <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2" class=""></button>
-            <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3" class="active" aria-current="true"></button>
-          </div>
-          <div class="carousel-inner">
-            <div class="carousel-item">
-              <img src="./imagem/imagem1.png" alt="">
-              <div class="container">
+    <footer align="center" class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top bg-white">
+      <p class=" col-md-4 mb-0 text-muted"> &copy 2022 Carlos Alberto Martins, All Rights Reserved</p>
+    </footer>
 
-              </div>
-            </div>
-            <div class="carousel-item">
-              <img src="./imagem/imagem1.png" alt="">
-              <div class="container">
-
-              </div>
-            </div>
-            <div class="carousel-item active">
-              <img src="./imagem/imagem1.png" alt="">
-
-              <div class="container">
-
-              </div>
-            </div>
-          </div>
-          <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">
-
-            </span>
-          </button>
-          <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">
-
-            </span>
-          </button>
-        </div>
-      </div>
-
-      <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top bg-white >
-    <p class=" col-md-4 mb-0 text-muted">© 2021 Company, Inc</p>
-
-        <a href="/" class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
-          <svg class="bi me-2" width="40" height="32">
-            <use xlink:href="#bootstrap"></use>
-          </svg>
-        </a>
-
-        <ul class="nav col-md-4 justify-content-end">
-          <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Home</a></li>
-          <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Features</a></li>
-          <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Pricing</a></li>
-          <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">FAQs</a></li>
-          <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">About</a></li>
-        </ul>
-      </footer>
-
-      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
 
 </html>

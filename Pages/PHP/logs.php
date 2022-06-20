@@ -27,13 +27,14 @@ $num_logs = $query_log->num_rows;
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Logs do Sistema</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
 </head>
 
 <body>
     <div align="center">
         <h1>Logs Do Sistema</h1>
     </div>
-    <table border="1" cellpadding="10" align="center">
+    <table cellpadding="10" align="center">
         <thead>
             <th>Id de Log</th>
             <th>Id de Usuário</th>
@@ -60,9 +61,9 @@ $num_logs = $query_log->num_rows;
         </tbody>
     </table><br /><br />
     <div align="center">
-        <a href="lista_de_usuarios.php">Lista de Usuários</a>
-    </div>
-
+        <a href="lista_de_usuarios.php" class="btn btn-primary">Lista de Usuários</a>
+    </div><br/><br/>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
 
 </html>

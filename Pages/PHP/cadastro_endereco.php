@@ -66,51 +66,56 @@ if (count($_POST) > 0) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../CSS/Cadastro.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
     <title>Telecall - Cadastro de Endereço</title>
 </head>
 
 <body>
-    <div class="logo">
-        <img src="../../Assets/Logo/telecall-logo.png" alt="logoCadastro">
+    <div class="logo" align="center"><br/><br/>
+        <img src="../../Assets/Logo/telecall-logo.png" alt="logoCadastro" width="300">
     </div>
-    <form method="POST" action="">
-        <div>
-            <label for="cep">CEP:</label>
-            <input type="text" name="cep" id="cep" placeholder="21212-121" />
+    <form method="POST" action="" align="center">
+        <div><br/><br/>
+            <h2>Informações Postais</h2>
+            <br/>
         </div>
-        <div>
-            <label for="endereco">Endereço:</label>
-            <input type="text" name="endereco" id="endereco" placeholder="Digite o Endereço" />
-        </div>
-        <div>
-            <label for="numero">Número</label>
-            <input type="text" name="numero" id="numero" placeholder="Digite o Número"/>
-        </div>
-        <div>
-            <label for="complemento">Complemento:</label>
-            <input type="text" name="complemento" id="complemento" placeholder="Digite o Complemento" />
-        </div>
-        <div>
-            <label for="bairro">Bairro:</label>
-            <input type="text" name="bairro" id="bairro" placeholder="Digite o Bairro" />
-        </div>
-        <div>
-            <label for="cidade">Cidade:</label>
-            <input type="text" name="cidade" id="cidade" placeholder="Digite o Cidade" />
-        </div>
-        <div>
-            <label for="estado">Estado:</label>
-            <input type="text" name="estado" id="estado" placeholder="Digite o Estado" />
-        </div>
-        <div>
-            <label for="referencia">Referência:</label>
-            <textarea name="referencia" id="referencia" placeholder="Digite uma Referência"></textarea>
-        </div>
-        <div>
+        <div align="center">
+            <label for="cep" class="h5 mb-3 fw-normal">CEP:</label><br/>
+            <input type="text" name="cep" id="cep" placeholder="21212-121" class="form-control w-25"/>
+        </div><br/>
+        <div align="center">
+            <label for="endereco" class="h5 mb-3 fw-normal">Endereço:</label><br/>
+            <input type="text" name="endereco" id="endereco" placeholder="Digite o Endereço" class="form-control w-25"/>
+        </div><br/>
+        <div align="center">
+            <label for="numero" class="h5 mb-3 fw-normal">Número</label><br/>
+            <input type="text" name="numero" id="numero" placeholder="Digite o Número" class="form-control w-25"/>
+        </div><br/>
+        <div align="center">
+            <label for="complemento" class="h5 mb-3 fw-normal">Complemento:</label><br/>
+            <input type="text" name="complemento" id="complemento" placeholder="Digite o Complemento" class="form-control w-25"/>
+        </div><br/>
+        <div align="center">
+            <label for="bairro" class="h5 mb-3 fw-normal">Bairro:</label><br/>
+            <input type="text" name="bairro" id="bairro" placeholder="Digite o Bairro" class="form-control w-25"/>
+        </div><br/>
+        <div align="center">
+            <label for="cidade" class="h5 mb-3 fw-normal">Cidade:</label><br/>
+            <input type="text" name="cidade" id="cidade" placeholder="Digite o Cidade" class="form-control w-25"/>
+        </div><br/>
+        <div align="center">
+            <label for="estado" class="h5 mb-3 fw-normal">Estado:</label><br/>
+            <input type="text" name="estado" id="estado" placeholder="Digite o Estado" class="form-control w-25"/>
+        </div><br/>
+        <div align="center">
+            <label for="referencia" class="h5 mb-3 fw-normal">Referência:</label><br/>
+            <textarea name="referencia" id="referencia"  placeholder="Digite uma Referência" class="form-control w-25"></textarea>
+        </div><br/>
+        <div align="center">
             <input type="submit" name="submit" id="submit" value="Enviar"/>
-        </div>
+        </div><br/><br />
     </form>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
 
 </html>

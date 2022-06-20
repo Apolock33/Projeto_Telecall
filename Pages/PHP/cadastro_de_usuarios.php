@@ -5,63 +5,68 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" type="text/css" href="../CSS/Cadastro.css">
   <title>Telecall - Cadastro de Usuário</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
 </head>
 
 <body>
-  <div class="logo">
-    <img src="../../Assets/Logo/telecall-logo.png" alt="logoCadastro">
+  <div class="logo" align="center">
+    <br/><br />
+    <img src="../../Assets/Logo/telecall-logo.png" alt="logoCadastro" width="300">
   </div>
   <section class='formulario'>
-    <form action="" method="POST">
-
-      <div class="inputs">
-        <label for="cpf">CPF:</label>
-        <input type="text" name="cpf" id="cpf" value="<?php if (isset($_POST["cpf"])) echo $_POST["cpf"] ?>" />
+    <form action="" method="POST" align="center">
+    <br/><br />
+    <div align="center">
+      <h2>Cadastre-se Gratuitamente</h2>
+    </div>
+    <br/><br />
+      <div class="inputs" align="center" >
+        <label class="h5 mb-3 fw-normal" for="cpf">CPF:</label><br/>
+        <input type="text" class="form-control w-25" name="cpf" id="cpf" value="<?php if (isset($_POST["cpf"])) echo $_POST["cpf"] ?>" />
       </div><br /><br />
 
-      <div class="inputs">
-        <label for="nome">Nome:</label>
-        <input type="text" name="nome" id="nome" value="<?php if (isset($_POST["nome"])) echo $_POST["nome"] ?>" />
+      <div class="inputs" align="center">
+        <label class="h5 mb-3 fw-normal" for="nome">Nome:</label><br/>
+        <input type="text" class="form-control w-25" name="nome" id="nome" value="<?php if (isset($_POST["nome"])) echo $_POST["nome"] ?>" />
       </div><br /><br />
 
-      <div class="inputs">
-        <label for="email">E-mail:</label>
-        <input type="email" name="email" id="email" value="<?php if (isset($_POST["email"])) echo $_POST["email"] ?>" />
+      <div class="inputs" align="center">
+        <label class="h5 mb-3 fw-normal" for="email">E-mail:</label><br/>
+        <input type="email" class="form-control w-25" name="email" id="email" value="<?php if (isset($_POST["email"])) echo $_POST["email"] ?>" />
       </div><br /><br />
 
-      <div class="inputs">
-        <label for="senha">Senha:</label>
-        <input type="password" name="senha" id="senha" value="<?php if (isset($_POST["senha"])) echo $_POST["senha"] ?>" />
+      <div class="inputs" align="center">
+        <label class="h5 mb-3 fw-normal" for="senha">Senha:</label><br/>
+        <input type="password" class="form-control w-25" name="senha" id="senha" value="<?php if (isset($_POST["senha"])) echo $_POST["senha"] ?>" />
       </div><br /><br />
 
-      <div class="inputs">
-        <label for="telefone">Celular:</label>
-        <input type="text" name="telefone" id="telefone" placeholder="(11) 98888-8888" value="<?php if (isset($_POST["telefone"])) echo $_POST["telefone"] ?>" />
+      <div class="inputs" align="center">
+        <label class="h5 mb-3 fw-normal" for="telefone">Celular:</label><br/>
+        <input type="text" class="form-control w-25" name="telefone" id="telefone" placeholder="(11) 98888-8888" value="<?php if (isset($_POST["telefone"])) echo $_POST["telefone"] ?>" />
       </div><br /><br />
-      <div class="inputs">
-        <label for="fixo">Telefone Fixo:</label>
-        <input type="text" name="fixo" id="fixo" placeholder="(11) 2121-2121" value="<?php if (isset($_POST["fixo"])) echo $_POST["fixo"] ?>" />
-      </div><br /><br />
-
-      <div class="inputs">
-        <label for="nascimento">Data de Nascimento:</label>
-        <input type="text" name="nascimento" id="nascimento" value="<?php if (isset($_POST["nascimento"])) echo $_POST["nascimento"] ?>" />
+      <div class="inputs" align="center">
+        <label class="h5 mb-3 fw-normal" for="fixo">Telefone Fixo:</label><br/>
+        <input type="text" class="form-control w-25" name="fixo" id="fixo" placeholder="(11) 2121-2121" value="<?php if (isset($_POST["fixo"])) echo $_POST["fixo"] ?>" />
       </div><br /><br />
 
-      <div class="inputs">
-        <label for="mae">Nome da Mãe:</label>
-        <input type="text" name="mae" id="mae" value="<?php if (isset($_POST["mae"])) echo $_POST["mae"] ?>" />
+      <div class="inputs" align="center">
+        <label class="h5 mb-3 fw-normal" for="nascimento">Data de Nascimento:</label><br/>
+        <input type="text" class="form-control w-25" name="nascimento" id="nascimento" value="<?php if (isset($_POST["nascimento"])) echo $_POST["nascimento"] ?>" />
       </div><br /><br />
 
-      <div class="inputs">
-        <input type="submit" value="2a Etapa" />
-        <a href="./index.php">Já Tem uma Conta? Clique Aqui!</a>
+      <div class="inputs" align="center">
+        <label class="h5 mb-3 fw-normal" for="mae">Nome da Mãe:</label><br/>
+        <input type="text" class="form-control w-25" name="mae" id="mae" value="<?php if (isset($_POST["mae"])) echo $_POST["mae"] ?>" />
+      </div><br /><br />
+
+      <div class="inputs" align="center">
+        <input type="submit" value="2a Etapa" class="btn btn-primary"/><br/><br/>
+        <a href="./index.php" class="btn btn-warning">Já Tem uma Conta? Clique Aqui!</a><br/><br/>
       </div>
-
     </form>
   </section>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
 
 </html>
