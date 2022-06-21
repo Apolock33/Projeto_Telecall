@@ -21,6 +21,7 @@ $sql_logs = "SELECT * FROM log"; //codigo sql a ser executado
 $query_log = $mysqli->query($sql_logs) or die($mysqli->error); // variavel de sucesso/fracasso da query
 $num_logs = $query_log->num_rows; //conta a quantidade de resultados e atribui a variavel
 ?>
+<!-- A partir daqui, o sistema se apresenta igual ao lista_de_usuarios -->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -64,7 +65,7 @@ $num_logs = $query_log->num_rows; //conta a quantidade de resultados e atribui a
     </table><br /><br />
     <div align="center">
         <a href="lista_de_usuarios.php" class="btn btn-primary">Lista de Usuários</a>
-        <a href="PDF_Logs.php" class="btn btn-success">Baixar Logs de Acesso</a>
+        <a href="PDF_Logs.php" class="btn btn-success">Baixar Logs de Acesso</a> <!-- Acesso ao arquivo PDF_Logs, o arquivo usado para baixar os logs. Ao clicar ele já faz o download -->
     </div><br /><br />
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
