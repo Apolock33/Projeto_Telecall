@@ -12,6 +12,13 @@ $celular = $_SESSION['celular'];
 $nascimento = $_SESSION['nascimento'];
 $cpf = $_SESSION['cpf'];
 
+//bloqueio de paginas para usuarios cliente
+if ($_SESSION['admin'] == 1) {
+} else {
+  session_destroy();
+  header('Location: index.php');
+}
+
 require_once('config.php'); //chamada do arquivo config.php
 $id = intval($_GET['id']); //recebimento do id atraves da url
 function limpar_telefone($str)

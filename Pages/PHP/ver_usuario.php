@@ -10,6 +10,7 @@ $mae = $_SESSION['mae'];
 $celular = $_SESSION['celular'];
 $nascimento = $_SESSION['nascimento'];
 $cpf = $_SESSION['cpf'];
+
 if ($_SESSION['admin'] == 1) {
 } else {
     session_destroy();
