@@ -29,18 +29,6 @@ if (count($_POST) > 0) {
   $nome_mae = $_POST['mae'];
   $admin = $_POST['admin'];
 
-  if (empty($nome)) {
-    $erro = "Prencha o campo Nome";
-  }
-
-  if (empty($email) || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
-    $erro = "Prencha o campo Email";
-  }
-
-  if (empty($senha)) {
-    $erro = "Prencha o campo Senha";
-  }
-
   if (!empty($telefone)) {
     $telefone = limpar_telefone($telefone);
     if (strlen($telefone) != 11) {
@@ -145,18 +133,18 @@ $usuario = $query_usuario->fetch_assoc();
 
     <div class="inputs" align='center'>
       <label class="h5 mb-3 fw-normal" for="nascimento">Data de Nascimento:</label><br/>
-      <input class="form-control w-25" type="text" name="nascimento" id="nascimento" value="<?php if (!empty($usuario["nascimento"])) echo formatar_data($usuario["usu_nascimento"]) ?>" />
+      <input class="form-control w-25" type="text" name="nascimento" id="nascimento" value="<?php echo formatar_data($usuario["usu_nascimento"]) ?>" />
     </div><br /><br />
 
     <div class="inputs" align='center'>
       <label class="h5 mb-3 fw-normal" for="mae">Nome da Mãe:</label><br/>
-      <input class="form-control w-25" type="text" name="mae" id="mae" value="<?php if (!empty($usuario["mae"])) echo $usuario["usu_mae"] ?>" />
+      <input class="form-control w-25" type="text" name="mae" id="mae" value="<?php echo $usuario["usu_mae"] ?>" />
     </div><br /><br />
 
     <div align='center'>
       <label class="h5 mb-3 fw-normal" for="admin">Você é:</label><br/>
       <input type="radio" name="admin" id="admin" value="1">Funcionário </input>
-      <input type="radio" name="admin" id="admin" value="0">Cliente</input>
+      <input type="radio" name="admin" id="admin" value="0" checked>Cliente</input>
     </div><br /><br />
 
     <div class="inputs">

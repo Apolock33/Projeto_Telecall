@@ -2,7 +2,7 @@
 require_once('config.php');
 
 session_start();
-$id = $_SESSION['usuario'];
+$id_session = $_SESSION['usuario'];
 $tipo = $_SESSION['admin'];
 $nome = $_SESSION['nome'];
 $mae = $_SESSION['mae'];
@@ -15,7 +15,7 @@ if ($_SESSION['admin'] == 1) {
     header('Location: index.php');
 }
 
-
+$id = intval($_GET['id']);
 $query_user = "SELECT usu_id, usu_cpf, usu_nome, usu_celular, usu_fixo, usu_nascimento, usu_email, usu_mae, usu_tipo FROM usuario WHERE usu_id = '$id' LIMIT 1";
 $resultado_usu = $mysqli->query($query_user) or die($mysqli->error);
 

@@ -1,25 +1,24 @@
 <?php
-require_once('config.php');
-session_start();
-$id = $_SESSION['usuario'];
+require_once('config.php'); //chamada do arquivo config.php
+session_start();  //start de session
+$id = $_SESSION['usuario']; //atribuição de informassoes da sessao a variaveis 
 $tipo = $_SESSION['admin'];
 $nome = $_SESSION['nome'];
 $mae = $_SESSION['mae'];
 $celular = $_SESSION['celular'];
 $nascimento = $_SESSION['nascimento'];
 $cpf = $_SESSION['cpf'];
+
+//bloqueio de paginas para usuarios cliente
 if ($_SESSION['admin'] == 1) {
 } else {
   session_destroy();
   header('Location: index.php');
 }
 
-
-
-
-$sql_read = "SELECT * FROM usuario";
-$query_usuarios = $mysqli->query($sql_read) or die($mysqli->error);
-$num_usuarios = $query_usuarios->num_rows;
+$sql_read = "SELECT * FROM usuario";// codigo sql a ser executado
+$query_usuarios = $mysqli->query($sql_read) or die($mysqli->error);// variavel de sucesso/falha de operação
+$num_usuarios = $query_usuarios->num_rows;//aqui ele recupera a quantidade de resultados e atribui esse numero a uma variavel
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -33,12 +32,13 @@ $num_usuarios = $query_usuarios->num_rows;
 </head>
 
 <body>
-  <div align="center" ><br/>
-    <img src="../../Assets/Logo/telecall-logo.png" alt="" width="150"><br/><br/><br/>
+  <div align="center"><br />
+    <img src="../../Assets/Logo/telecall-logo.png" alt="" width="150"><br /><br /><br />
     <h1>Lista de Usuários</h1>
     <p>Esses são todos os usuários cadastrados no sistema:</p>
   </div>
   <div class="container-fluid" align="center">
+    <!-- aqui é criada uma tabela para exibir os resultados -->
     <table cellpadding="10" align="center">
       <thead>
         <th>ID</th>
@@ -54,11 +54,11 @@ $num_usuarios = $query_usuarios->num_rows;
         <th>Ações</th>
       </thead>
       <tbody>
-        <?php if ($num_usuarios == 0) { ?>
+        <?php if ($num_usuarios == 0) { ?> <!-- aqui o codigo verifica se o numero de resultados é maior q 0, se for true, ele retorna um html específico -->
           <tr>
             <td colspan="11">Nenhum Usuário Foi Cadastrado!</td>
           </tr>
-          <?php } else {
+          <?php } else { //caso seja false ele transforma o sucesso da operação em um array e atribui a uma variavel $usuario depois formata os resultados
           while ($usuario = $query_usuarios->fetch_assoc()) {
             $celular = "Nao Informado";
             if (!empty(($usuario['usu_celular']))) {
@@ -76,6 +76,7 @@ $num_usuarios = $query_usuarios->num_rows;
             }
             $data_cadastro = date("d/m/Y H:i", strtotime($usuario['usu_cadastro']));
           ?>
+          <!-- aqui ele exibe em formato de tabela os resultados -->
             <tr>
               <td><?php echo $usuario['usu_id'] ?></td>
               <td><?php echo $usuario['usu_cpf'] ?></td>
@@ -89,6 +90,7 @@ $num_usuarios = $query_usuarios->num_rows;
               <td><?php echo $usuario['usu_mae'] ?></td>
               <td><?php echo $usuario['usu_cadastro'] ?></td>
               <td>
+                <!-- aqui é um acesso as funções crud do projeto -->
                 <a href="ver_usuario.php?id=<?php echo $usuario['usu_id'] ?>" class="btn btn-success m-1">Ver</a><br />
                 <a href="editar_usuario.php?id=<?php echo $usuario['usu_id'] ?>" class="btn btn-primary m-1">Editar</a>
                 <a href="deletar_usuario.php?id=<?php echo $usuario['usu_id'] ?>" class="btn btn-danger m-1">Deletar</a>
@@ -100,13 +102,14 @@ $num_usuarios = $query_usuarios->num_rows;
       </tbody>
     </table><br />
   </div>
+  <!-- aqui é um acesso a outras features -->
   <div align="center" name>
     <a href="cadastro_de_usuarios.php" class="btn btn-primary">Cadastrar usuario</a>
     <a href="modelo_de_dados.php" class="btn btn-warning">Modelo De Dados</a>
     <a href="logs.php" class="btn btn-success">Visualizar Logs de Acesso</a>
     <a href="../../Pagina_Perfil/index.html" class="btn btn-dark">Perfil</a>
     <a href="./session_drop.php" class="btn btn-danger">Sair</a>
-    <br/><br/>
+    <br /><br />
   </div>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
