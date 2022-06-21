@@ -1,7 +1,7 @@
 <?php
 require_once('config.php'); //chamada do arquivo config.php
 session_start();  //start de session
-$id = $_SESSION['usuario']; //atribuição de informassoes da sessao a variaveis 
+$id = $_SESSION['usuario']; //atribuição de informações da sessao a variaveis 
 $tipo = $_SESSION['admin'];
 $nome = $_SESSION['nome'];
 $mae = $_SESSION['mae'];
@@ -16,9 +16,9 @@ if ($_SESSION['admin'] == 1) {
   header('Location: index.php');
 }
 
-$sql_read = "SELECT * FROM usuario";// codigo sql a ser executado
-$query_usuarios = $mysqli->query($sql_read) or die($mysqli->error);// variavel de sucesso/falha de operação
-$num_usuarios = $query_usuarios->num_rows;//aqui ele recupera a quantidade de resultados e atribui esse numero a uma variavel
+$sql_read = "SELECT * FROM usuario"; // codigo sql a ser executado
+$query_usuarios = $mysqli->query($sql_read) or die($mysqli->error); // variavel de sucesso/falha de operação
+$num_usuarios = $query_usuarios->num_rows; //aqui ele recupera a quantidade de resultados e atribui esse numero a uma variavel
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -54,7 +54,8 @@ $num_usuarios = $query_usuarios->num_rows;//aqui ele recupera a quantidade de re
         <th>Ações</th>
       </thead>
       <tbody>
-        <?php if ($num_usuarios == 0) { ?> <!-- aqui o codigo verifica se o numero de resultados é maior q 0, se for true, ele retorna um html específico -->
+        <?php if ($num_usuarios == 0) { ?>
+          <!-- aqui o codigo verifica se o numero de resultados é maior q 0, se for true, ele retorna um html específico -->
           <tr>
             <td colspan="11">Nenhum Usuário Foi Cadastrado!</td>
           </tr>
@@ -76,7 +77,7 @@ $num_usuarios = $query_usuarios->num_rows;//aqui ele recupera a quantidade de re
             }
             $data_cadastro = date("d/m/Y H:i", strtotime($usuario['usu_cadastro']));
           ?>
-          <!-- aqui ele exibe em formato de tabela os resultados -->
+            <!-- aqui ele exibe em formato de tabela os resultados -->
             <tr>
               <td><?php echo $usuario['usu_id'] ?></td>
               <td><?php echo $usuario['usu_cpf'] ?></td>

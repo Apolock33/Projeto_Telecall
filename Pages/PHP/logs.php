@@ -1,23 +1,25 @@
+<!-- Esse arquivo é identico ao lista_de_usuarios, com a diferença que é pra logs não usuarios -->
 <?php
-require_once('config.php');
+require_once('config.php'); //chamada do arquivo config.php
 
-session_start();
-  $id = $_SESSION['usuario'];
-  $tipo = $_SESSION['admin'];
-  $nome = $_SESSION['nome'];
-  $mae = $_SESSION['mae'];
-  $celular = $_SESSION['celular'];
-  $nascimento = $_SESSION['nascimento'];
-  $cpf = $_SESSION['cpf'];
-if ($_SESSION['admin'] == 1) {
+session_start(); //inicio de sessão
+$id = $_SESSION['usuario']; // atribuição de informações de sessão a variaveis
+$tipo = $_SESSION['admin'];
+$nome = $_SESSION['nome'];
+$mae = $_SESSION['mae'];
+$celular = $_SESSION['celular'];
+$nascimento = $_SESSION['nascimento'];
+$cpf = $_SESSION['cpf'];
+
+if ($_SESSION['admin'] == 1) { //bloqueio de paginas para usuarios clientes
 } else {
-  session_destroy();
-  header('Location: index.php');
+    session_destroy();
+    header('Location: index.php');
 }
 
-$sql_logs = "SELECT * FROM log";
-$query_log = $mysqli->query($sql_logs) or die($mysqli->error);
-$num_logs = $query_log->num_rows;
+$sql_logs = "SELECT * FROM log"; //codigo sql a ser executado
+$query_log = $mysqli->query($sql_logs) or die($mysqli->error); // variavel de sucesso/fracasso da query
+$num_logs = $query_log->num_rows; //conta a quantidade de resultados e atribui a variavel
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -31,8 +33,8 @@ $num_logs = $query_log->num_rows;
 </head>
 
 <body>
-    <div align="center"><br/><br/>
-        <h1>Logs Do Sistema</h1><br/>
+    <div align="center"><br /><br />
+        <h1>Logs Do Sistema</h1><br />
     </div>
     <table cellpadding="10" align="center">
         <thead>
@@ -63,7 +65,7 @@ $num_logs = $query_log->num_rows;
     <div align="center">
         <a href="lista_de_usuarios.php" class="btn btn-primary">Lista de Usuários</a>
         <a href="PDF_Logs.php" class="btn btn-success">Baixar Logs de Acesso</a>
-    </div><br/><br/>
+    </div><br /><br />
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
 

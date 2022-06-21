@@ -12,9 +12,9 @@
 <?php
 if (!isset($_SESSION)) {
   session_start();
-}
+} //aqui ele verifica se existe sessao ativa, caso não exista ele gera uma nova
 
-$id = $_SESSION['usuario'];
+$id = $_SESSION['usuario']; //atribuição de informações da sessao a variaveis 
 $tipo = $_SESSION['admin'];
 $nome = $_SESSION['nome'];
 $mae = $_SESSION['mae'];
@@ -22,23 +22,32 @@ $celular = $_SESSION['celular'];
 $nascimento = $_SESSION['nascimento'];
 $cpf = $_SESSION['cpf'];
 
-if (isset($_POST['confirmar'])) {
-  require_once('config.php');
-  $id = intval($_GET['id']);
-  $sql_code_usu = "DELETE FROM usuario WHERE usu_id = '$id'";
+//bloqueio de paginas para usuarios cliente
+if ($_SESSION['admin'] == 1) {
+} else {
+  session_destroy();
+  header('Location: index.php');
+}
+
+//aqui ele verifica se existem dados sendo enviados pelo botão de confirmação
+if (isset($_POST['confirmar'])) { //caso seja true ele:
+  require_once('config.php'); //chama or arquivo config.php
+  $id = intval($_GET['id']); //recebe e atribui a uma variavel o id
+  $sql_code_usu = "DELETE FROM usuario WHERE usu_id = '$id'"; //prepara codigos sql para serem executados
   $sql_code_end = "DELETE FROM endereco WHERE usu_id = '$id'";
   $sql_code_log = "DELETE FROM log WHERE usu_id = '$id'";
-  $sql_query_log = $mysqli->query($sql_code_log) or die($mysqli->error);
+  $sql_query_log = $mysqli->query($sql_code_log) or die($mysqli->error); // cria variaveis de sucesso/falha de operações
   $sql_query_end = $mysqli->query($sql_code_end) or die($mysqli->error);
   $sql_query_usu = $mysqli->query($sql_code_usu) or die($mysqli->error);
   if ($sql_query_usu && $sql_query_end && $sql_code_log) { ?>
-    <div align="center"><br/><br /><br /><br /><br /><br /><br /><br /><br /><br/>
+    <!-- verifica se tais operações vão apresentar sucesso e se apresentarem, apresenta uma resposta visual ao usuario ADM  -->
+    <div align="center"><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
       <h1>Usuário Deletado Com Sucesso</h1>
       <p><a href='lista_de_usuarios.php' class="btn btn-primary">Clique Aqui para voltar a lista de usuários</a></p>
     </div>
 
 <?php
-    die();
+    die(); //realiza parada forçada no script assim q a resposta é apresentada
   }
 }
 ?>

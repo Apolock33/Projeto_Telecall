@@ -1,9 +1,9 @@
 <!-- De modo mais geral esse arquivo é uma variação reduzida de lista_de_usuarios.php -->
 <?php
-require_once('config.php');
-    
-session_start();
-$id_session = $_SESSION['usuario'];
+require_once('config.php'); //Chamada do arquivo config.php
+
+session_start(); //inicio de sessão
+$id_session = $_SESSION['usuario']; //atribuição de informações da sessao a variaveis 
 $tipo = $_SESSION['admin'];
 $nome = $_SESSION['nome'];
 $mae = $_SESSION['mae'];
@@ -17,11 +17,11 @@ if ($_SESSION['admin'] == 1) {
 }
 
 $id = intval($_GET['id']);
-$query_user = "SELECT usu_id, usu_cpf, usu_nome, usu_celular, usu_fixo, usu_nascimento, usu_email, usu_mae, usu_tipo FROM usuario WHERE usu_id = '$id' LIMIT 1";
-$resultado_usu = $mysqli->query($query_user) or die($mysqli->error);
+$query_user = "SELECT usu_id, usu_cpf, usu_nome, usu_celular, usu_fixo, usu_nascimento, usu_email, usu_mae, usu_tipo FROM usuario WHERE usu_id = '$id' LIMIT 1"; // codigo sql a ser executado, a diferença é que nesse arquivo a intenção é recuperar apenas as informações baseadas no id do usuario que foi selecionado
+$resultado_usu = $mysqli->query($query_user) or die($mysqli->error); // variavel de sucesso/falha de operação
 
-$query_end = "SELECT end_id, end_cep, end_endereco, end_numero, end_complemento, end_bairro, end_cidade, end_estado, end_referencia  FROM endereco WHERE usu_id = '$id' LIMIT 1";
-$resultado_end = $mysqli->query($query_end) or die($mysqli->error);
+$query_end = "SELECT end_id, end_cep, end_endereco, end_numero, end_complemento, end_bairro, end_cidade, end_estado, end_referencia  FROM endereco WHERE usu_id = '$id' LIMIT 1"; // codigo sql a ser executado, a diferença é que nesse arquivo a intenção é recuperar apenas as informações baseadas no id do usuario que foi selecionado
+$resultado_end = $mysqli->query($query_end) or die($mysqli->error); // variavel de sucesso/falha de operação
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -55,10 +55,11 @@ $resultado_end = $mysqli->query($query_end) or die($mysqli->error);
         </thead>
         <tbody>
             <?php if (empty($resultado_usu)) { ?>
+                <!-- se retornar um resultado vazio ele exibe um html no lugar de um erro -->
                 <tr>
                     <td collspan="11">Erro ao Encontrar Usuário</td>
                 </tr>
-                <?php } else {
+                <?php } else { //caso seja false ele transforma o sucesso da operação em um array e atribui a uma variavel $usuario depois formata os resultados
                 while ($usuario = $resultado_usu->fetch_assoc()) {
                     $celular = "Nao Informado";
                     if (!empty(($usuario['usu_celular']))) {
@@ -91,6 +92,7 @@ $resultado_end = $mysqli->query($query_end) or die($mysqli->error);
             } ?>
         </tbody>
     </table>
+    <!-- A partir daqui ele faz o mesmo que fez com a tabela usuarios, porém com a tabela endereços -->
     <div align="center"><br /><br />
         <h1>Dados Residenciais</h1>
     </div><br />

@@ -1,15 +1,7 @@
 <?php
-require_once('config.php');
-if (!isset($_SESSION)) {
+require_once('config.php'); //chamada do arquivo config.php
+if (!isset($_SESSION)) { //verificação, se não existir sessão o PHP inicia uma nova
   session_start();
-  $tipo = $_SESSION['admin'];
-  $id = $_SESSION['usuario'];
-  $tipo = $_SESSION['admin'];
-  $nome = $_SESSION['nome'];
-  $mae = $_SESSION['mae'];
-  $celular = $_SESSION['celular'];
-  $nascimento = $_SESSION['nascimento'];
-  $cpf = $_SESSION['cpf'];
 }
 ?>
 <!DOCTYPE html>
@@ -37,16 +29,9 @@ if (!isset($_SESSION)) {
             <li class="nav-item">
               <a class="nav-link" href="../../Pagina_Perfil/index.html">Perfil</a>
             </li>
-
-            <?php if (isset($_SESSION)) {
-              echo "<li class='nav-item'>
-                            <a class='nav-link' href='session_drop.php'>Sair</a>
-                        </li>";
-            } else {
-              echo "<li class='nav-item'>
-                            <a class='nav-link' href='./index.php'>Login</a>
-                        </li>";
-            } ?>
+            <li class="nav-item">
+              <a class="nav-link" href="./session_drop.php">sair</a> <!-- Botão de quebra de sessao caso deseje deslogar -->
+            </li>
           </ul>
         </div>
       </div>
