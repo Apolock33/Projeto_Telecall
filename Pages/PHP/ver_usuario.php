@@ -1,6 +1,7 @@
+<!-- De modo mais geral esse arquivo é uma variação reduzida de lista_de_usuarios.php -->
 <?php
 require_once('config.php');
-
+    
 session_start();
 $id_session = $_SESSION['usuario'];
 $tipo = $_SESSION['admin'];
