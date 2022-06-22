@@ -162,6 +162,7 @@ $usuario = $query_usuario->fetch_assoc(); //aqui o PHP pega o resultado da opera
     <div class="inputs">
       <input type="submit" value="Atualizar Usuário" class="btn btn-primary" /><br /><br />
       <a href="lista_de_usuarios.php" class="btn btn-primary">Lista de Usuários</a>
+      <a href="editar_endereco.php?id=<?php echo $id; ?>" class="btn btn-primary">Atualizar Endereço</a>
     </div><br /><br />
 
   </form>

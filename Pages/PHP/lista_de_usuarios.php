@@ -39,7 +39,7 @@ $num_usuarios = $query_usuarios->num_rows; //aqui ele recupera a quantidade de r
   </div>
   <div class="container-fluid" align="center">
     <!-- aqui é criada uma tabela para exibir os resultados -->
-    <table cellpadding="10" align="center">
+    <table cellpadding="10" align="center" class="table-responsive">
       <thead>
         <th>ID</th>
         <th>CPF</th>
@@ -104,12 +104,12 @@ $num_usuarios = $query_usuarios->num_rows; //aqui ele recupera a quantidade de r
     </table><br />
   </div>
   <!-- aqui é um acesso a outras features -->
-  <div align="center" name>
-    <a href="cadastro_de_usuarios.php" class="btn btn-primary">Cadastrar usuario</a>
-    <a href="modelo_de_dados.php" class="btn btn-warning">Modelo De Dados</a>
-    <a href="logs.php" class="btn btn-success">Visualizar Logs de Acesso</a>
-    <a href="../../Pagina_Perfil/index.html" class="btn btn-dark">Perfil</a>
-    <a href="./session_drop.php" class="btn btn-danger">Sair</a>
+  <div align="center">
+    <a href="cadastro_de_usuarios.php" class="btn btn-primary btn-sm">Cadastrar usuario</a>
+    <a href="modelo_de_dados.php" class="btn btn-warning btn-sm">Modelo De Dados</a><br /><br />
+    <a href="logs.php" class="btn btn-success btn-sm">Visualizar Logs de Acesso</a>
+    <a href="../../Pagina_Perfil/index.html" class="btn btn-dark btn-sm">Perfil</a>
+    <a href="./session_drop.php" class="btn btn-danger btn-sm">Sair</a>
     <br /><br />
   </div>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
