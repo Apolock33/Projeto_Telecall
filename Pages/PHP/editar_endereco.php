@@ -103,7 +103,7 @@ $endereço = $query_endereco->fetch_assoc(); //aqui o PHP pega o resultado da op
 
     <div class="inputs" align='center'>
       <label class="h5 mb-3 fw-normal" for="complemento">Complemento:</label><br /><br />
-      <input class="form-control w-25" type="password" name="complemento" id="complemento" value="<?php echo $endereço["end_complemento"] ?>" />
+      <input class="form-control w-25" type="text" name="complemento" id="complemento" value="<?php echo $endereço["end_complemento"] ?>" />
     </div><br /><br />
 
     <div class="inputs" align='center'>
@@ -123,7 +123,7 @@ $endereço = $query_endereco->fetch_assoc(); //aqui o PHP pega o resultado da op
 
     <div class="inputs" align='center'>
       <label class="h5 mb-3 fw-normal" for="referencia">Referência:</label><br />
-      <input class="form-control w-25" type="textarea" name="referencia" id="referencia" value="<?php echo $endereço["end_estado"] ?>" />
+      <input class="form-control w-25" type="textarea" name="referencia" id="referencia" value="<?php echo $endereço["end_referencia"] ?>" />
     </div><br /><br />
 
     <div class="inputs">
