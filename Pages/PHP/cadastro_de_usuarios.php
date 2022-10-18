@@ -8,6 +8,7 @@
   <title>Telecall - Cadastro de Usuário</title>
   <!-- Bootstrap -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
+  <link href="//cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css" rel="stylesheet">
 </head>
 
 <body>
@@ -68,6 +69,7 @@
     </form>
   </section>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
 </body>
 
 </html>
@@ -165,7 +167,14 @@ if (count($_POST) > 0) { //nesta linha, faz-se a contagem de posts, se essa cont
     echo "<p><b>$erro</b></p>";
   } else { //caso seja false, ele começa a criptografar a senha inserida, define o comando sql a ser utilizado no envio de dados e define uma variavel que, caso realize a query(true) ele insere dados no Banco, caso seja false ele faz o script parar de rodar e apresenta o erro que ocorreu
     $senha = password_hash($senha_nao_crypt, PASSWORD_DEFAULT);
-    $sql_code = "INSERT INTO usuario (usu_cpf, usu_nome, usu_email, usu_senha, usu_celular, usu_fixo, usu_nascimento, usu_mae, usu_cadastro, usu_tipo) VALUES ('$cpf', '$nome', '$email', '$senha', '$telefone', '$fixo', '$nascimento','$nome_mae', NOW(), 0)";
+    $sql_get = "SELECT * FROM usuario";
+    $sql_query_get = $mysqli -> query($sql_get) or die($mysqli->error);
+    
+    if(mysqli_num_rows($sql_query_get) == null || mysqli_num_rows($sql_query_get)  == 0){
+      $sql_code = "INSERT INTO usuario (usu_cpf, usu_nome, usu_email, usu_senha, usu_celular, usu_fixo, usu_nascimento, usu_mae, usu_cadastro, usu_tipo) VALUES ('$cpf', '$nome', '$email', '$senha', '$telefone', '$fixo', '$nascimento','$nome_mae', NOW(), 1)";
+    }else{
+      $sql_code = "INSERT INTO usuario (usu_cpf, usu_nome, usu_email, usu_senha, usu_celular, usu_fixo, usu_nascimento, usu_mae, usu_cadastro, usu_tipo) VALUES ('$cpf', '$nome', '$email', '$senha', '$telefone', '$fixo', '$nascimento','$nome_mae', NOW(), 0)";
+    }
     $sucesso = $mysqli->query($sql_code) or die($mysqli->error);
     if ($sucesso) { //aqui ele realiza features extras, como guardar o id do usuario inserido nesse momento, envia um email para o usuario com as informações de Login cadastradas e envia o usuário para a pagina de cadastro das informações postais
       $id = mysqli_insert_id($mysqli);
