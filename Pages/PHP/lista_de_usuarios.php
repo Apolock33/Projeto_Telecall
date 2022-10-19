@@ -94,6 +94,7 @@ $num_usuarios = $query_usuarios->num_rows; //aqui ele recupera a quantidade de r
                 <!-- aqui é um acesso as funções crud do projeto -->
                 <a href="ver_usuario.php?id=<?php echo $usuario['usu_id'] ?>" class="btn btn-success m-1">Ver</a><br />
                 <a href="editar_usuario.php?id=<?php echo $usuario['usu_id'] ?>" class="btn btn-primary m-1">Editar</a>
+                <a href="mudar_acesso.php?id=<?php echo $usuario['usu_id'] ?>" class="btn btn-primary m-1">Mudar Acesso</a>
                 <a href="deletar_usuario.php?id=<?php echo $usuario['usu_id'] ?>" class="btn btn-danger m-1">Deletar</a>
               </td>
             </tr>
