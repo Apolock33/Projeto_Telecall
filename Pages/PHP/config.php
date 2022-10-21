@@ -1,5 +1,5 @@
 <?php
-$server = 'localhost:3306';
+$server = 'localhost:3307';
 $user = 'root';
 $password = 'Bio6971@@';
 $db = 'unisuam';
