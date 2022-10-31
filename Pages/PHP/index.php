@@ -1,46 +1,3 @@
-<?php
-
-require_once('./config.php'); // chamada da conexão do banco
-
-
-$erro = false; //variavel de erro
-if (isset($_POST['email']) && isset($_POST['senha'])) { //aqui o PHP verifica se existe inserção de dados nos campos e se for true, ele atribui aos valores dos campos, variáveis
-  $email = $mysqli->escape_string($_POST['email']);
-  $senha = $_POST['senha'];
-
-  $sql_code = "SELECT * FROM usuario WHERE usu_email = '$email'"; //codigo sql
-  $sql_query = $mysqli->query($sql_code) or die($mysqli->error); //variavel que dfine o suscesso ou fracasso da operação
-
-  if ($sql_query->num_rows == 0) { //aqui ele verifica se há resultados para o código sql executado, caso seja igual a 0 ele retorna email inconrreto
-    echo "Email Incorreto";
-  } else {
-    $usuario = $sql_query->fetch_assoc(); //aqui ele recebe as informações da linha da tabela que foi encontrada atraves da variavel $sql_query e atribui elas a uma variavel de valor array chamada $usuario
-    if (!password_verify($senha, $usuario['usu_senha'])) { //aqui ele verifica se o valor do campo senha é difrente da senha encontrada no array $usuario, caso seja, ele exibe o erro senha incorreta
-      echo "Senha Incorreta";
-    } else { // caso seja igual ele faz uma nova verificação
-      if (!isset($_SESSION)) { //caso não haja sessão ele inicia uma nova e atribui a superglobal, como um array, os valores encontrados no array $usuario e envia o cliente para a pagina 2fa
-        session_start();
-        $_SESSION['usuario'] = $usuario['usu_id'];
-        $_SESSION['admin'] = $usuario['usu_tipo'];
-        $_SESSION['nome'] = $usuario['usu_nome'];
-        $_SESSION['cpf'] = $usuario['usu_cpf'];
-        $_SESSION['mae'] = $usuario['usu_mae'];
-        $_SESSION['celular'] = $usuario['usu_celular'];
-        $_SESSION['nascimento'] = $usuario['usu_nascimento'];
-        header("Location: 2fa.php");
-      }
-    }
-  }
-
-  //Aqui ele apresenta um erro caso alguma das operações acima dê errado
-  if (!$erro) {
-  } else {
-    echo $erro;
-  }
-}
-
-?>
-
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -81,3 +38,56 @@ if (isset($_POST['email']) && isset($_POST['senha'])) { //aqui o PHP verifica se
 </body>
 
 </html>
+
+<?php
+
+require_once('./config.php'); // chamada da conexão do banco
+
+
+$erro = false; //variavel de erro
+if (isset($_POST['email']) && isset($_POST['senha'])) { //aqui o PHP verifica se existe inserção de dados nos campos e se for true, ele atribui aos valores dos campos, variáveis
+  $email = $mysqli->escape_string($_POST['email']);
+  $senha = $_POST['senha'];
+
+  $sql_code = "SELECT * FROM usuario WHERE usu_email = '$email'"; //codigo sql
+  $sql_query = $mysqli->query($sql_code) or die($mysqli->error); //variavel que dfine o suscesso ou fracasso da operação
+
+  if ($sql_query->num_rows == 0) { //aqui ele verifica se há resultados para o código sql executado, caso seja igual a 0 ele retorna email inconrreto
+    echo "<script>
+            Swal.fire({
+              icon: 'error',
+              title: 'Email Incorreto'
+            })
+          </script>;";
+  } else {
+    $usuario = $sql_query->fetch_assoc(); //aqui ele recebe as informações da linha da tabela que foi encontrada atraves da variavel $sql_query e atribui elas a uma variavel de valor array chamada $usuario
+    if (!password_verify($senha, $usuario['usu_senha'])) { //aqui ele verifica se o valor do campo senha é difrente da senha encontrada no array $usuario, caso seja, ele exibe o erro senha incorreta
+      echo "<script>
+            Swal.fire({
+              icon: 'error',
+              title: 'Senha Incorreta'
+            })
+          </script>;";
+    } else { // caso seja igual ele faz uma nova verificação
+      if (!isset($_SESSION)) { //caso não haja sessão ele inicia uma nova e atribui a superglobal, como um array, os valores encontrados no array $usuario e envia o cliente para a pagina 2fa
+        session_start();
+        $_SESSION['usuario'] = $usuario['usu_id'];
+        $_SESSION['admin'] = $usuario['usu_tipo'];
+        $_SESSION['nome'] = $usuario['usu_nome'];
+        $_SESSION['cpf'] = $usuario['usu_cpf'];
+        $_SESSION['mae'] = $usuario['usu_mae'];
+        $_SESSION['celular'] = $usuario['usu_celular'];
+        $_SESSION['nascimento'] = $usuario['usu_nascimento'];
+        header("Location: 2fa.php");
+      }
+    }
+  }
+
+  //Aqui ele apresenta um erro caso alguma das operações acima dê errado
+  if (!$erro) {
+  } else {
+    echo $erro;
+  }
+}
+
+?>
