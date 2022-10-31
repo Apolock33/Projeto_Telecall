@@ -1,4 +1,5 @@
 <?php
+require_once('config.php');
 // esse arquivo é muito parecido com o Create, porém difere em alguns momentos que serão explicados mais a frente
 if (!isset($_SESSION)) { //verificação e inicio de sessão
   session_start();
@@ -17,74 +18,6 @@ if ($_SESSION['admin'] == 1) {
 } else {
   session_destroy();
   header('Location: index.php');
-}
-
-require_once('config.php'); //chamada do arquivo config.php
-$id = intval($_GET['id']); //recebimento do id atraves da url
-function limpar_telefone($str)
-{ //função de formatação de telefone
-  return preg_replace("/[^0-9]/", "", $str);
-}
-
-$erro = false; //variavel de erro
-if (count($_POST) > 0) { //aqui o php conta a quantidade de posts e verifica se essa quantidade é igual a 0
-  $cpf = $_POST['cpf']; //atribuição de informações do Post a variaveis
-  $nome = $_POST['nome'];
-  $email = $_POST['email'];
-  $senha = $_POST['senha'];
-  $telefone = $_POST['telefone'];
-  $fixo = $_POST['fixo'];
-  $nascimento = $_POST['nascimento'];
-  $nome_mae = $_POST['mae'];
-  $admin = $_POST['admin'];
-
-  //a partir daqui ocorrem novas formatações e validações de telefone celular, telefone fixo e data de nascimento
-  if (!empty($telefone)) {
-    $telefone = limpar_telefone($telefone);
-    if (strlen($telefone) != 11) {
-      $erro = "O telefone deve ser preenchido no padrão (11) 98888-8888";
-    }
-  }
-
-  if (!empty($fixo)) {
-    $fixo = limpar_telefone($fixo);
-    if (strlen($fixo) != 10) {
-      $erro = "O telefone deve ser preenchido no padrão (11) 2121-2121";
-    }
-  }
-
-
-  if (!empty($nascimento)) {
-    $pedacos = explode('/', $nascimento);
-    if (count($pedacos) == 3) {
-      $nascimento = implode('-', array_reverse($pedacos));
-    } else {
-      $erro = "A data de nascimento deve ser preenchida no padrão Dia/Mês/Ano";
-    }
-  }
-
-  //aqui ele verifica se há qualquer erro, se for true, o PHP mostra o erro
-  if ($erro) {
-    echo "<p><b>$erro</b></p>";
-  } else { //caso seja false, o PHP prepara uma query sql para ser executada
-    $sql_code = "UPDATE usuario SET
-    usu_cpf = '$cpf',
-    usu_nome = '$nome', 
-    usu_email = '$email',
-    usu_senha = '$senha', 
-    usu_celular = '$telefone',
-    usu_fixo = '$fixo',
-    usu_nascimento = '$nascimento',
-    usu_mae = '$nome_mae',
-    usu_tipo = '$admin' 
-    WHERE usu_id = '$id'";
-
-    $sucesso = $mysqli->query($sql_code) or die($mysqli->error); //variavel de sucesso/fracasso da query
-    if ($sucesso) { //caso haja suscesso, o PHP exibe um alert de javascript e limpa os formulários
-      echo "<script>alert('Cadastro Atualizado')</script>";
-      unset($_POST);
-    }
-  }
 }
 
 $sql_usuario = "SELECT * FROM usuario WHERE usu_id = '$id'"; // codigo sql a ser executado
@@ -172,3 +105,95 @@ $usuario = $query_usuario->fetch_assoc(); //aqui o PHP pega o resultado da opera
 </body>
 
 </html>
+
+<?php
+require_once('config.php'); //chamada do arquivo config.php
+$id = intval($_GET['id']); //recebimento do id atraves da url
+function limpar_telefone($str)
+{ //função de formatação de telefone
+  return preg_replace("/[^0-9]/", "", $str);
+}
+
+$erro = false; //variavel de erro
+if (count($_POST) > 0) { //aqui o php conta a quantidade de posts e verifica se essa quantidade é igual a 0
+  $cpf = $_POST['cpf']; //atribuição de informações do Post a variaveis
+  $nome = $_POST['nome'];
+  $email = $_POST['email'];
+  $senha = $_POST['senha'];
+  $telefone = $_POST['telefone'];
+  $fixo = $_POST['fixo'];
+  $nascimento = $_POST['nascimento'];
+  $nome_mae = $_POST['mae'];
+  $admin = $_POST['admin'];
+
+  //a partir daqui ocorrem novas formatações e validações de telefone celular, telefone fixo e data de nascimento
+  if (!empty($telefone)) {
+    $telefone = limpar_telefone($telefone);
+    if (strlen($telefone) != 11) {
+      $erro = "<script>
+                  Swal.fire({
+                    icon: 'error',
+                    title: 'O telefone deve ser preenchido no padrão (11) 98888-8888'
+                  })
+                </script>";
+    }
+  }
+
+  if (!empty($fixo)) {
+    $fixo = limpar_telefone($fixo);
+    if (strlen($fixo) != 10) {
+      $erro = "<script>
+                  Swal.fire({
+                    icon: 'error',
+                    title: 'O telefone deve ser preenchido no padrão (11) 2121-2121'
+                  })
+                </script>";
+    }
+  }
+
+
+  if (!empty($nascimento)) {
+    $pedacos = explode('/', $nascimento);
+    if (count($pedacos) == 3) {
+      $nascimento = implode('-', array_reverse($pedacos));
+    } else {
+      $erro = "<script>
+                Swal.fire({
+                  icon: 'error',
+                  title: 'A data de nascimento deve ser preenchida no padrão Dia/Mês/Ano'
+                })
+              </script>";
+    }
+  }
+
+  //aqui ele verifica se há qualquer erro, se for true, o PHP mostra o erro
+  if ($erro) {
+    echo "<p><b>$erro</b></p>";
+  } else { //caso seja false, o PHP prepara uma query sql para ser executada
+    $senha_crypt = password_hash($senha, PASSWORD_DEFAULT);
+
+    $sql_code = "UPDATE usuario SET
+    usu_cpf = '$cpf',
+    usu_nome = '$nome', 
+    usu_email = '$email',
+    usu_senha = '$senha_crypt', 
+    usu_celular = '$telefone',
+    usu_fixo = '$fixo',
+    usu_nascimento = '$nascimento',
+    usu_mae = '$nome_mae',
+    usu_tipo = '$admin' 
+    WHERE usu_id = '$id'";
+
+    $sucesso = $mysqli->query($sql_code) or die($mysqli->error); //variavel de sucesso/fracasso da query
+    if ($sucesso) { //caso haja suscesso, o PHP exibe um alert de javascript e limpa os formulários
+      echo "<script>
+              Swal.fire({
+                icon: 'success',
+                title: 'Cadastro Atualizado!'
+              })
+            </script>";
+      unset($_POST);
+    }
+  }
+}
+?>

@@ -26,39 +26,6 @@ function limpar_telefone($str)
   return preg_replace("/[^0-9]/", "", $str);
 }
 
-$erro = false; //variavel de erro
-if (count($_POST) > 0) { //aqui o php conta a quantidade de posts e verifica se essa quantidade é igual a 0
-  $cep = $_POST['cep']; //atribuição de informações do Post a variaveis
-  $endereco = $_POST['endereco'];
-  $numero = $_POST['numero'];
-  $complemento = $_POST['complemento'];
-  $referencia = $_POST['referencia'];
-  $bairro = $_POST['bairro'];
-  $cidade = $_POST['cidade'];
-  $estado = $_POST['estado'];
-
-  //aqui ele verifica se há qualquer erro, se for true, o PHP mostra o erro
-  if ($erro) {
-    echo "<p><b>$erro</b></p>";
-  } else { //caso seja false, o PHP prepara uma query sql para ser executada
-    $sql_code = "UPDATE endereco SET
-    end_cep = '$cep',
-    end_endereco = '$endereco', 
-    end_numero = '$numero',
-    end_complemento = '$complemento', 
-    end_referencia = '$referencia',
-    end_bairro = '$bairro',
-    end_cidade = '$cidade',
-    end_estado = '$estado'
-    WHERE usu_id = '$id'";
-
-    $sucesso = $mysqli->query($sql_code) or die($mysqli->error); //variavel de sucesso/fracasso da query
-    if ($sucesso) { //caso haja suscesso, o PHP exibe um alert de javascript e limpa os formulários
-      echo "<script>alert('Cadastro Atualizado')</script>";
-      unset($_POST);
-    }
-  }
-}
 
 $sql_endereco = "SELECT * FROM endereco WHERE usu_id = '$id'"; // codigo sql a ser executado
 $query_endereco = $mysqli->query($sql_endereco) or die($mysqli->error); //variavel de sucesso/fracasso da query
@@ -139,3 +106,45 @@ $endereço = $query_endereco->fetch_assoc(); //aqui o PHP pega o resultado da op
 </body>
 
 </html>
+
+<?php 
+  $erro = false; //variavel de erro
+  if (count($_POST) > 0) { //aqui o php conta a quantidade de posts e verifica se essa quantidade é igual a 0
+    $cep = $_POST['cep']; //atribuição de informações do Post a variaveis
+    $endereco = $_POST['endereco'];
+    $numero = $_POST['numero'];
+    $complemento = $_POST['complemento'];
+    $referencia = $_POST['referencia'];
+    $bairro = $_POST['bairro'];
+    $cidade = $_POST['cidade'];
+    $estado = $_POST['estado'];
+  
+    //aqui ele verifica se há qualquer erro, se for true, o PHP mostra o erro
+    if ($erro) {
+      echo "<p><b>$erro</b></p>";
+    } else { //caso seja false, o PHP prepara uma query sql para ser executada
+      $sql_code = "UPDATE endereco SET
+      end_cep = '$cep',
+      end_endereco = '$endereco', 
+      end_numero = '$numero',
+      end_complemento = '$complemento', 
+      end_referencia = '$referencia',
+      end_bairro = '$bairro',
+      end_cidade = '$cidade',
+      end_estado = '$estado'
+      WHERE usu_id = '$id'";
+  
+      $sucesso = $mysqli->query($sql_code) or die($mysqli->error); //variavel de sucesso/fracasso da query
+      if ($sucesso) { //caso haja suscesso, o PHP exibe um alert de javascript e limpa os formulários
+        $sucesso_alert = "<script>
+                            Swal.fire({
+                              icon: 'Success',
+                              title: 'Cadastro Atualizado'
+                            })
+                          </script>";
+        echo $sucesso_alert;
+        unset($_POST);
+      }
+    }
+  }
+?>

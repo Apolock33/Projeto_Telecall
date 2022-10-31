@@ -1,3 +1,24 @@
+<?php
+  if (!isset($_SESSION)) {
+    session_start();
+  } //aqui ele verifica se existe sessao ativa, caso não exista ele gera uma nova
+  
+  $id = $_SESSION['usuario']; //atribuição de informações da sessao a variaveis 
+  $tipo = $_SESSION['admin'];
+  $nome = $_SESSION['nome'];
+  $mae = $_SESSION['mae'];
+  $celular = $_SESSION['celular'];
+  $nascimento = $_SESSION['nascimento'];
+  $cpf = $_SESSION['cpf'];
+  
+  //bloqueio de paginas para usuarios cliente
+  if ($_SESSION['admin'] == 1) {
+  } else {
+    session_destroy();
+    header('Location: index.php');
+  }
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -9,50 +30,6 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
   <link href="https://cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.min.css" rel="stylesheet" />
 </head>
-
-<?php
-if (!isset($_SESSION)) {
-  session_start();
-} //aqui ele verifica se existe sessao ativa, caso não exista ele gera uma nova
-
-$id = $_SESSION['usuario']; //atribuição de informações da sessao a variaveis 
-$tipo = $_SESSION['admin'];
-$nome = $_SESSION['nome'];
-$mae = $_SESSION['mae'];
-$celular = $_SESSION['celular'];
-$nascimento = $_SESSION['nascimento'];
-$cpf = $_SESSION['cpf'];
-
-//bloqueio de paginas para usuarios cliente
-if ($_SESSION['admin'] == 1) {
-} else {
-  session_destroy();
-  header('Location: index.php');
-}
-
-//aqui ele verifica se existem dados sendo enviados pelo botão de confirmação
-if (isset($_POST['confirmar'])) { //caso seja true ele:
-  require_once('config.php'); //chama or arquivo config.php
-  $id = intval($_GET['id']); //recebe e atribui a uma variavel o id
-  $sql_code_usu = "DELETE FROM usuario WHERE usu_id = '$id'"; //prepara codigos sql para serem executados
-  $sql_code_end = "DELETE FROM endereco WHERE usu_id = '$id'";
-  $sql_code_log = "DELETE FROM log WHERE usu_id = '$id'";
-  $sql_query_log = $mysqli->query($sql_code_log) or die($mysqli->error); // cria variaveis de sucesso/falha de operações
-  $sql_query_end = $mysqli->query($sql_code_end) or die($mysqli->error);
-  $sql_query_usu = $mysqli->query($sql_code_usu) or die($mysqli->error);
-  if ($sql_query_usu && $sql_query_end && $sql_code_log) { ?>
-    <!-- verifica se tais operações vão apresentar sucesso e se apresentarem, apresenta uma resposta visual ao usuario ADM  -->
-    <div align="center"><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
-      <h1>Usuário Deletado Com Sucesso</h1>
-      <p><a href='lista_de_usuarios.php' class="btn btn-primary">Clique Aqui para voltar a lista de usuários</a></p>
-    </div>
-
-<?php
-    die(); //realiza parada forçada no script assim q a resposta é apresentada
-  }
-}
-?>
-
 <body>
   <br /><br /><br /><br />
   <br /><br /><br /><br />
@@ -69,3 +46,31 @@ if (isset($_POST['confirmar'])) { //caso seja true ele:
 </body>
 
 </html>
+
+<?php
+//aqui ele verifica se existem dados sendo enviados pelo botão de confirmação
+if (isset($_POST['confirmar'])) { //caso seja true ele:
+  require_once('config.php'); //chama or arquivo config.php
+  $id = intval($_GET['id']); //recebe e atribui a uma variavel o id
+  $sql_code_usu = "DELETE FROM usuario WHERE usu_id = '$id'"; //prepara codigos sql para serem executados
+  $sql_code_end = "DELETE FROM endereco WHERE usu_id = '$id'";
+  $sql_code_log = "DELETE FROM log WHERE usu_id = '$id'";
+  $sql_query_log = $mysqli->query($sql_code_log) or die($mysqli->error); // cria variaveis de sucesso/falha de operações
+  $sql_query_end = $mysqli->query($sql_code_end) or die($mysqli->error);
+  $sql_query_usu = $mysqli->query($sql_code_usu) or die($mysqli->error);
+  if ($sql_query_usu && $sql_query_end && $sql_code_log) {
+   
+    echo "<script>
+            Swal.fire({
+              icon: 'success',
+              title: 'Cadastro Deletado Com Sucesso!'
+            })
+
+            setTimeout(()=>{
+                window.location.assign('lista_de_usuarios.php')
+              }, 2000);
+          </script>";
+    die(); //realiza parada forçada no script assim q a resposta é apresentada
+  }
+}
+?>

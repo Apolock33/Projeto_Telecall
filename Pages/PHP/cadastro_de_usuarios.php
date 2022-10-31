@@ -10,7 +10,6 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
   <link href="https://cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.min.css" rel="stylesheet" />
 </head>
-
 <body>
   <div class="logo" align="center">
     <br /><br />
@@ -106,23 +105,48 @@ if (count($_POST) > 0) { //nesta linha, faz-se a contagem de posts, se essa cont
 
   //A partir daqui, configuro algumas validações para o formulario. Da linha 105 ate 128 ele indica que, caso o campo não seja preenchido, o PHP vai apresentar um erro no Front
   if (empty($cpf)) {
-    $erro = "Preencha o campo CPF";
+    $erro = "<script>
+              Swal.fire({ 
+                icon: 'error',
+                title: 'Preencha o campo CPF corretamente'
+              })
+            </script>";
   }
 
   if (empty($nome)) {
-    $erro = "Prencha o campo Nome";
+    $erro = "<script>
+                Swal.fire({
+                  icon: 'error',
+                  title: 'Prencha o campo Nome corretamente'
+                })
+              </script>";
   }
 
   if (empty($email) || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
-    $erro = "Prencha o campo Email";
+    $erro = "<script>
+                Swal.fire({
+                  icon: 'error',
+                  title: 'Prencha o campo Email corretamente'
+                })
+              </script>";
   }
 
   if (empty($senha)) {
-    $erro = "Prencha o campo Senha";
+    $erro = "<script>
+                Swal.fire({
+                  icon: 'error',
+                  title: '<p>Prencha o campo Senha</p>'
+                })
+              </script>";
   }
 
   if (strlen($senha_nao_crypt) < 8) {
-    $erro = "A senha deve ter ao menos 8 caracteres.";
+    $erro = "<script>
+                Swal.fire({
+                  icon: 'error',
+                  title: 'A senha deve ter ao menos 8 caracteres.'
+                })
+              </script>";
   }
 
 
@@ -140,7 +164,12 @@ if (count($_POST) > 0) { //nesta linha, faz-se a contagem de posts, se essa cont
   if (!empty($telefone)) {
     $telefone = limpar_telefone($telefone);
     if (strlen($telefone) != 11) {
-      $erro = "O telefone deve ser preenchido no padrão (11) 98888-8888";
+      $erro = "<script>
+                Swal.fire({
+                  icon: 'error',
+                  title: 'O telefone deve ser preenchido no padrão (11)98888-8888'
+                })
+              </script>";
     }
   }
 
@@ -148,7 +177,12 @@ if (count($_POST) > 0) { //nesta linha, faz-se a contagem de posts, se essa cont
   if (!empty($fixo)) {
     $fixo = limpar_telefone($fixo);
     if (strlen($fixo) != 10) {
-      $erro = "O telefone deve ser preenchido no padrão (11) 2121-2121";
+      $erro = "<script>
+                Swal.fire({
+                  icon: 'error',
+                  title: 'O telefone deve ser preenchido no padrão (11)1111-1111'
+                })
+              </script>";
     }
   }
 
@@ -158,13 +192,18 @@ if (count($_POST) > 0) { //nesta linha, faz-se a contagem de posts, se essa cont
     if (count($pedacos) == 3) {
       $nascimento = implode('-', array_reverse($pedacos));
     } else {
-      $erro = "A data de nascimento deve ser preenchida no padrão Dia/Mês/Ano";
+      $erro = "<script>
+                Swal.fire({
+                  icon: 'error',
+                  title: 'A data de nascimento deve ser preenchida no padrão Dia/Mês/Ano'
+                })
+              </script>";
     }
   }
 
   //A partir daqui, ele verifica se há erros ao enviar informações pelo Input
   if ($erro) { //caso seja true, ele apresenta o erro
-    echo "<p><b>$erro</b></p>";
+    echo $erro;
   } else { //caso seja false, ele começa a criptografar a senha inserida, define o comando sql a ser utilizado no envio de dados e define uma variavel que, caso realize a query(true) ele insere dados no Banco, caso seja false ele faz o script parar de rodar e apresenta o erro que ocorreu
     $senha = password_hash($senha_nao_crypt, PASSWORD_DEFAULT);
     $sql_get = "SELECT * FROM usuario";

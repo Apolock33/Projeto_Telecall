@@ -3,15 +3,14 @@
 include_once("dompdf/autoload.inc.php"); //chama os arquivos baixados pelo composer
 include_once("config.php"); //chama o arquivo config.php
 //começa a formatação do pdf
-$html = '<table';
+$html = '<table align="center">';
 $html .= '<thead>';
 $html .= '<tr>';
 $html .= '<th>logID</th>';
+$html .= '<th>Id do Usuário</th>';
 $html .= '<th>Hora de Acesso</th>';
 $html .= '<th>Método de Acesso</th>';
 $html .= '<th>Status do Acesso</th>';
-$html .= '<th>Ip de Acesso</th>';
-$html .= '<th>login do Usuário</th>';
 $html .= '</tr>';
 $html .= '</thead>';
 $html .= '<tbody>';
@@ -28,7 +27,7 @@ while ($log = mysqli_fetch_assoc($result_log)) { //transsforma a variavel $log e
 }
 
 $html .= '</tbody>';
-$html .= '</table';
+$html .= '</table>';
 
 use Dompdf\Dompdf; //aqui ele chama a biblioteca que sera usada para baixar pdfs
 

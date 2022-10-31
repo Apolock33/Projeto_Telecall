@@ -1,55 +1,3 @@
-<?php
-require_once('config.php'); //Todos os require_once de todo o codigo começam dessa forma para serem utilizados de forma global por toda a pagina
-
-$erro = false;
-if (count($_POST) > 0) { //nesta linha, faz-se a contagem de posts, se essa contagem for maior que 0 ele atribui cada post a sua respectiva variavel
-    $cep = $_POST['cep'];
-    $endereco = $_POST['endereco'];
-    $numero = $_POST['numero'];
-    $complemento = $_POST['complemento'];
-    $bairro = $_POST['bairro'];
-    $cidade = $_POST['cidade'];
-    $estado = $_POST['estado'];
-    $referencia = $_POST['referencia'];
-    $id = $_GET['id'];
-
-    //A partir daqui, configuro algumas validações para o formulario. Da linha 105 ate 128 ele indica que, caso o campo não seja preenchido, o PHP vai apresentar um erro no Front
-    if (empty($cep)) {
-        $erro = "Prencha o campo CEP";
-    }
-
-    if (empty($endereco)) {
-        $erro = "Prencha o campo Endereço";
-    }
-
-    if (empty($bairro)) {
-        $erro = "Prencha o campo Bairro";
-    }
-
-    if (empty($cidade)) {
-        $erro = "Prencha o campo Cidade";
-    }
-
-    if (empty($estado)) {
-        $erro = "Prencha o campo Estado";
-    }
-
-    if (empty($referencia)) {
-        $erro = "Prencha o campo Referencia";
-    } else if (strlen($referencia) > 255) {
-        $erro = "Maximo de caracteres atingido no campo referencia. Por favor, coloque em menos palavras.";
-    }
-//A partir daqui, ele verifica se há erros ao enviar informações pelo Input
-    if ($erro) {//caso seja true, ele apresenta o erro
-        echo "<p><b>$erro</b></p>";
-    } else {//caso seja false, ele define o comando sql a ser utilizado no envio de dados e define uma variavel que, caso realize a query(true) ele insere dados no Banco, caso seja false ele faz o script parar de rodar e apresenta o erro que ocorreu
-        $sql_code_end = "INSERT INTO endereco (end_cep, end_endereco, end_numero, end_complemento, end_referencia, end_bairro, end_cidade, end_estado, usu_id) VALUES ('$cep', '$endereco', '$numero','$complemento', '$referencia', '$bairro', '$cidade', '$estado', '$id')";
-        $sucesso = $mysqli->query($sql_code_end) or die($mysqli->error);
-        header("Location: index.php");
-    }
-}
-
-?>
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -112,3 +60,83 @@ if (count($_POST) > 0) { //nesta linha, faz-se a contagem de posts, se essa cont
 </body>
 
 </html>
+<?php
+require_once('config.php'); //Todos os require_once de todo o codigo começam dessa forma para serem utilizados de forma global por toda a pagina
+
+$erro = false;
+if (count($_POST) > 0) { //nesta linha, faz-se a contagem de posts, se essa contagem for maior que 0 ele atribui cada post a sua respectiva variavel
+    $cep = $_POST['cep'];
+    $endereco = $_POST['endereco'];
+    $numero = $_POST['numero'];
+    $complemento = $_POST['complemento'];
+    $bairro = $_POST['bairro'];
+    $cidade = $_POST['cidade'];
+    $estado = $_POST['estado'];
+    $referencia = $_POST['referencia'];
+    $id = $_GET['id'];
+
+    //A partir daqui, configuro algumas validações para o formulario. Da linha 105 ate 128 ele indica que, caso o campo não seja preenchido, o PHP vai apresentar um erro no Front
+    if (empty($cep)) {
+        $erro = "<script>
+                    Swal.fire({
+                    icon: 'error',
+                    title: 'Prencha o campo CEP'
+                    })
+                </script>";
+    }
+
+    if (empty($endereco)) {
+        $erro = "<script>
+                    Swal.fire({
+                    icon: 'error',
+                    title: 'Prencha o campo Endereço'
+                    })
+                </script>";
+    }
+
+    if (empty($bairro)) {
+        $erro = "<script>
+                    Swal.fire({
+                    icon: 'error',
+                    title: 'Prencha o campo Bairro'
+                    })
+                </script>";
+    }
+
+    if (empty($cidade)) {
+        $erro = "<script>
+                    Swal.fire({
+                    icon: 'error',
+                    title: 'Prencha o campo Cidade'
+                    })
+                </script>";
+    }
+
+    if (empty($estado)) {
+        $erro = "<script>
+                    Swal.fire({
+                    icon: 'error',
+                    title: 'Prencha o campo Estado'
+                    })
+                </script>";
+    }
+
+    if (strlen($referencia) > 255) {
+        $erro = "<script>
+                    Swal.fire({
+                    icon: 'error',
+                    title: 'Maximo de caracteres atingido no campo referencia. Por favor, coloque em menos palavras.'
+                    })
+                </script>";
+    }
+//A partir daqui, ele verifica se há erros ao enviar informações pelo Input
+    if ($erro) {//caso seja true, ele apresenta o erro
+        echo $erro;
+    } else {//caso seja false, ele define o comando sql a ser utilizado no envio de dados e define uma variavel que, caso realize a query(true) ele insere dados no Banco, caso seja false ele faz o script parar de rodar e apresenta o erro que ocorreu
+        $sql_code_end = "INSERT INTO endereco (end_cep, end_endereco, end_numero, end_complemento, end_referencia, end_bairro, end_cidade, end_estado, usu_id) VALUES ('$cep', '$endereco', '$numero','$complemento', '$referencia', '$bairro', '$cidade', '$estado', '$id')";
+        $sucesso = $mysqli->query($sql_code_end) or die($mysqli->error);
+        header("Location: index.php");
+    }
+}
+
+?>
