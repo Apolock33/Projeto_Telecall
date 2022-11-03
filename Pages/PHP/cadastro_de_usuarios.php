@@ -151,7 +151,12 @@ if (count($_POST) > 0) { //nesta linha, faz-se a contagem de posts, se essa cont
 
 
   if (empty($nome_mae)) {
-    $erro = "Prencha o campo Nome da Mãe";
+    $erro = "<script>
+              Swal.fire({
+                icon: 'error',
+                title: 'Prencha o campo Nome da Mãe'
+              })
+            </script>";
   }
 
   if (!empty($cpf)) {

@@ -63,12 +63,13 @@ if (isset($_POST['confirmar'])) { //caso seja true ele:
     echo "<script>
             Swal.fire({
               icon: 'success',
-              title: 'Cadastro Deletado Com Sucesso!'
+              title: 'Cadastro Deletado Com Sucesso!',
+              timer: 2000
             })
 
             setTimeout(()=>{
                 window.location.assign('lista_de_usuarios.php')
-              }, 2000);
+              }, 3500);
           </script>";
     die(); //realiza parada forçada no script assim q a resposta é apresentada
   }
