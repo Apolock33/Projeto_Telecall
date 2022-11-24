@@ -100,9 +100,9 @@ if (isset($dados['btn'])) { //o PHP verifica se tem dados sendo enviados dos bot
             $sql_query = $mysqli->query($query_log) or die($mysqli->error);
 
             if ($tipo == 1) { //aqui ele manda o usuario para a pagina equivalente ao seu nivel de acesso, caso seja adm ele leva para lista de usuarios, e caso seja cliente leva para a pagina home
-                header('Location: lista_de_usuarios.php');
+                header('Location: ../Home/admin.html');
             } else {
-                header('Location: home.php');
+                header('Location: ../Home/usuario.php');
             }
         } else { //caso a operação de errado ele insere dados na tabela log como insucesso de login, destroi a sessão e leva o usuario para a tela de login
             $query_log = "INSERT INTO log (usu_id, log_data, log_meth, log_status) VALUES ('$usu', NOW(), 'Data_Nascimento', 'Erro de Login')";
@@ -119,9 +119,9 @@ if (isset($dados['btn'])) { //o PHP verifica se tem dados sendo enviados dos bot
             $query_log = "INSERT INTO log (usu_id, log_data, log_meth, log_status) VALUES ('$usu', NOW(), 'Data_Nascimento', 'Login Bem Sucedido')";
             $sql_query = $mysqli->query($query_log) or die($mysqli->error);
             if ($tipo == 1) {
-                header('Location: lista_de_usuarios.php');
+                header('Location: ../Home/admin.html');
             } else {
-                header('Location: home.php');
+                header('Location: ../Home/usuario.php');
             }
         } else {
             $query_log = "INSERT INTO log (usu_id, log_data, log_meth, log_status) VALUES ('$usu', NOW(), 'Data_Nascimento', 'Erro de Login')";
@@ -130,6 +130,7 @@ if (isset($dados['btn'])) { //o PHP verifica se tem dados sendo enviados dos bot
             header('Location: index.php');
         }
     }
+    
 
 
 
@@ -139,9 +140,9 @@ if (isset($dados['btn'])) { //o PHP verifica se tem dados sendo enviados dos bot
             $query_log = "INSERT INTO log (usu_id, log_data, log_meth, log_status) VALUES ('$usu', NOW(), 'Celular', 'Login Bem Sucedido')";
             $sql_query = $mysqli->query($query_log) or die($mysqli->error);
             if ($tipo == 1) {
-                header('Location: lista_de_usuarios.php');
+                header('Location: ../Home/admin.html');
             } else {
-                header('Location: home.php');
+                header('Location: ../Home/usuario.php');
             }
         } else {
             $query_log = "INSERT INTO log (usu_id, log_data, log_meth, log_status) VALUES ('$usu', NOW(), 'Celular', 'Erro de Login')";
@@ -159,9 +160,9 @@ if (isset($dados['btn'])) { //o PHP verifica se tem dados sendo enviados dos bot
             $query_log = "INSERT INTO log (usu_id, log_data, log_meth, log_status) VALUES ('$usu', NOW(), '3_Ultimos', 'Login Bem Sucedido')";
             $sql_query = $mysqli->query($query_log) or die($mysqli->error);
             if ($tipo == 1) {
-                header('Location: lista_de_usuarios.php');
+                header('Location: ../Home/admin.html');
             } else {
-                header('Location: home.php');
+                header('Location: ../Home/usuario.php');
             }
         } else {
             $query_log = "INSERT INTO log (usu_id, log_data, log_meth, log_status) VALUES ('$usu', NOW(), '3_Ultimos', 'Erro de Login')";
@@ -178,9 +179,9 @@ if (isset($dados['btn'])) { //o PHP verifica se tem dados sendo enviados dos bot
             $query_log = "INSERT INTO log (usu_id, log_data, log_meth, log_status) VALUES ('$usu', NOW(), '3_Primeiros', 'Login Bem Sucedido')";
             $sql_query = $mysqli->query($query_log) or die($mysqli->error);
             if ($tipo == 1) {
-                header('Location: lista_de_usuarios.php');
+                header('Location: ../Home/admin.html');
             } else {
-                header('Location: home.php');
+                header('Location: ../Home/usuario.php');
             }
         } else {
             $query_log = "INSERT INTO log (usu_id, log_data, log_meth, log_status) VALUES ('$usu', NOW(), '3_Primeiros', 'Erro de Login')";
