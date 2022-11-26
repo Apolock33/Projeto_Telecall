@@ -1,3 +1,25 @@
+<?php
+require_once('config.php'); //chamada do arquivo config.php
+session_start();  //start de session
+$id = $_SESSION['usuario']; //atribuição de informações da sessao a variaveis 
+$tipo = $_SESSION['admin'];
+$nome = $_SESSION['nome'];
+$mae = $_SESSION['mae'];
+$celular = $_SESSION['celular'];
+$nascimento = $_SESSION['nascimento'];
+$cpf = $_SESSION['cpf'];
+
+//bloqueio de paginas para usuarios cliente
+if ($_SESSION['admin'] == 1) {
+} else {
+  session_destroy();
+  header('Location: index.php');
+}
+
+$sql_read = "SELECT * FROM usuario"; // codigo sql a ser executado
+$query_usuarios = $mysqli->query($sql_read) or die($mysqli->error); // variavel de sucesso/falha de operação
+$num_usuarios = $query_usuarios->num_rows; //aqui ele recupera a quantidade de resultados e atribui esse numero a uma variavel
+?>
 <!DOCTYPE html>
 <html lang="PTBR" class="scroll-smooth">
   <head>
@@ -29,7 +51,7 @@
       <div class="container">
         <div class="relative -mx-4 flex items-center justify-between">
           <div class="w-60 max-w-full px-4">
-            <a href="admin.html" class="navbar-logo block w-full py-5">
+            <a href="adm.php" class="navbar-logo block w-full py-5">
               <img
                 src="assets/images/logo/logo-white.png"
                 alt="logo"
@@ -98,18 +120,42 @@
                       Contato
                     </a>
                   </li>
+             <li class="submenu-item group relative">
+                     <a
+                      href="javascript:void(0)"
+                      class="relative mx-8 flex py-2 text-base text-dark after:absolute after:right-1 after:top-1/2 after:mt-[-2px] after:h-2 after:w-2 after:-translate-y-1/2 after:rotate-45 after:border-b-2 after:border-r-2 after:border-current group-hover:text-primary lg:mr-0 lg:ml-8 lg:inline-flex lg:py-6 lg:pl-0 lg:pr-4 lg:text-white lg:after:right-0 lg:group-hover:text-white lg:group-hover:opacity-70 xl:ml-12"
+                    >
+                      Português
+                    </a>
+                    <div
+                      class="submenu relative top-full left-0 hidden w-[250px] rounded-sm bg-white p-4 transition-[top] duration-300 group-hover:opacity-100 lg:invisible lg:absolute lg:top-[110%] lg:block lg:opacity-0 lg:shadow-lg lg:group-hover:visible lg:group-hover:top-full"
+                    > 
+                      <a
+                        href="adm.php"
+                        class="block rounded py-[10px] px-4 text-sm text-body-color hover:text-primary"
+                      >
+                        Português
+                      </a>
+                      <a
+                        href="adm.php"
+                        class="block rounded py-[10px] px-4 text-sm text-body-color hover:text-primary"
+                      >
+                        Inglês
+                      </a> 
+                    </div>
+                  </li>
                 </ul>
               </nav>
             </div>
             <div class="hidden justify-end pr-16 sm:flex lg:pr-0">
               <a
-                href="../PHP/lista_de_usuarios.php"
+                href="lista_de_usuarios.php"
                 class="loginBtn py-3 px-7 text-base font-medium text-white hover:opacity-70"
               >
                 Painel ADM
               </a>
               <a
-                href="../PHP/session_drop.php"
+                href="session_drop.php"
                 class="signUpBtn rounded-lg bg-white bg-opacity-20 py-3 px-6 text-base font-medium text-white duration-300 ease-in-out hover:bg-opacity-100 hover:text-dark"
               >
                 SAIR
@@ -4784,85 +4830,6 @@
             </div>
           </div>
           <div class="w-full px-4 md:w-2/3 lg:w-6/12 xl:w-3/12">
-       <!--     <div class="mb-10 w-full">
-              <h4 class="mb-9 text-lg font-semibold text-white">Partners</h4>
-              <ul class="flex flex-wrap items-center">
-                <li>
-                  <a
-                    href="https://tailgrids.com"
-                    rel="nofollow noopner"
-                    target="_blank"
-                    class="mb-6 mr-5 block max-w-[120px] xl:max-w-[100px] 2xl:max-w-[120px]"
-                  >
-                    <img
-                      src="assets/images/footer/brands/tailgrids.svg"
-                      alt="tailgrids"
-                    />
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="https://ayroui.com"
-                    rel="nofollow noopner"
-                    target="_blank"
-                    class="mb-6 mr-5 block max-w-[120px] xl:max-w-[100px] 2xl:max-w-[120px]"
-                  >
-                    <img
-                      src="assets/images/footer/brands/ayroui.svg"
-                      alt="ayroui"
-                    />
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="https://ecommercehtml.com"
-                    rel="nofollow noopner"
-                    target="_blank"
-                    class="mb-6 mr-5 block max-w-[120px] xl:max-w-[100px] 2xl:max-w-[120px]"
-                  >
-                    <img
-                      src="assets/images/footer/brands/ecommerce-html.svg"
-                      alt="ecommerce-html"
-                    />
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="https://graygrids.com"
-                    rel="nofollow noopner"
-                    target="_blank"
-                    class="mb-6 mr-5 block max-w-[120px] xl:max-w-[100px] 2xl:max-w-[120px]"
-                  >
-                    <img
-                      src="assets/images/footer/brands/graygrids.svg"
-                      alt="graygrids"
-                    />
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="https://lineicons.com"
-                    rel="nofollow noopner"
-                    target="_blank"
-                    class="mb-6 mr-5 block max-w-[120px] xl:max-w-[100px] 2xl:max-w-[120px]"
-                  >
-                    <img
-                      src="assets/images/footer/brands/lineicons.svg"
-                      alt="lineicons"
-                    />
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="https://uideck.com"
-                    rel="nofollow noopner"
-                    target="_blank"
-                    class="mb-6 mr-5 block max-w-[120px] xl:max-w-[100px] 2xl:max-w-[120px]"
-                  >
-                    <img
-                      src="assets/images/footer/brands/uideck.svg"
-                      alt="uideck"
-                    /> -->
                   </a>
                 </li>
               </ul>

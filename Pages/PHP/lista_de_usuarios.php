@@ -110,7 +110,7 @@ $num_usuarios = $query_usuarios->num_rows; //aqui ele recupera a quantidade de r
     <a href="cadastro_de_usuarios.php" class="btn btn-primary btn-sm">Cadastrar usuario</a>
     <a href="modelo_de_dados.php" class="btn btn-warning btn-sm">Modelo De Dados</a><br /><br />
     <a href="logs.php" class="btn btn-success btn-sm">Visualizar Logs de Acesso</a>
-    <a href="../../Pagina_Perfil/index.html" class="btn btn-dark btn-sm">Perfil</a>
+    <a href="adm.php" class="btn btn-dark btn-sm">Voltar</a>
     <a href="./session_drop.php" class="btn btn-danger btn-sm">Sair</a>
     <br /><br />
   </div>

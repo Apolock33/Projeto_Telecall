@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -17,7 +17,8 @@
     <script src="assets/js/wow.min.js"></script>
     <script>
       new WOW().init();
-    </script>
+    </script>  
+
   </head>
   <body>
     <!-- ====== Navbar Section Start -->
@@ -162,7 +163,7 @@
             <div class="hidden justify-end pr-16 sm:flex lg:pr-0">
               
               <a
-                href="SAIR.html"
+                href="cadastro_de_usuarios.php"
                 class="signUpBtn rounded-lg bg-white bg-opacity-20 py-3 px-6 text-base font-medium text-white duration-300 ease-in-out hover:bg-opacity-100 hover:text-dark"
               >
                 Cadastro
@@ -272,27 +273,34 @@
                   <img src="assets/images/logo/logo.png" alt="logo" />
                 </a>
               </div>
-              <form>
+
+
+         
+
+              <form action='' method="POST">
                 <div class="mb-6">
                   <input
-                    type="email"
+                    type="email" name="email" 
                     placeholder="Email"
                     class="bordder-[#E9EDF4] w-full rounded-md border bg-[#FCFDFE] py-3 px-5 text-base text-body-color placeholder-[#ACB6BE] outline-none transition focus:border-primary focus-visible:shadow-none"
+                      
+                        
                   />
                 </div>
                 <div class="mb-6">
                   <input
-                    type="password"
+                    type="password" name="senha" 
                     placeholder="Senha"
                     class="bordder-[#E9EDF4] w-full rounded-md border bg-[#FCFDFE] py-3 px-5 text-base text-body-color placeholder-[#ACB6BE] outline-none transition focus:border-primary focus-visible:shadow-none"
-                  />
+                 
+                    />
                 </div>
                 <div class="mb-10">
-                  <input
-                    type="submit"
-                    value="Login"
-                    class="bordder-primary w-full cursor-pointer rounded-md border bg-primary py-3 px-5 text-base text-white transition duration-300 ease-in-out hover:shadow-md"
-                  />
+                 
+
+                  <button class="bordder-primary w-full cursor-pointer rounded-md border bg-primary py-3 px-5 text-base text-white transition duration-300 ease-in-out hover:shadow-md"" type="submit">Login</button>
+
+
                 </div>
               </form>
               <p class="mb-6 text-base text-[#adadad]">Conectar com</p>
@@ -363,7 +371,7 @@
               </a>
               <p class="text-base text-[#adadad]">
                 Não tem Conta ?
-                <a href="signup.html" class="text-primary hover:underline">
+                <a href="cadastro_de_usuarios.php" class="text-primary hover:underline">
                   Cadastre-se
                 </a>
               </p>
@@ -594,6 +602,9 @@
     <!-- ====== Forms Section End -->
 
     <!-- ====== Footer Section Start -->
+
+
+    
     <footer
       class="wow fadeInUp relative z-10 bg-black pt-20 lg:pt-[120px]"
       data-wow-delay=".15s"
@@ -1209,7 +1220,12 @@
         </span>
       </div>
     </footer>
+
+
     <!-- ====== Footer Section End -->
+
+
+
 
     <!-- ====== Back To Top Start -->
     <a
@@ -1225,7 +1241,8 @@
     <!-- ====== All Scripts -->
 
     <script src="assets/js/main.js"></script>
-    <script>
+    
+  <script>
       // ==== for menu scroll
       const pageLink = document.querySelectorAll(".ud-menu-scroll");
 
@@ -1267,6 +1284,60 @@
       }
 
       window.document.addEventListener("scroll", onScroll);
-    </script>
+    </script> 
   </body>
 </html>
+
+
+<?php
+
+require_once('./config.php'); // chamada da conexão do banco
+
+
+$erro = false; //variavel de erro
+if (isset($_POST['email']) && isset($_POST['senha'])) { //aqui o PHP verifica se existe inserção de dados nos campos e se for true, ele atribui aos valores dos campos, variáveis
+  $email = $mysqli->escape_string($_POST['email']);
+  $senha = $_POST['senha'];
+
+  $sql_code = "SELECT * FROM usuario WHERE usu_email = '$email'"; //codigo sql
+  $sql_query = $mysqli->query($sql_code) or die($mysqli->error); //variavel que dfine o suscesso ou fracasso da operação
+
+  if ($sql_query->num_rows == 0) { //aqui ele verifica se há resultados para o código sql executado, caso seja igual a 0 ele retorna email inconrreto
+    echo "<script>
+            Swal.fire({
+              icon: 'error',
+              title: 'Email Incorreto'
+            })
+          </script>;";
+  } else {
+    $usuario = $sql_query->fetch_assoc(); //aqui ele recebe as informações da linha da tabela que foi encontrada atraves da variavel $sql_query e atribui elas a uma variavel de valor array chamada $usuario
+    if (!password_verify($senha, $usuario['usu_senha'])) { //aqui ele verifica se o valor do campo senha é difrente da senha encontrada no array $usuario, caso seja, ele exibe o erro senha incorreta
+      echo "<script>
+            Swal.fire({
+              icon: 'error',
+              title: 'Senha Incorreta'
+            })
+          </script>;";
+    } else { // caso seja igual ele faz uma nova verificação
+      if (!isset($_SESSION)) { //caso não haja sessão ele inicia uma nova e atribui a superglobal, como um array, os valores encontrados no array $usuario e envia o cliente para a pagina 2fa
+        session_start();
+        $_SESSION['usuario'] = $usuario['usu_id'];
+        $_SESSION['admin'] = $usuario['usu_tipo'];
+        $_SESSION['nome'] = $usuario['usu_nome'];
+        $_SESSION['cpf'] = $usuario['usu_cpf'];
+        $_SESSION['mae'] = $usuario['usu_mae'];
+        $_SESSION['celular'] = $usuario['usu_celular'];
+        $_SESSION['nascimento'] = $usuario['usu_nascimento'];
+        header("Location: 2fa.php");
+      }
+    }
+  }
+
+  //Aqui ele apresenta um erro caso alguma das operações acima dê errado
+  if (!$erro) {
+  } else {
+    echo $erro;
+  }
+}
+
+?>
