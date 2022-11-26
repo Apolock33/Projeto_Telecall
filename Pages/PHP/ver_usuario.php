@@ -134,7 +134,7 @@ $resultado_end = $mysqli->query($query_end) or die($mysqli->error); // variavel 
     </table><br /><br />
     <div align="center">
         <a href="./lista_de_usuarios.php" class="btn btn-primary">Lista de Usuários</a>
-    </div>
+    </div><br /><br />
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
 </body>
