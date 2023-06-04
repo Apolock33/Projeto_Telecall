@@ -1,7 +1,7 @@
 <?php
-$server = 'dbprojetoaws.choisu8jh04l.us-east-1.rds.amazonaws.com';
-$user = 'admin';
-$password = 'Protagonista';
+$server = 'localhost:3306';
+$user = 'root';
+$password = 'Bio6971@@';
 $db = 'unisuam';
 
 $mysqli = new mysqli($server, $user, $password, $db);
